@@ -4,31 +4,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - PDFTool</title>
+    <title>Login - PDFNuAing</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
 <body class="bg-gray-100 flex items-center justify-center min-h-screen">
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+        <!-- Back to Homepage Link -->
+        <a href="/" class="text-sm text-red-500 hover:underline block mb-4">
+        < Kembali ke halaman utama
+        </a>
+        
         <!-- Logo and Title -->
         <h1 class="text-2xl font-bold text-center mb-2">
-            <span class="text-red-500">I ♥</span> PDFTool
+            <div class="text-xl font-bold text-red-500">
+                PDF <span>❤</span> NuAing
+            </div>
         </h1>
         <h2 class="text-center text-gray-600 mb-6">Login to your account</h2>
-
-        <!-- Social Login Buttons -->
-        <div class="flex flex-col space-y-3 mb-6">
-            <button class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Facebook</button>
-            <button class="bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">Google</button>
-            <button class="bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-800">SSO</button>
-        </div>
 
         <!-- Login Form -->
         <form action="/login" method="POST" class="space-y-4">
             <input type="email" name="email" placeholder="Enter your email"
                 class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
-            <input type="password" name="password" placeholder="Password"
-                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+
+            <!-- Password Input with Show/Hide Toggle -->
+            <div class="relative">
+                <input type="password" id="password" name="password" placeholder="Password"
+                    class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500" required>
+                <button type="button" id="togglePassword" class="absolute right-3 top-2.5 text-gray-500">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5zm7.84 2.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path>
+                    </svg>
+                </button>
+            </div>
+
             <a href="#" class="text-red-500 text-sm hover:underline block text-right">Forgot your password?</a>
             <button type="submit" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">
                 Log in
@@ -37,9 +47,26 @@
 
         <!-- Register Link -->
         <p class="text-center text-gray-600 text-sm mt-4">
-            Don't have an account? <a href="/register" class="text-red-500 hover:underline">Create an account</a>
+            Don't have an account? <a href="signup.html" class="text-red-500 hover:underline">Create an account</a>
         </p>
     </div>
+
+    <!-- JavaScript for Show/Hide Password -->
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordInput = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            // Toggle the type attribute
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+
+            // Toggle the icon
+            this.innerHTML = type === 'password'
+                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5zm7.84 2.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path></svg>'
+                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zm0 3.5a5.5 5.5 0 0 0-4.18 8.25c.36.45.9.75 1.48.75h5.4c.58 0 1.12-.3 1.48-.75A5.5 5.5 0 0 0 10 5.5z"></path></svg>';
+        });
+    </script>
 </body>
 
 </html>
