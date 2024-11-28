@@ -14,12 +14,12 @@
     <header class="bg-white shadow-md sticky top-0 z-50">
         <div class="container mx-auto flex justify-between items-center px-6 py-4">
             <div class="text-xl font-bold text-red-500">
-                I <span>❤</span> PDF
+                PDF <span>❤</span> NuAing
             </div>
             <nav class="hidden md:flex space-x-6">
-                <a href="#" class="text-gray-600 hover:text-red-500">Merge PDF</a>
-                <a href="#" class="text-gray-600 hover:text-red-500">Split PDF</a>
-                <a href="#" class="text-gray-600 hover:text-red-500">Compress PDF</a>
+                <a href="merge.html" class="text-gray-600 hover:text-red-500">Merge PDF</a>
+                <!-- <a href="#" class="text-gray-600 hover:text-red-500">Split PDF</a>
+                <a href="#" class="text-gray-600 hover:text-red-500">Compress PDF</a> -->
                 <div class="relative group">
                     <a href="#" class="text-gray-600 hover:text-red-500 flex items-center">
                         All PDF Tools
@@ -36,7 +36,7 @@
                             <div>
                                 <h4 class="font-bold text-gray-700 mb-3">ORGANIZE PDF</h4>
                                 <ul>
-                                    <li><a href="#" class="block text-gray-600 hover:text-red-500">Merge PDF</a></li>
+                                    <li><a href="merge.html" class="block text-gray-600 hover:text-red-500">Merge PDF</a></li>
                                     <li><a href="#" class="block text-gray-600 hover:text-red-500">Split PDF</a></li>
                                     <li><a href="#" class="block text-gray-600 hover:text-red-500">Remove pages</a></li>
                                     <li><a href="#" class="block text-gray-600 hover:text-red-500">Extract pages</a>
@@ -69,54 +69,46 @@
                 </div>
             </nav>
             <div class="hidden md:flex space-x-4">
-                <button class="text-gray-600">Login</button>
-                <button class="bg-red-500 text-white px-4 py-2 rounded">Sign up</button>
+                <button onclick="klikLogin()" class="text-gray-600 hover:text-red-500 duration-300">Login</button>
+                <button onclick="klikSignup()" class="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition duration-300">Sign up</button>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
     <main class="container mx-auto p-6 flex-grow">
+        <!-- Heading -->
         <h2 class="text-2xl font-bold text-center mb-4">Every tool you need to work with PDFs in one place</h2>
         <p class="text-gray-600 text-center mb-8">All are 100% FREE and easy to use! Merge, split, compress, convert,
             rotate, unlock, and watermark PDFs with just a few clicks.</p>
+    
+        <!-- Cards Container -->
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
             <!-- Card 1 -->
-            <a href="404.html"
-                class="bg-white p-6 shadow rounded-lg hover:bg-gray-100 transition-all duration-200">
+            <a href="merge.html" class="bg-white p-6 shadow rounded-lg hover:bg-gray-100 transition-all duration-200 flex flex-col items-start">
+                <!-- Icon -->
+                <div class="bg-red-500 p-3 rounded-lg text-white mb-4">
+                    <img src="image/iconmerge.png" alt="Merge Icon" class="h-10 w-10">
+                </div>
+                <!-- Title -->
                 <h3 class="text-xl font-bold text-gray-800">Merge PDF</h3>
-                <p class="text-gray-600 mt-2">Combine PDFs in the order you want with the easiest PDF merger available.
-                </p>
-            </a>
-
-            <!-- Card 2 -->
-            <a href="404.html"
-                class="bg-white p-6 shadow rounded-lg hover:bg-gray-100 transition-all duration-200">
-                <h3 class="text-xl font-bold text-gray-800">Split PDF</h3>
-                <p class="text-gray-600 mt-2">Separate one page or a whole set for easy conversion into independent PDF
-                    files.</p>
-            </a>
-
-            <!-- Card 3 -->
-            <a href="404.html"
-                class="bg-white p-6 shadow rounded-lg hover:bg-gray-100 transition-all duration-200">
-                <h3 class="text-xl font-bold text-gray-800">Compress PDF</h3>
-                <p class="text-gray-600 mt-2">Reduce file size while optimizing for maximal PDF quality.</p>
+                <!-- Description -->
+                <p class="text-gray-600 mt-2">Combine PDFs in the order you want with the easiest PDF merger available.</p>
             </a>
         </div>
-
     </main>
+    
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white mt-auto">
-        <div class="container mx-auto px-6 py-8">
+        <!-- <div class="container mx-auto px-6 py-8">
             <h2 class="text-center text-2xl font-bold mb-4">Get more with Premium</h2>
             <p class="text-center text-gray-400 mb-6">Complete projects faster with batch file processing, convert
                 scanned documents with OCR, and e-sign your business agreements.</p>
             <div class="text-center">
                 <button class="bg-yellow-400 text-gray-800 px-4 py-2 rounded">Get Premium</button>
             </div>
-        </div>
+        </div> -->
         <div class="bg-gray-700 py-6">
             <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 text-gray-400 text-sm">
                 <div>
@@ -155,10 +147,21 @@
             </div>
         </div>
         <div class="bg-gray-900 py-4">
-            <p class="text-center text-gray-500 text-sm">&copy; 2024 I Love PDF - Your PDF Editor</p>
+            <p class="text-center text-gray-500 text-sm">
+                &copy; 2024 Muhammad Haitsam Izzuddin Azman & Resqi Aulia Gita Utami
+            </p>
         </div>
-    </footer>
 
+    </footer>
+    <script>
+        function klikLogin(){
+            window.location.href='login.html';
+        }
+
+        function klikSignup(){
+            window.location.href='signup.html';
+        }
+    </script>
 </body>
 
 </html>
