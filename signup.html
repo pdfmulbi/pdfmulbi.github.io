@@ -17,14 +17,7 @@
                 <h1 class="text-2xl font-bold text-center mb-2">
                     <span class="text-red-500">PDF ♥</span> Nuaing
                 </h1>
-                <h2 class="text-center text-gray-600 mb-6">Create new account!</h2>
-
-                <!-- Social Login Buttons -->
-                <!-- <div class="flex flex-col space-y-3 mb-6">
-                    <button class="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">Facebook</button>
-                    <button class="bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">Google</button>
-                    <button class="bg-gray-700 text-white py-2 rounded-lg hover:bg-gray-800">SSO</button>
-                </div> -->
+                <h2 class="text-center text-gray-600 mb-6">Buat akun baru!!</h2>
 
                 <!-- Signup Form -->
                 <form action="/signup" method="POST" class="space-y-4">
@@ -36,7 +29,7 @@
                                 <path d="M10 2a5 5 0 100 10 5 5 0 000-10zM2 17a8 8 0 1116 0H2z" />
                             </svg>
                         </span>
-                        <input type="text" name="name" placeholder="Name"
+                        <input type="text" name="name" placeholder="Nama"
                             class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                             required>
                     </div>
@@ -65,11 +58,14 @@
                                     clip-rule="evenodd" />
                             </svg>
                         </span>
-                        <input type="password" name="password" placeholder="Password"
+                        <input type="password" id="password" name="password" placeholder="Kata Sandi"
                             class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
                             required>
-
-                            
+                        <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5zm7.84 2.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path>
+                            </svg>
+                        </button>
                     </div>
 
                     <!-- Submit Button -->
@@ -81,10 +77,10 @@
 
                 <!-- Already Member -->
                 <p class="text-center text-gray-600 text-sm mt-4">
-                    Already member? <a href="login.html" class="text-red-500 hover:underline">Log in</a>
+                    Sudah Daftar? <a href="login.html" class="text-red-500 hover:underline">Log in</a>
                 </p>
     </div>
-    
+
     <!-- JavaScript for Show/Hide Password -->
     <script>
         const togglePassword = document.getElementById('togglePassword');
