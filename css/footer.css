@@ -1,0 +1,74 @@
+/* Reset dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Konten utama */
+.content {
+    text-align: center;
+    margin: 20px;
+}
+
+/* Footer */
+.footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+}
+
+.footer-item {
+    text-align: center;
+    flex: 1;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.3s ease-in-out;
+}
+
+.footer-item i {
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
+}
+
+.footer-item.upload i {
+    color: white;
+    background-color: #f44336;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 25px;
+}
+
+.footer-item.upload span {
+    display: none;
+}
+
+.footer-item:hover {
+    color: #f44336;
+}
+
+/* Responsif */
+@media (max-width: 600px) {
+    .footer-item i {
+        font-size: 18px;
+    }
+    .footer-item span {
+        font-size: 12px;
+    }
+}
