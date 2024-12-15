@@ -36,15 +36,19 @@
     text-decoration: underline;
 }
 
+.back-link:hover {
+    text-decoration: underline;
+}
+
 /* Logo and Title */
 .logo-title {
     text-align: center;
-    font-size: 1.5rem;
-    font-weight: bold;
     margin-bottom: 8px;
 }
 
 .logo {
+    font-size: 1.25rem;
+    font-weight: bold;
     color: #ef4444;
 }
 
@@ -138,12 +142,44 @@
 .signup-link:hover {
     text-decoration: underline;
 }
-/* Responsif */
-@media (max-width: 600px) {
-    .footer-item i {
-        font-size: 18px;
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .header {
+        padding: 10px; /* Konsisten untuk layar sedang */
     }
-    .footer-item span {
-        font-size: 12px;
+
+    .logo-text {
+        font-size: 16px; /* Ukuran lebih kecil untuk logo */
+    }
+
+    .menu-link,
+    .login,
+    .signup {
+        font-size: 14px; /* Perkecil ukuran font */
+    }
+
+    .signup {
+        padding: 6px 12px; /* Kurangi padding tombol */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 5px 10px; /* Kurangi padding lebih kecil */
+    }
+
+    .menu {
+        gap: 10px; /* Kurangi jarak antar menu */
+    }
+
+    .auth-buttons {
+        gap: 5px; /* Kurangi jarak antar tombol */
+    }
+
+    .menu-link,
+    .login,
+    .signup {
+        font-size: 12px; /* Ukuran font lebih kecil */
     }
 }
