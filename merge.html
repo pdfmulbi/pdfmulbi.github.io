@@ -10,66 +10,53 @@
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body class="bg-gray-100 min-h-screen flex flex-col">
-    <!-- Navbar -->
-    <header class="navbar">
-        <div class="container">
-            <a href="index.html">
-                <h1 class="logo">PDF <span>❤</span> NuAing</h1>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo-text">
+                PDF <span class="heart">❤️</span> NuAing
             </a>
-            <nav>
-                <ul class="nav-links">
-                    <li><a href="#" class="active">Merge PDF</a></li>
-                    <li class="dropdown">
-                        <a href="#">All PDF Tools</a>
-                        <div class="dropdown-menu">
-                            <div class="grid">
-                                <div>
-                                    <h4>ORGANIZE PDF</h4>
-                                    <ul>
-                                        <li><a href="merge.html">Merge PDF</a></li>
-                                        <li><a href="#">Split PDF</a></li>
-                                        <li><a href="#">Remove pages</a></li>
-                                        <li><a href="#">Extract pages</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4>OPTIMIZE PDF</h4>
-                                    <ul>
-                                        <li><a href="#">Compress PDF</a></li>
-                                        <li><a href="#">Repair PDF</a></li>
-                                        <li><a href="#">OCR PDF</a></li>
-                                    </ul>
-                                </div>
-                                <div>
-                                    <h4>EDIT PDF</h4>
-                                    <ul>
-                                        <li><a href="#">Rotate PDF</a></li>
-                                        <li><a href="#">Add watermark</a></li>
-                                        <li><a href="#">Edit PDF</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </li>
-                </ul>
-            </nav>
-            <div class="auth-buttons">
-                <a href="login.html">Login</a>
-                <a href="signup.html" class="signup">Sign up</a>
-            </div>
         </div>
-    </header>
+        <!-- <div class="menu">
+            <a href="merge.html" class="menu-link">Merge PDF</a>
+        </div> -->
+        <div class="auth-buttons">
+            <a href="#" class="login">Login</a>
+            <button class="signup">Sign up</button>
+        </div>
+    </header>  
 
     <!-- Main Content -->
-    <main class="main-content">
-        <h2>Merge PDF files</h2>
-        <p>Gabungkan PDF sesuai urutan yang Anda inginkan dengan penggabungan PDF termudah yang tersedia.</p>
+    <main class="main">
+        <h2 class="main-title">Merge PDF files</h2>
+        <p class="main-description">Combine PDFs in the order you want with the easiest PDF merger available.</p>
 
-        <div class="upload-button">
-            <button>Pilih file PDF</button>
+        <!-- Select PDF Button -->
+        <div class="pdf-actions">
+            <button class="select-pdf">
+                <span>Select PDF files</span>
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+            </button>
+            <p class="drop-pdf">or drop PDFs here</p>
         </div>
-        <p>atau jatuhkan PDF Anda di sini</p>
+
+        <!-- Icon Options -->
+        <div class="icon-actions">
+            <button class="icon-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2a10 10 0 110 20 10 10 0 010-20zm4.29 7.71l-4-4a1 1 0 00-1.42 0l-4 4a1 1 0 001.42 1.42L11 8.41V16a1 1 0 102 0V8.41l2.29 2.3a1 1 0 001.42-1.42z" />
+                </svg>
+            </button>
+            <button class="icon-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" class="icon" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M12 2a10 10 0 110 20 10 10 0 010-20zm3.36 8.04a4.38 4.38 0 00-2.57.72A4.39 4.39 0 006.4 9.84a4.38 4.38 0 00-2.6-.72 4.38 4.38 0 002.57 1.2c.07.44.18.87.34 1.28A4.39 4.39 0 004.8 12.8a4.38 4.38 0 002.57-.72 4.39 4.39 0 003.96 1.68 4.39 4.39 0 003.96-1.68 4.38 4.38 0 002.57.72 4.38 4.38 0 00-1.98-2.28 4.38 4.38 0 00.34-1.28 4.38 4.38 0 002.57-1.2 4.38 4.38 0 00-2.6.72 4.39 4.39 0 00-3.57-1.08z" />
+                </svg>
+            </button>
+        </div>
     </main>
 
     <!-- Footer -->
