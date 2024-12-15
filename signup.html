@@ -5,96 +5,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - PDFNuaing</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="/css/signup.css">
 </head>
 
-<body class="bg-gray-100 flex items-center justify-center min-h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-lg w-96">
+<body class="body-bg">
+    <div class="card">
         <!-- Back to Homepage Link -->
-        <a href="/" class="text-sm text-red-500 hover:underline block mb-4">
-            < Kembali ke halaman utama </a> 
-            <!-- Logo and Title -->
-                <h1 class="text-2xl font-bold text-center mb-2">
-                    <span class="text-red-500">PDF ♥</span> Nuaing
-                </h1>
-                <h2 class="text-center text-gray-600 mb-6">Buat akun baru!!</h2>
+        <a href="/" class="back-link">
+            &lt; Kembali ke halaman utama
+        </a>
 
-                <!-- Signup Form -->
-                <form action="/signup" method="POST" class="space-y-4">
-                    <!-- Name Input -->
-                    <div class="relative">
-                        <span class="absolute left-3 top-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path d="M10 2a5 5 0 100 10 5 5 0 000-10zM2 17a8 8 0 1116 0H2z" />
-                            </svg>
-                        </span>
-                        <input type="text" name="name" placeholder="Nama"
-                            class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                            required>
-                    </div>
+        <!-- Logo and Title -->
+        <h1 class="logo-title">
+            <span class="logo">PDF ♥</span> Nuaing
+        </h1>
+        <h3 class="subtitle">Buat akun baru!!</h3>
 
-                    <!-- Email Input -->
-                    <div class="relative">
-                        <span class="absolute left-3 top-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path
-                                    d="M2.94 6.94A7 7 0 0110 4a7 7 0 017.06 2.94L10 10.87 2.94 6.94zM4 8.44L10 12.73l6-4.29a7.01 7.01 0 01-12 0z" />
-                            </svg>
-                        </span>
-                        <input type="email" name="email" placeholder="Email"
-                            class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                            required>
-                    </div>
+        <!-- Signup Form -->
+        <form action="/signup" method="POST" class="form">
+            <!-- Name Input -->
+            <div class="relative">
+                <span class="icon-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2a5 5 0 100 10 5 5 0 000-10zM2 17a8 8 0 1116 0H2z" />
+                    </svg>
+                </span>
+                <input type="text" name="name" placeholder="Nama" class="input" required>
+            </div>
 
-                    <!-- Password Input -->
-                    <div class="relative">
-                        <span class="absolute left-3 top-3 text-gray-400">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
-                                fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M5 8a3 3 0 116 0v3H5V8zM4 11v2a2 2 0 002 2h8a2 2 0 002-2v-2H4z"
-                                    clip-rule="evenodd" />
-                            </svg>
-                        </span>
-                        <input type="password" id="password" name="password" placeholder="Kata Sandi"
-                            class="w-full pl-10 px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-red-500"
-                            required>
-                        <button type="button" id="togglePassword" class="absolute right-3 top-3 text-gray-500">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                <path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5zm7.84 2.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path>
-                            </svg>
-                        </button>
-                    </div>
+            <!-- Email Input -->
+            <div class="relative">
+                <span class="icon-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M2.94 6.94A7 7 0 0110 4a7 7 0 017.06 2.94L10 10.87 2.94 6.94zM4 8.44L10 12.73l6-4.29a7.01 7.01 0 01-12 0z" />
+                    </svg>
+                </span>
+                <input type="email" name="email" placeholder="Email" class="input" required>
+            </div>
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="w-full bg-red-500 text-white py-2 rounded-lg hover:bg-red-600">
-                        Sign up
-                    </button>
-                </form>
+            <!-- Password Input -->
+            <div class="relative">
+                <span class="icon-left">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path fill-rule="evenodd" d="M5 8a3 3 0 116 0v3H5V8zM4 11v2a2 2 0 002 2h8a2 2 0 002-2v-2H4z" clip-rule="evenodd" />
+                    </svg>
+                </span>
+                <input type="password" id="password" name="password" placeholder="Kata Sandi" class="input" required>
+                <button type="button" id="togglePassword" class="toggle-password">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 20 20" fill="currentColor">
+                        <path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5z"></path>
+                    </svg>
+                </button>
+            </div>
 
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Sign up</button>
+        </form>
 
-                <!-- Already Member -->
-                <p class="text-center text-gray-600 text-sm mt-4">
-                    Sudah Daftar? <a href="login.html" class="text-red-500 hover:underline">Log in</a>
-                </p>
+        <!-- Already Member -->
+        <p class="register-link">
+            Sudah Daftar? <a href="login.html" class="signup-link">Log in</a>
+        </p>
     </div>
 
-    <!-- JavaScript for Show/Hide Password -->
     <script>
         const togglePassword = document.getElementById('togglePassword');
         const passwordInput = document.getElementById('password');
 
         togglePassword.addEventListener('click', function () {
-            // Toggle the type attribute
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
-
-            // Toggle the icon
-            this.innerHTML = type === 'password'
-                ? '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zM2.16 10c.53-1.4 2.65-5.5 7.84-5.5 5.19 0 7.31 4.1 7.84 5.5-.53 1.4-2.65 5.5-7.84 5.5-5.19 0-7.31-4.1-7.84-5.5zm7.84 2.25a2.25 2.25 0 1 0 0-4.5 2.25 2.25 0 0 0 0 4.5z"></path></svg>'
-                : '<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C5 2 1 6 1 10s4 8 9 8 9-4 9-8-4-8-9-8zm0 3.5a5.5 5.5 0 0 0-4.18 8.25c.36.45.9.75 1.48.75h5.4c.58 0 1.12-.3 1.48-.75A5.5 5.5 0 0 0 10 5.5z"></path></svg>';
         });
     </script>
 </body>
