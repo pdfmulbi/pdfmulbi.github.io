@@ -33,12 +33,20 @@
 
         <!-- Select PDF Button -->
         <div class="pdf-actions">
-            <button class="select-pdf">
+            <!-- <button class="select-pdf">
                 <span>Select PDF files</span>
                 <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
                 </svg>
-            </button>
+            </button> -->
+            <form id="merge-form" enctype="multipart/form-data">
+                <input type="file" id="pdf-files" name="files" multiple accept=".pdf" hidden />
+                <button type="button" id="upload-btn" class="select-pdf">
+                    <span>Select PDF files</span>
+                </button>
+                <br>
+                <button type="submit" class="select-pdf">Merge PDFs</button>
+            </form>            
             <p class="drop-pdf">or drop PDFs here</p>
         </div>
 
@@ -84,6 +92,7 @@
             </div>
         </div>
     </footer>
-</body>
 
+    <script src="/js/merge.js"></script>
+</body>
 </html>
