@@ -131,7 +131,6 @@ body {
 .main-content p {
     color: #6b7280;
 }
-
 /* Footer */
 .footer {
     position: fixed;
@@ -161,24 +160,34 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
+/* Gaya untuk elemen link */
+.footer-item a {
+    text-decoration: none; /* Menghapus garis bawah */
+    color: inherit; /* Warna sesuai dengan elemen parent */
+    display: flex; /* Membuat elemen link merangkul ikon dan teks */
+    flex-direction: column; /* Ikon di atas teks */
+    align-items: center;
+    justify-content: center;
+}
+
 .footer-item i {
     display: block;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
-.footer-item.upload i {
+.footer-item.upload a i {
     color: white;
     background-color: #f44336;
     border-radius: 50%;
     padding: 15px;
     font-size: 25px;
-    width: 50px; /* Pastikan sama dengan tinggi */
-    height: 50px; /* Pastikan sama dengan lebar */
+    width: 50px; /* Lebar sama dengan tinggi */
+    height: 50px; /* Tinggi sama dengan lebar */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto; /* Untuk merapikan di tengah */
+    margin: 0 auto; /* Merapikan di tengah */
 }
 
 .footer-item.upload span {
@@ -188,6 +197,11 @@ body {
 .footer-item:hover {
     color: #f44336;
 }
+
+.footer-item a:hover {
+    color: #f44336; /* Memberikan warna hover yang sama */
+}
+
 /* Responsif */
 @media (max-width: 600px) {
     .footer-item i {
