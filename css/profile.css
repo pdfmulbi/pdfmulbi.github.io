@@ -1,0 +1,160 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Body */
+.body-bg {
+    background-color: #f9f9f9;
+    min-height: 100vh;
+    display: flex;
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #ffffff;
+    padding: 20px;
+    width: 250px;
+    border-right: 1px solid #e5e7eb;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+    font-size: 1.25rem;
+    color: #ef4444;
+    margin-bottom: 24px;
+    text-align: center;
+}
+
+.menu {
+    list-style: none;
+}
+
+.menu li {
+    margin-bottom: 16px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #6b7280;
+    font-size: 1rem;
+    display: block;
+    padding: 8px 12px;
+    border-radius: 6px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.menu a:hover,
+.menu a.active {
+    background-color: #ef4444;
+    color: white;
+}
+
+/* Main Content */
+.content {
+    flex: 1;
+    padding: 32px;
+}
+
+.page-title {
+    font-size: 1.5rem;
+    color: #374151;
+    margin-bottom: 24px;
+}
+
+/* Profile Section */
+.profile-section {
+    display: flex;
+    gap: 24px;
+}
+
+.profile-card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex: 1;
+}
+
+.profile-card h2 {
+    font-size: 1.25rem;
+    margin-bottom: 16px;
+    color: #374151;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.profile-card p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    color: #6b7280;
+}
+
+.profile-card span {
+    color: #374151;
+}
+
+.edit-link {
+    color: #ef4444;
+    text-decoration: none;
+    font-size: 0.875rem;
+    transition: color 0.3s;
+}
+
+.edit-link:hover {
+    text-decoration: underline;
+}
+
+.link {
+    color: #ef4444;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+/* Social Section */
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+
+.social-link img {
+    width: 24px;
+    height: 24px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 12px;
+    margin-top: 16px;
+}
+
+.social-btn {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    font-size: 1rem;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.social-btn.fb {
+    background-color: #1877f2;
+}
+
+.social-btn.google {
+    background-color: #ea4335;
+}
