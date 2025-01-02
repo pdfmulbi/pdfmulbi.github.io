@@ -123,6 +123,7 @@
     cursor: pointer;
     transition: background-color 0.3s;
     font-size: 1rem;
+    width: 100%; /* Tambahkan width 100% */
 }
 
 .submit-btn:hover {
@@ -187,7 +188,8 @@
     border-radius: 6px;
     cursor: pointer;
     transition: background-color 0.3s, box-shadow 0.3s;
-    font-size: 0.875rem;
+    font-size: 1rem;
+    width: 100%; /* Tambahkan width 100% */
 }
 
 .google-btn:hover {
