@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - PDFMerger</title>
     <link rel="stylesheet" href="css/profile.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="body-bg">
@@ -14,12 +15,12 @@
         <aside class="sidebar">
             <h2 class="sidebar-title">PDFMerger</h2>
             <ul class="menu">
-                <li><a href="#" class="active">Akun Saya</a></li>
-                <li><a href="#">Keamanan</a></li>
-                <li><a href="#">Tim</a></li>
-                <li><a href="#">Tugas Terakhir</a></li>
-                <li><a href="#">Tanda Tangan</a></li>
-                <li><a href="#">Plan & Paket</a></li>
+                <li><a href="#" class="active"><i class="fas fa-user"></i> Akun Saya</a></li>
+                <li><a href="#"><i class="fas fa-lock"></i> Keamanan</a></li>
+                <li><a href="#"><i class="fas fa-users"></i> Tim</a></li>
+                <li><a href="#"><i class="fas fa-clock"></i> Tugas Terakhir</a></li>
+                <li><a href="#"><i class="fas fa-signature"></i> Tanda Tangan</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Plan & Paket</a></li>
             </ul>
         </aside>
 
@@ -30,13 +31,44 @@
             <!-- Profile Section -->
             <div class="profile-section">
                 <div class="profile-card">
-                    <h2>Profil <a href="#" class="edit-link">Ubah</a></h2>
-                    <p>Nama depan: <span>Resqi Aulia Gita Utami</span></p>
-                    <p>Nama belakang: <span>-</span></p>
-                    <p>Negara: <span>Indonesia</span></p>
-                    <p>Zona waktu: <span>Asia/Jakarta</span></p>
-                    <a href="#" class="link">Rincian bisnis</a><br>
-                    <a href="#" class="link">Plan & Paket</a>
+                    <h2>Profil <a href="#" id="edit-profile" class="edit-link">Ubah</a></h2>
+                    <div id="profile-view">
+                        <p>Nama depan: <span id="first-name">Resqi Aulia Gita Utami</span></p>
+                        <p>Nama belakang: <span id="last-name">-</span></p>
+                        <p>Negara: <span id="country">Indonesia</span></p>
+                        <p>Zona waktu: <span id="timezone">Asia/Jakarta</span></p>
+                        <a href="#" class="link">Rincian bisnis</a><br>
+                        <a href="#" class="link">Plan & Paket</a>
+                    </div>
+
+                    <div id="profile-edit" style="display: none;">
+                        <form id="profile-form">
+                            <label for="first-name-input">Nama depan:</label>
+                            <input type="text" id="first-name-input" value="Resqi Aulia Gita Utami" required>
+                            
+                            <label for="last-name-input">Nama belakang:</label>
+                            <input type="text" id="last-name-input" value="-">
+                            
+                            <label for="country-input">Negara:</label>
+                            <select id="country-input">
+                                <option value="Indonesia" selected>Indonesia</option>
+                                <option value="Malaysia">Malaysia</option>
+                                <option value="Singapore">Singapore</option>
+                            </select>
+                            
+                            <label for="timezone-input">Zona waktu:</label>
+                            <select id="timezone-input">
+                                <option value="Asia/Jakarta" selected>Asia/Jakarta</option>
+                                <option value="Asia/Kuala_Lumpur">Asia/Kuala Lumpur</option>
+                                <option value="Asia/Singapore">Asia/Singapore</option>
+                            </select>
+                            
+                            <div class="form-actions">
+                                <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
+                                <button type="submit" class="btn-save">Save</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
                 <div class="profile-card">
@@ -48,13 +80,52 @@
                     </div>
                     <p><a href="#" class="link">Tautkan akun jejaring sosial lainnya</a></p>
                     <div class="social-icons">
-                        <button class="social-btn fb">F</button>
-                        <button class="social-btn google">G</button>
+                        <button class="social-btn fb"><i class="fab fa-facebook-f"></i></button>
+                        <button class="social-btn google"><i class="fab fa-google"></i></button>
                     </div>
                 </div>
             </div>
         </main>
     </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="#">
+                    <i class="fas fa-file"></i>
+                    <span>My Files</span>
+                </a>
+            </div>
+            <div class="footer-item upload">
+                <a href="merge.html">
+                    <i class="fas fa-upload"></i>
+                    <span>Upload</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="#">
+                    <i class="fas fa-tools"></i>
+                    <span>Tools</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="js/profile.js"></script>
 </body>
 
 </html>
