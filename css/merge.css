@@ -153,7 +153,7 @@ body {
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #ffffff;
+    background-color: #fff;
     border-top: 1px solid #ddd;
     box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -163,11 +163,10 @@ body {
 
 .footer-container {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     width: 100%;
     max-width: 600px;
-    padding: 0 20px;
 }
 
 .footer-item {
@@ -178,15 +177,12 @@ body {
     transition: color 0.3s ease-in-out;
 }
 
-.footer-item.upload {
-    flex: 0;
-}
-
+/* Gaya untuk elemen link */
 .footer-item a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
+    text-decoration: none; /* Menghapus garis bawah */
+    color: inherit; /* Warna sesuai dengan elemen parent */
+    display: flex; /* Membuat elemen link merangkul ikon dan teks */
+    flex-direction: column; /* Ikon di atas teks */
     align-items: center;
     justify-content: center;
 }
@@ -203,12 +199,16 @@ body {
     border-radius: 50%;
     padding: 15px;
     font-size: 25px;
-    width: 50px; /* Sama dengan tinggi */
-    height: 50px;
+    width: 50px; /* Lebar sama dengan tinggi */
+    height: 50px; /* Tinggi sama dengan lebar */
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0 auto; /* Merapikan di tengah */
+}
+
+.footer-item.upload span {
+    display: none;
 }
 
 .footer-item:hover {
@@ -216,47 +216,15 @@ body {
 }
 
 .footer-item a:hover {
-    color: #f44336;
+    color: #f44336; /* Memberikan warna hover yang sama */
 }
 
-
-/* Responsive Design */
-@media (max-width: 768px) {
-    .header {
-        padding: 10px; /* Konsisten untuk layar sedang */
+/* Responsif */
+@media (max-width: 600px) {
+    .footer-item i {
+        font-size: 18px;
     }
-
-    .logo-text {
-        font-size: 16px; /* Ukuran lebih kecil untuk logo */
-    }
-
-    .menu-link,
-    .login,
-    .signup {
-        font-size: 14px; /* Perkecil ukuran font */
-    }
-
-    .signup {
-        padding: 6px 12px; /* Kurangi padding tombol */
-    }
-}
-
-@media (max-width: 480px) {
-    .header {
-        padding: 5px 10px; /* Kurangi padding lebih kecil */
-    }
-
-    .menu {
-        gap: 10px; /* Kurangi jarak antar menu */
-    }
-
-    .auth-buttons {
-        gap: 5px; /* Kurangi jarak antar tombol */
-    }
-
-    .menu-link,
-    .login,
-    .signup {
-        font-size: 12px; /* Ukuran font lebih kecil */
+    .footer-item span {
+        font-size: 12px;
     }
 }
