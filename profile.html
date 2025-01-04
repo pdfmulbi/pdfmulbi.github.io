@@ -13,7 +13,7 @@
     <div class="container">
         <!-- Sidebar -->
         <aside class="sidebar">
-            <h2 class="sidebar-title">PDFMerger</h2>
+            <h2 class="sidebar-title">PDF❤️Merger</h2>
             <ul class="menu">
                 <li><a href="#" class="active"><i class="fas fa-user"></i> Akun Saya</a></li>
                 <li><a href="#"><i class="fas fa-lock"></i> Keamanan</a></li>
@@ -37,8 +37,8 @@
                         <p>Nama belakang: <span id="last-name">-</span></p>
                         <p>Negara: <span id="country">Indonesia</span></p>
                         <p>Zona waktu: <span id="timezone">Asia/Jakarta</span></p>
-                        <a href="#" class="link">Rincian bisnis</a><br>
-                        <a href="#" class="link">Plan & Paket</a>
+                        <!-- <a href="#" class="link">Rincian bisnis</a><br>
+                        <a href="#" class="link">Plan & Paket</a> -->
                     </div>
 
                     <div id="profile-edit" style="display: none;">
@@ -70,23 +70,17 @@
                         </form>
                     </div>
                 </div>
-<!-- 
-                <div class="profile-card">
-                    <h2>Tautan Media Sosial</h2>
-                    <p>Sambungkan akun sosial Anda untuk masuk melalui Facebook atau Google.</p>
-                    <div class="social-link">
-                        <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google Icon">
-                        utamigita797@gmail.com
-                    </div>
-                    <p><a href="#" class="link">Tautkan akun jejaring sosial lainnya</a></p>
-                    <div class="social-icons">
-                        <button class="social-btn fb"><i class="fab fa-facebook-f"></i></button>
-                        <button class="social-btn google"><i class="fab fa-google"></i></button>
-                    </div>
-                </div> -->
             </div>
+
+            <!-- Upgrade to Premium Section -->
+<div class="profile-card">
+    <h2>Upgrade to Premium</h2>
+    <p>Dapatkan akses penuh ke semua fitur PDFMerger. Nikmati alat PDF cepat dan sederhana untuk mengonversi, mengedit, dan menandatangani dokumen Anda.</p>
+    <button class="btn-upgrade" onclick="klikPremium()">Upgrade to Premium</button>
+</div>
+
         </main>
-    </div>`
+    </div>
     
     <!-- Footer -->
     <footer class="footer">
@@ -126,6 +120,11 @@
 
     <!-- Link to external JavaScript -->
     <script src="js/profile.js"></script>
+    <script>
+        function klikPremium() {
+            window.location.href = 'premium.html';
+        }
+    </script>
 </body>
 
 </html>
