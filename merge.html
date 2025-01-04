@@ -9,19 +9,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
-<body>
+<body class="bg-gray-100">
+    <!-- Navbar -->
     <header class="header">
         <div class="logo">
             <a href="index.html" class="logo-text">
-                PDF <span class="heart">❤️</span> Merger
+                PDF <span class="heart">❤️</span>Merger
             </a>
         </div>
-        <!-- <div class="menu">
+        <div class="menu">
             <a href="merge.html" class="menu-link">Merge PDF</a>
-        </div> -->
+        </div>
         <div class="auth-buttons">
-            <a href="#" class="login">Login</a>
-            <button class="signup">Sign up</button>
+            <a href="login.html" class="login">Login</a>
+            <button class="signup" onclick="klikSignup()">Sign up</button>
         </div>
     </header>
 
@@ -30,62 +31,62 @@
         <h2 class="main-title">Merge PDF files</h2>
         <p class="main-description">Combine PDFs in the order you want with the easiest PDF merger available.</p>
 
-        <!-- Select PDF Button -->
+        <!-- Select PDF Buttons -->
         <div class="pdf-actions">
-            <!-- <button class="select-pdf">
-                <span>Select PDF files</span>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
-                </svg>
-            </button> -->
             <form id="merge-form" enctype="multipart/form-data">
-                <input type="file" id="pdf-files" name="files" multiple accept=".pdf" hidden />
-                <button type="button" id="upload-btn" class="select-pdf">
-                    <span>Select PDF files</span>
-                </button>
-                <br>
-                <button type="submit" class="select-pdf">Merge PDFs</button>
+                <input type="file" id="pdf-files1" name="files1" accept=".pdf" hidden />
+                <button type="button" id="upload-btn1" class="select-pdf">Upload First PDF</button>
+                <br><br>
+                <input type="file" id="pdf-files2" name="files2" accept=".pdf" hidden />
+                <button type="button" id="upload-btn2" class="select-pdf">Upload Second PDF</button>
+                <br><br>
+                <button type="submit" class="merge-btn">Merge PDFs</button>
             </form>
-            <p class="drop-pdf">or drop PDFs here</p>
         </div>
     </main>
 
-        <!-- Footer -->
-        <footer class="footer">
-            <div class="footer-container">
-                <div class="footer-item">
-                    <a href="index.html">
-                        <i class="fas fa-home"></i>
-                        <span>Home</span>
-                    </a>
-                </div>
-                <div class="footer-item">
-                    <a href="premium.html">
-                        <i class="fas fa-crown"></i>
-                        <span>Premium</span>
-                    </a>
-                </div>
-                <div class="footer-item upload">
-                    <a href="merge.html">
-                        <i class="fas fa-upload"></i>
-                    </a>
-                </div>
-                <div class="footer-item">
-                    <a href="profile.html">
-                        <i class="fas fa-user"></i>
-                        <span>Profile</span>
-                    </a>
-                </div>
-                <div class="footer-item">
-                    <a href="logout.html">
-                        <i class="fas fa-sign-out-alt"></i>
-                        <span>Logout</span>
-                    </a>
-                </div>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
             </div>
-        </footer>
+            <div class="footer-item">
+                <a href="premium.html">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                </a>
+            </div>
+            <div class="footer-item upload">
+                <a href="merge.html">
+                    <i class="fas fa-upload"></i>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="index.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </footer>
 
-        <script src="/js/merge.js"></script>
+    <script>
+        document.getElementById('upload-btn1').addEventListener('click', () => {
+            document.getElementById('pdf-files1').click();
+        });
+        document.getElementById('upload-btn2').addEventListener('click', () => {
+            document.getElementById('pdf-files2').click();
+        });
+    </script>
 </body>
-
 </html>
