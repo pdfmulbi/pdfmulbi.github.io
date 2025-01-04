@@ -98,18 +98,43 @@
 
 /* Profile Card */
 .profile-card {
-    background-color: rgb(235, 70, 70);
+    background-color: rgb(249, 118, 118);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 24px;
 }
 
+/* Gaya untuk Upgrade to Premium */
 .profile-card h2 {
     font-size: 1.25rem;
     margin-bottom: 16px;
     display: flex;
     justify-content: space-between;
+    color: white; /* Warna teks putih */
+}
+
+.profile-card p {
+    color: white; /* Warna teks putih */
+    margin-bottom: 16px;
+    font-size: 1rem;
+}
+
+.btn-upgrade {
+    background-color: #ffffff;
+    color: #e53e3e;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-upgrade:hover {
+    background-color: #ec6464;
+    color: #ffffff;
 }
 
 .edit-link {
@@ -142,23 +167,42 @@ form input, form select {
     margin-top: 16px;
 }
 
+/* Tombol Cancel */
 .btn-cancel {
-    background-color: transparent;
-    color: #f4eeee;
-    border: none;
+    background-color: #ffffff;
+    color: #e53e3e;
+    padding: 10px 16px;
     font-size: 1rem;
-    cursor: pointer;
-}
-
-.btn-save {
-    background-color: #e98282;
-    color: white;
+    font-weight: bold;
     border: none;
-    padding: 8px 16px;
-    font-size: 1rem;
     border-radius: 6px;
     cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
+
+.btn-cancel:hover {
+    background-color: #ec6464;
+    color: #ffffff;
+}
+
+/* Tombol Save */
+.btn-save {
+    background-color: #ffffff;
+    color: #e53e3e;
+    padding: 10px 16px;
+    font-size: 1rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-save:hover {
+    background-color: #ec6464;
+    color: #ffffff;
+}
+
 
 /* Social Section */
 .social-link {
