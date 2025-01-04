@@ -9,15 +9,13 @@ document.getElementById('cancel-edit').addEventListener('click', function () {
     document.getElementById('profile-view').style.display = 'block';
 });
 
-document.getElementById('profile-form').addEventListener('submit', function (e) {
+document.getElementById('edit-password').addEventListener('click', function (e) {
     e.preventDefault();
-    // Update profile view with new values
-    document.getElementById('first-name').innerText = document.getElementById('first-name-input').value;
-    document.getElementById('last-name').innerText = document.getElementById('last-name-input').value;
-    document.getElementById('country').innerText = document.getElementById('country-input').value;
-    document.getElementById('timezone').innerText = document.getElementById('timezone-input').value;
+    document.getElementById('profile-view').style.display = 'none';
+    document.getElementById('password-edit').style.display = 'block';
+});
 
-    // Switch back to profile view
-    document.getElementById('profile-edit').style.display = 'none';
+document.getElementById('cancel-password-edit').addEventListener('click', function () {
+    document.getElementById('password-edit').style.display = 'none';
     document.getElementById('profile-view').style.display = 'block';
 });
