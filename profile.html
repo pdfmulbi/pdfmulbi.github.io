@@ -28,49 +28,51 @@
         <main class="content">
             <h1 class="page-title">Akun Saya</h1>
 
-            <!-- Profile Section -->
-            <div class="profile-section">
-                <div class="profile-card">
-                    <h2>Profil <a href="#" id="edit-profile" class="edit-link">Ubah</a></h2>
-                    <div id="profile-view">
-                        <p>Nama depan: <span id="first-name">Resqi Aulia Gita Utami</span></p>
-                        <p>Nama belakang: <span id="last-name">-</span></p>
-                        <p>Negara: <span id="country">Indonesia</span></p>
-                        <p>Zona waktu: <span id="timezone">Asia/Jakarta</span></p>
-                        <!-- <a href="#" class="link">Rincian bisnis</a><br>
-                        <a href="#" class="link">Plan & Paket</a> -->
-                    </div>
-
-                    <div id="profile-edit" style="display: none;">
-                        <form id="profile-form">
-                            <label for="first-name-input">Nama depan:</label>
-                            <input type="text" id="first-name-input" value="Resqi Aulia Gita Utami" required>
-                            
-                            <label for="last-name-input">Nama belakang:</label>
-                            <input type="text" id="last-name-input" value="-">
-                            
-                            <label for="country-input">Negara:</label>
-                            <select id="country-input">
-                                <option value="Indonesia" selected>Indonesia</option>
-                                <option value="Malaysia">Malaysia</option>
-                                <option value="Singapore">Singapore</option>
-                            </select>
-                            
-                            <label for="timezone-input">Zona waktu:</label>
-                            <select id="timezone-input">
-                                <option value="Asia/Jakarta" selected>Asia/Jakarta</option>
-                                <option value="Asia/Kuala_Lumpur">Asia/Kuala Lumpur</option>
-                                <option value="Asia/Singapore">Asia/Singapore</option>
-                            </select>
-                            
-                            <div class="form-actions">
-                                <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
-                                <button type="submit" class="btn-save">Save</button>
-                            </div>
-                        </form>
-                    </div>
+            <div class="profile-card">
+                <h2>Profil <a href="#" id="edit-profile" class="edit-link">Ubah</a></h2>
+                <div id="profile-view">
+                    <p>Nama: <span id="name">Resqi Aulia Gita Utami</span></p>
+                    <p>Email: <span id="email">resqi@example.com</span></p>
+                    <p>Password: ******** <a href="#" id="edit-password" class="edit-link">Ganti Password</a></p>
+                </div>
+            
+                <!-- Edit Profile Form -->
+                <div id="profile-edit" style="display: none;">
+                    <form id="profile-form">
+                        <label for="name-input">Nama:</label>
+                        <input type="text" id="name-input" value="Resqi Aulia Gita Utami" required>
+            
+                        <label for="email-input">Email:</label>
+                        <input type="email" id="email-input" value="resqi@example.com" required>
+            
+                        <div class="form-actions">
+                            <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </form>
+                </div>
+            
+                <!-- Edit Password Form -->
+                <div id="password-edit" style="display: none;">
+                    <form id="password-form">
+                        <label for="current-password">Password Lama:</label>
+                        <input type="password" id="current-password" placeholder="Masukkan password lama" required>
+            
+                        <label for="new-password">Password Baru:</label>
+                        <input type="password" id="new-password" placeholder="Masukkan password baru" required>
+            
+                        <label for="confirm-password">Konfirmasi Password:</label>
+                        <input type="password" id="confirm-password" placeholder="Konfirmasi password baru" required>
+            
+                        <div class="form-actions">
+                            <button type="button" id="cancel-password-edit" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
+            
+            
 
             <!-- Upgrade to Premium Section -->
 <div class="profile-card">
@@ -109,7 +111,7 @@
                 </a>
             </div>
             <div class="footer-item">
-                <a href="logout.html">
+                <a href="index.html">
                     <i class="fas fa-sign-out-alt"></i>
                     <span>Logout</span>
                 </a>
