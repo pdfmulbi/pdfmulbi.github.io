@@ -15,42 +15,47 @@
     </header>
 
     <main class="main-content">
-        <h2>Upgrade to Premium</h2>
-        <div class="plans">
-            <div class="plan monthly" id="monthly-plan">
-                <h3>Monthly</h3>
-                <p>Rp64.000</p>
-            </div>
-            <div class="plan yearly" id="yearly-plan">
-                <h3>Yearly</h3>
-                <p>Rp384.000</p>
-                <small>Rp32.000 / month</small>
-                <span class="discount">-50%</span>
+        <div class="plans-section">
+            <h1>Upgrade To Premium</h1>
+            <br><br>
+            <div class="plans">
+                <div class="plan" id="monthly-plan">
+                    <h3>Monthly Plan</h3>
+                    <p class="price">Rp55.000</p>
+                    <p>Billed every month.</p>
+                </div>
+                <div class="plan" id="yearly-plan">
+                    <h3>Yearly Plan</h3>
+                    <p class="price">Rp321.000</p>
+                    <p>Rp26.700/month</p>
+                    <span class="discount">Save 50%</span>
+                </div>
             </div>
         </div>
 
-        <div class="payment">
-            <div class="payment-methods">
+        <div class="payment-section">
+            <h3>Payment Method</h3>
+            <br>
+            <div class="payment-method">
                 <i class="fas fa-credit-card"></i>
+                <span>Credit/Debit Card</span>
+            </div>
+            <div class="payment-method">
+                <i class="fab fa-paypal"></i>
                 <span>PayPal</span>
             </div>
+            <br>
             <div class="card-inputs">
-                <input type="text" placeholder="Card number" maxlength="16">
+                <input type="text" placeholder="Card Number" maxlength="16">
                 <input type="text" placeholder="MM / YY" maxlength="5">
                 <input type="text" placeholder="CVC" maxlength="3">
             </div>
-        </div>
-
-        <button class="btn-go-premium" id="go-premium-btn">Go Premium</button>
-
-        <div class="guarantees">
-            <p><i class="fas fa-check-circle"></i> Cancel anytime</p>
-            <p><i class="fas fa-check-circle"></i> Money back guarantee</p>
+            <br>
+            <button class="btn-upgrade">Upgrade Now</button>
         </div>
     </main>
 
-     <!-- Footer -->
-     <footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-item">
                 <a href="index.html">
@@ -84,7 +89,6 @@
         </div>
     </footer>
 
-    <!-- Link to external JavaScript -->
     <script src="js/premium.js"></script>
 </body>
 
