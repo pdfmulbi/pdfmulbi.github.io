@@ -298,12 +298,13 @@ form input {
     color: #f44336; /* Memberikan warna hover yang sama */
 }
 
-/* Responsif */
-@media (max-width: 600px) {
-    .footer-item i {
-        font-size: 18px;
+/* Responsiveness */
+@media (max-width: 768px) {
+    .main-content {
+        flex-direction: column;
     }
-    .footer-item span {
-        font-size: 12px;
+
+    .plans {
+        flex-direction: column;
     }
 }

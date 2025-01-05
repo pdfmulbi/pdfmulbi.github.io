@@ -15,12 +15,12 @@
         <aside class="sidebar">
             <h2 class="sidebar-title">PDF❤️Merger</h2>
             <ul class="menu">
-                <li><a href="#" class="active"><i class="fas fa-user"></i> Akun Saya</a></li>
-                <li><a href="#"><i class="fas fa-lock"></i> Keamanan</a></li>
-                <li><a href="#"><i class="fas fa-users"></i> Tim</a></li>
-                <li><a href="#"><i class="fas fa-clock"></i> Tugas Terakhir</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Akun Saya</a></li>
+                <li><a href="keamanan.html"><i class="fas fa-lock"></i> Keamanan</a></li>
+                <li><a href="invoice.html"><i class="fa-regular fa-file-lines"></i> Invoice </a></li>
+                <!-- <li><a href="#"><i class="fas fa-clock"></i> Tugas Terakhir</a></li>
                 <li><a href="#"><i class="fas fa-signature"></i> Tanda Tangan</a></li>
-                <li><a href="#"><i class="fas fa-box"></i> Plan & Paket</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Plan & Paket</a></li> -->
             </ul>
         </aside>
 
@@ -33,7 +33,7 @@
                 <div id="profile-view">
                     <p>Nama: <span id="name">Resqi Aulia Gita Utami</span></p>
                     <p>Email: <span id="email">resqi@example.com</span></p>
-                    <p>Password: ******** <a href="#" id="edit-password" class="edit-link">Ganti Password</a></p>
+                    <p>Username: <span id="username">GitaUtami</span></p>
                 </div>
             
                 <!-- Edit Profile Form -->
@@ -44,6 +44,9 @@
             
                         <label for="email-input">Email:</label>
                         <input type="email" id="email-input" value="resqi@example.com" required>
+
+                        <label for="username-input">Username:</label>
+                        <input type="text" id="username-input" value="GitaUtami" required>
             
                         <div class="form-actions">
                             <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
@@ -51,29 +54,8 @@
                         </div>
                     </form>
                 </div>
-            
-                <!-- Edit Password Form -->
-                <div id="password-edit" style="display: none;">
-                    <form id="password-form">
-                        <label for="current-password">Password Lama:</label>
-                        <input type="password" id="current-password" placeholder="Masukkan password lama" required>
-            
-                        <label for="new-password">Password Baru:</label>
-                        <input type="password" id="new-password" placeholder="Masukkan password baru" required>
-            
-                        <label for="confirm-password">Konfirmasi Password:</label>
-                        <input type="password" id="confirm-password" placeholder="Konfirmasi password baru" required>
-            
-                        <div class="form-actions">
-                            <button type="button" id="cancel-password-edit" class="btn-cancel">Cancel</button>
-                            <button type="submit" class="btn-save">Save</button>
-                        </div>
-                    </form>
-                </div>
             </div>
             
-            
-
             <!-- Upgrade to Premium Section -->
 <div class="profile-card">
     <h2>Upgrade to Premium</h2>
