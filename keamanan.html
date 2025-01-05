@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Keamanan - PDFMerger</title>
+    <link rel="stylesheet" href="css/keamanan.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="body-bg">
+    <div class="container">
+
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <h2 class="sidebar-title">PDF❤️Merger</h2>
+            <ul class="menu">
+                <li><a href="profile.html"><i class="fas fa-user"></i> Akun Saya</a></li>
+                <li><a href="keamanan.html" class="active"><i class="fas fa-lock"></i> Keamanan</a></li>
+                <li><a href="invoice.html"><i class="fa-regular fa-file-lines"></i> Invoice</a></li>
+                <!-- <li><a href="#"><i class="fas fa-clock"></i> Tugas Terakhir</a></li>
+                <li><a href="#"><i class="fas fa-signature"></i> Tanda Tangan</a></li>
+                <li><a href="#"><i class="fas fa-box"></i> Plan & Paket</a></li> -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="content">
+            <h1 class="page-title">Keamanan</h1>
+            <div class="profile-card">
+                <h2>Ganti Password <a href="#" id="edit-password" class="edit-link">Klik Disini</a></h2>
+                <br>
+                <div id="password-edit">
+                    <form id="password-form">
+                        <label for="current-password">Password Lama:</label>
+                        <input type="password" id="current-password" placeholder="Masukkan password lama" required>
+                        <br><br>
+                    
+                        <label for="new-password">Password Baru:</label>
+                        <input type="password" id="new-password" placeholder="Masukkan password baru" required>
+                        <br><br>
+
+                        <label for="confirm-password">Konfirmasi Password:</label>
+                        <input type="password" id="confirm-password" placeholder="Konfirmasi password baru" required>
+
+                        <div class="form-actions">
+                            <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
+                            <button type="submit" class="btn-save">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="premium.html">
+                    <i class="fas fa-crown"></i>
+                    <span>Premium</span>
+                </a>
+            </div>
+            <div class="footer-item upload">
+                <a href="merge.html">
+                    <i class="fas fa-upload"></i>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="logout.html">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/keamanan.js"></script>
+</body>
+
+</html>
