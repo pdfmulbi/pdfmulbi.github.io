@@ -25,7 +25,7 @@
 
 .sidebar-title {
     font-size: 1rem;
-    color: #374151;
+    color: #e53e3e;
     text-align: center;
     margin-bottom: 8px;
 }
@@ -184,8 +184,6 @@ form input {
     color: #ffffff;
 }
 
-
-
 /* Social Section */
 .social-link {
     display: flex;
@@ -298,13 +296,12 @@ form input {
     color: #f44336; /* Memberikan warna hover yang sama */
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
-    .main-content {
-        flex-direction: column;
+/* Responsif */
+@media (max-width: 600px) {
+    .footer-item i {
+        font-size: 18px;
     }
-
-    .plans {
-        flex-direction: column;
+    .footer-item span {
+        font-size: 12px;
     }
 }

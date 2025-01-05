@@ -184,31 +184,51 @@ body {
 .footer-item {
     text-align: center;
     flex: 1;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.3s ease-in-out;
 }
 
+/* Gaya untuk elemen link */
 .footer-item a {
-    text-decoration: none;
-    color: #555;
-    display: flex;
-    flex-direction: column;
+    text-decoration: none; /* Menghapus garis bawah */
+    color: inherit; /* Warna sesuai dengan elemen parent */
+    display: flex; /* Membuat elemen link merangkul ikon dan teks */
+    flex-direction: column; /* Ikon di atas teks */
     align-items: center;
+    justify-content: center;
 }
 
 .footer-item i {
+    display: block;
     font-size: 20px;
     margin-bottom: 5px;
 }
 
 .footer-item.upload a i {
-    background-color: #f44336;
     color: white;
+    background-color: #f44336;
     border-radius: 50%;
-    padding: 12px;
-    font-size: 22px;
+    padding: 15px;
+    font-size: 25px;
+    width: 50px; /* Lebar sama dengan tinggi */
+    height: 50px; /* Tinggi sama dengan lebar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Merapikan di tengah */
+}
+
+.footer-item.upload span {
+    display: none;
 }
 
 .footer-item:hover {
-    color: #e53e3e;
+    color: #f44336;
+}
+
+.footer-item a:hover {
+    color: #f44336; /* Memberikan warna hover yang sama */
 }
 
 /* Responsive */

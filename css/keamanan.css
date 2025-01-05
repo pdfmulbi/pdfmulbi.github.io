@@ -25,7 +25,7 @@
 
 .sidebar-title {
     font-size: 1rem;
-    color: #374151;
+    color: #e53e3e;
     text-align: center;
     margin-bottom: 8px;
 }
@@ -76,7 +76,8 @@
 /* Profile Card */
 .profile-card {
     background-color: #f97777;
-    padding: 60px 80px; /* Tambahkan padding lebih besar untuk lebar */
+    color: white;
+    padding: 60px 50px; /* Tambahkan padding lebih besar untuk lebar */
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     margin-bottom: 24px;
@@ -87,7 +88,7 @@
 /* Edit Link */
 .edit-link {
     font-size: 0.875rem; /* Perkecil ukuran font */
-    color: white; /* Agar terlihat kontras */
+    color: black; /* Agar terlihat kontras */
     text-decoration: underline;
     margin-left: 10px; /* Beri jarak antara teks dan tombol */
     cursor: pointer;
@@ -108,7 +109,6 @@ form input {
     justify-content: space-between;
     margin-top: 16px;
 }
-
 
 .btn-cancel,
 .btn-save {

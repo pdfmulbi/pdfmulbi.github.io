@@ -6,25 +6,6 @@
     font-family: Arial, sans-serif;
 }
 
-/* Sticky Header */
-.sticky-header {
-    position: sticky;
-    top: 0;
-    background-color: #fff;
-    z-index: 1000;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    text-align: center;
-}
-
-/* Header Text */
-.sticky-header h1 {
-    margin: 0;
-    font-size: 1.8rem;
-    color: #ec1010;
-    font-weight: bold;
-}
-
 /* Sidebar */
 .sidebar {
     background-color: #ffffff;
@@ -37,7 +18,7 @@
 
 .sidebar-title {
     font-size: 1rem;
-    color: #374151;
+    color: #e53e3e;
     text-align: center;
     margin-bottom: 8px;
 }
@@ -199,11 +180,17 @@
 }
 
 .footer-item.upload a i {
-    background-color: #f44336;
     color: white;
+    background-color: #f44336;
     border-radius: 50%;
-    padding: 12px;
-    font-size: 22px;
+    padding: 15px;
+    font-size: 25px;
+    width: 50px; /* Lebar sama dengan tinggi */
+    height: 50px; /* Tinggi sama dengan lebar */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto; /* Merapikan di tengah */
 }
 
 .footer-item:hover {
@@ -214,8 +201,8 @@
     color: #f44336;
 }
 
-/* Responsiveness */
-@media (max-width: 768px) {
+/* Responsif */
+@media (max-width: 600px) {
     .footer-item i {
         font-size: 18px;
     }
