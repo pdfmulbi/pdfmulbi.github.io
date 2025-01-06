@@ -34,12 +34,17 @@
         <!-- Select PDF Buttons -->
         <div class="pdf-actions">
             <form id="merge-form" enctype="multipart/form-data">
+                <!-- First and Second PDF upload buttons -->
                 <input type="file" id="pdf-files1" name="files1" accept=".pdf" hidden />
-                <button type="button" id="upload-btn1" class="select-pdf">Upload First PDF</button>
+                <button type="button" id="upload-btn1" class="select-pdf">Upload PDF 1</button>
                 <br><br>
                 <input type="file" id="pdf-files2" name="files2" accept=".pdf" hidden />
-                <button type="button" id="upload-btn2" class="select-pdf">Upload Second PDF</button>
+                <button type="button" id="upload-btn2" class="select-pdf">Upload PDF 2</button>
                 <br><br>
+
+                <!-- Placeholder for additional buttons -->
+                <div id="additional-buttons"></div>
+                
                 <button type="submit" class="merge-btn">Merge PDFs</button>
             </form>
         </div>
