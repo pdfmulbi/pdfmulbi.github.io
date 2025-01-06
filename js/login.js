@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             // Data yang akan dikirim ke backend
             const data = { email, password };
-            const target_url = "https://asia-southeast2-civil-epigram-429004-t8.cloudfunctions.net/webhook/login";
+            const target_url = "https://asia-southeast1-pdfmulbi.cloudfunctions.net/pdfmulbi/pdfm/login";
 
             // Kirim data ke backend
             postJSON(

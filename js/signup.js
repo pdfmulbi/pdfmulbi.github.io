@@ -1,4 +1,6 @@
-import { postJSON } from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
+import {
+    postJSON
+} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
 
 document.addEventListener("DOMContentLoaded", function () {
     const registerButton = document.getElementById("registerButton");
@@ -29,16 +31,30 @@ document.addEventListener("DOMContentLoaded", function () {
             password: password,
         };
 
-        // Send data to server
-        const target_url = 
-        "https://asia-southeast1-pdfmulbi.cloudfunctions.net/pdfmulbi/pdfm/register";
+        // URL endpoint backend
+        const target_url = "https://asia-southeast1-pdfmulbi.cloudfunctions.net/pdfmulbi/pdfm/register";
 
-        postJSON(target_url, "Content-Type", "application/json", data, function (response) {
+        // Tampilkan spinner loading (opsional)
+        document.getElementById("loading-spinner").style.display = "block";
+
+        postJSON(
+            target_url,
+            "Content-Type",
+            "application/json",
+            data,
+            function (response) {
+            // Sembunyikan spinner loading
+            document.getElementById("loading-spinner").style.display = "none";
+
             if (response.status >= 200 && response.status < 300) {
-                alert("Pendaftaran berhasil!");
-                document.querySelector("form").reset();
+                alert("Registration successful! Token: " + response.data.token);
+                // Reset form setelah berhasil
+                document.getElementById("nameInput").value = "";
+                document.getElementById("emailInput").value = "";
+                document.getElementById("passwordInput").value = "";
+                document.getElementById("confirmPasswordInput").value = "";
             } else {
-                alert("Terjadi kesalahan: " + response.data.message);
+                alert("Error: " + response.data.message);
             }
         });
     });
