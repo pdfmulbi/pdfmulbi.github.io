@@ -45,41 +45,44 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             );
         });
-    }
+        } else {
+            console.error("Tombol Google Login tidak ditemukan.");
+        }
+    });
 
     // Login dengan Google
-    if (googleLoginButton) {
-        googleLoginButton.addEventListener("click", function () {
-            // Simulasi token Google untuk uji coba (ganti dengan implementasi OAuth Google jika diperlukan)
-            const token = prompt("Masukkan token Google Anda untuk simulasi login:");
+    // if (googleLoginButton) {
+    //     googleLoginButton.addEventListener("click", function () {
+    //         // Simulasi token Google untuk uji coba (ganti dengan implementasi OAuth Google jika diperlukan)
+    //         const token = prompt("Masukkan token Google Anda untuk simulasi login:");
 
-            if (!token) {
-                alert("Token Google tidak valid!");
-                return;
-            }
+    //         if (!token) {
+    //             alert("Token Google tidak valid!");
+    //             return;
+    //         }
 
-            // Data yang akan dikirim ke backend
-            const data = { token };
-            const target_url = "https://asia-southeast2-civil-epigram-429004-t8.cloudfunctions.net/webhook/google-login";
+    //         // Data yang akan dikirim ke backend
+    //         const data = { token };
+    //         const target_url = "https://asia-southeast2-civil-epigram-429004-t8.cloudfunctions.net/webhook/google-login";
 
-            // Kirim token ke backend
-            postJSON(
-                target_url,
-                "Content-Type",
-                "application/json",
-                data,
-                function (response) {
-                    // Tindak lanjut respons backend
-                    if (response.status >= 200 && response.status < 300) {
-                        alert("Google Login berhasil!");
-                        console.log("Google User Data:", response.data);
-                    } else {
-                        alert("Google Login gagal: " + (response.data.message || "Kesalahan tidak diketahui"));
-                    }
-                }
-            );
-        });
-    } else {
-        console.error("Tombol Google Login tidak ditemukan.");
-    }
-});
+    //         // Kirim token ke backend
+    //         postJSON(
+    //             target_url,
+    //             "Content-Type",
+    //             "application/json",
+    //             data,
+    //             function (response) {
+    //                 // Tindak lanjut respons backend
+    //                 if (response.status >= 200 && response.status < 300) {
+    //                     alert("Google Login berhasil!");
+    //                     console.log("Google User Data:", response.data);
+    //                 } else {
+    //                     alert("Google Login gagal: " + (response.data.message || "Kesalahan tidak diketahui"));
+    //                 }
+    //             }
+    //         );
+    //     });
+//     } else {
+//         console.error("Tombol Google Login tidak ditemukan.");
+//     }
+// });
