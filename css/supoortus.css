@@ -1,117 +1,231 @@
+/* Reset CSS */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-    color: #333;
-  }
-  
-  header {
-    background: #ff4757;
-    color: white;
-    text-align: center;
-    padding: 1rem 0;
-  }
-  
-  main {
-    padding: 2rem;
-    text-align: center;
-  }
-  
-  button {
-    background: #2ed573;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    font-size: 16px;
-    border-radius: 5px;
-    transition: background 0.3s;
-  }
-  
-  button:hover {
-    background: #28a745;
-  }
-  
-  /* Footer */
-  .footer {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    background-color: #fff;
-    border-top: 1px solid #ddd;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    display: flex;
-    justify-content: center;
-    padding: 10px 0;
-    z-index: 1000;
-  }
-  
-  .footer-container {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    max-width: 600px;
-  }
-  
-  .footer-item {
-    text-align: center;
-    flex: 1;
-    color: #555;
-    font-size: 14px;
-    transition: color 0.3s ease-in-out;
-  }
-  
-  .footer-item a {
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-  }
-  
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f3f4f6;
+}
+
+/* Header */
+header {
+  color: #e53e3e;
+  background-color: whitesmoke;
+  text-align: center;
+  padding: 1rem 0;
+  position: sticky; /* Membuat header tetap berada di atas */
+  top: 0; /* Menentukan jarak dari atas layar */
+  z-index: 1000; /* Memastikan header berada di atas elemen lain */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
+}
+
+.logo-text {
+  text-decoration: none; /* Hilangkan garis bawah */
+  color: #e53e3e; /* Warna merah untuk logo */
+  font-size: 18px; /* Ukuran font konsisten */
+  font-weight: bold;
+  display: inline-flex;
+  align-items: center; /* Logo dan ikon sejajar vertikal */
+  gap: 5px; /* Jarak antara teks dan ikon */
+}
+
+.logo-text:hover {
+  opacity: 0.8; /* Efek hover */
+}
+
+.heart {
+  color: red;
+}
+
+/* Main Content */
+main {
+  padding: 1rem;
+}
+
+.donation-section {
+  max-width: 600px;
+  margin: auto;
+  text-align: center;
+}
+
+.donation-section h2 {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.donation-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+.donation-option {
+  padding: 15px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.donation-option.highlighted {
+  background: whitesmoke;
+  border: 2px solid #e53e3e;
+}
+
+.donation-option p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.donation-option small {
+  display: block;
+  margin-top: 5px;
+  color: #555;
+}
+
+.donation-option:hover {
+  background: #f18989;
+}
+
+.custom-donation {
+  margin-top: 20px;
+  text-align: left;
+}
+
+.custom-donation h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.input-group {
+  display: flex;
+  align-items: center;
+  background: #f9f9f9;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.input-group span {
+  font-size: 16px;
+  color: #333;
+  margin-right: 5px;
+}
+
+.input-group input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  flex: 1;
+}
+
+.custom-donation small {
+  color: #888;
+  margin-top: 5px;
+  display: block;
+}
+
+.donate-btn {
+  background: #e53e3e;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin-top: 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.donate-btn:hover {
+  background: #e53e3e;
+}
+
+/* Footer */
+.footer {
+  position: sticky;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+  padding: 10px 0;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.footer-item {
+  text-align: center;
+  flex: 1;
+  color: #555;
+  font-size: 14px;
+  transition: color 0.3s ease-in-out;
+}
+
+/* Gaya untuk elemen link */
+.footer-item a {
+  text-decoration: none; /* Menghapus garis bawah */
+  color: inherit; /* Warna sesuai dengan elemen parent */
+  display: flex; /* Membuat elemen link merangkul ikon dan teks */
+  flex-direction: column; /* Ikon di atas teks */
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-item i {
+  display: block;
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.footer-item.upload a i {
+  color: white;
+  background-color: #f44336;
+  border-radius: 50%;
+  padding: 15px;
+  font-size: 25px;
+  width: 50px; /* Lebar sama dengan tinggi */
+  height: 50px; /* Tinggi sama dengan lebar */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto; /* Merapikan di tengah */
+}
+
+.footer-item.upload span {
+  display: none;
+}
+
+.footer-item:hover {
+  color: #f44336;
+}
+
+.footer-item a:hover {
+  color: #f44336; /* Memberikan warna hover yang sama */
+}
+
+/* Responsif */
+@media (max-width: 600px) {
   .footer-item i {
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
-  
-  .footer-item.upload a i {
-    color: white;
-    background-color: #ff4757;
-    border-radius: 50%;
-    padding: 15px;
-    font-size: 25px;
-    width: 50px;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-    position: relative;
-    top: -15px; /* Mengangkat ikon upload */
-  }
-  
-  .footer-item.upload span {
-    display: none;
-  }
-  
-  .footer-item:hover {
-    color: #ff4757;
-  }
-  
-  .footer-item a:hover {
-    color: #ff4757;
-  }
-  
-  /* Responsif */
-  @media (max-width: 600px) {
-    .footer-item i {
       font-size: 18px;
-    }
-    .footer-item span {
-      font-size: 12px;
-    }
   }
-  
+  .footer-item span {
+      font-size: 12px;
+  }
+}

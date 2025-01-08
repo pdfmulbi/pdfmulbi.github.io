@@ -3,24 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Footer Design</title>
+  <title>Donation Page</title>
   <link rel="stylesheet" href="css/supoortus.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<body>
-  <header>
-    <h1>Support Us</h1>
-  </header>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100">
+  <header class="header">
+    <div class="logo">
+        <a href="index.html" class="logo-text">
+            PDF <span class="heart">❤️</span>Merger
+        </a>
+    </div>
+  
+    <div>
+      <h1>Support Us</h1>
+    </div>
+</header>
   <main>
-    <section>
-      <p>
-        Thank you for using our PDF Merger app! If you find this tool helpful, please consider supporting us to keep it free and improve further.
-      </p>
-      <button id="donateBtn">Donate</button>
-      <p id="thankYouMessage" style="display: none;">Thank you for your support!</p>
+    <section class="donation-section">
+      <h2>Masukkan Nominal Donasi</h2>
+      <div class="donation-options">
+        <div class="donation-option highlighted" data-amount="10000">
+          <p>⭐ Rp 10.000 ⭐</p>
+          <small>Rutin berbagi pakai Donasi Otomatis. Yuk coba di aplikasi kami!</small>
+        </div>
+        <div class="donation-option" data-amount="30000">
+          <p>😊 Rp 25.000</p>
+        </div>
+        <div class="donation-option" data-amount="50000">
+          <p>😊 Rp 50.000</p>
+        </div>
+        <div class="donation-option" data-amount="95000">
+          <p>😘 Rp 75.000</p>
+        </div>
+        <div class="donation-option" data-amount="100000">
+          <p>😍 Rp 100.000</p>
+        </div>
+      </div>
+      <div class="custom-donation">
+        <h3>Masukkan Donasi Lainnya</h3>
+        <div class="input-group">
+          <span>Rp</span>
+          <input type="number" id="customAmount" placeholder="0" min="10000">
+        </div>
+        <small>Min. donasi sebesar Rp10.000</small>
+      </div>
+      <button class="donate-btn" id="donateBtn">Lanjut Pembayaran</button>
     </section>
   </main>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-item">
@@ -31,8 +62,8 @@
       </div>
       <div class="footer-item">
         <a href="supportus.html">
-          <i class="fas fa-crown"></i>
-          <span>Support us</span>
+          <i class="fa-solid fa-hand-holding-dollar"></i>
+          <span>Support Us</span>
         </a>
       </div>
       <div class="footer-item upload">
@@ -54,7 +85,6 @@
       </div>
     </div>
   </footer>
-
-  <script src="supportus.js"></script>
+  <script src="js/supportus.js"></script>
 </body>
 </html>
