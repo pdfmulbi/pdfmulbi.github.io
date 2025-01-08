@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+    color: #333;
+  }
+  
+  header {
+    background: #ff4757;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+  }
+  
+  main {
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  button {
+    background: #2ed573;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+  }
+  
+  button:hover {
+    background: #28a745;
+  }
+  
+  /* Footer */
+  .footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    padding: 10px 0;
+    z-index: 1000;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .footer-item {
+    text-align: center;
+    flex: 1;
+    color: #555;
+    font-size: 14px;
+    transition: color 0.3s ease-in-out;
+  }
+  
+  .footer-item a {
+    text-decoration: none;
+    color: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .footer-item i {
+    font-size: 20px;
+    margin-bottom: 5px;
+  }
+  
+  .footer-item.upload a i {
+    color: white;
+    background-color: #ff4757;
+    border-radius: 50%;
+    padding: 15px;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    position: relative;
+    top: -15px; /* Mengangkat ikon upload */
+  }
+  
+  .footer-item.upload span {
+    display: none;
+  }
+  
+  .footer-item:hover {
+    color: #ff4757;
+  }
+  
+  .footer-item a:hover {
+    color: #ff4757;
+  }
+  
+  /* Responsif */
+  @media (max-width: 600px) {
+    .footer-item i {
+      font-size: 18px;
+    }
+    .footer-item span {
+      font-size: 12px;
+    }
+  }
+  
