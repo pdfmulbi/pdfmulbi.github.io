@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         // URL endpoint backend
-        const target_url = "https://asia-southeast1-pdfmulbi.cloudfunctions.net/pdfmulbi/pdfm/register";
+        const target_url = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/register";
 
         // Tampilkan spinner loading (opsional)
         document.getElementById("loading-spinner").style.display = "block";
