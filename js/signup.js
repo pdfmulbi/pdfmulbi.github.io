@@ -1,3 +1,65 @@
+import {
+    postJSON
+} from "https://cdn.jsdelivr.net/gh/jscroot/lib@0.0.4/api.js";
+
+document.addEventListener("DOMContentLoaded", function () {
+    const registerButton = document.getElementById("registerButton");
+
+    registerButton.addEventListener("click", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value;
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        const confirmPassword = document.getElementById("confirmPassword").value;
+
+        // Basic validation
+        if (!name || !email || !password || !confirmPassword) {
+            alert("Silakan isi semua kolom.");
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            alert("Kata sandi dan konfirmasi kata sandi tidak cocok.");
+            return;
+        }
+
+        // Prepare data
+        const data = {
+            name: name,
+            email: email,
+            password: password,
+        };
+
+        // URL endpoint backend
+        const target_url = "https://asia-southeast1-pdfmulbi.cloudfunctions.net/pdfmulbi/pdfm/register";
+
+        // Tampilkan spinner loading (opsional)
+        document.getElementById("loading-spinner").style.display = "block";
+
+        postJSON(
+            target_url,
+            "Content-Type",
+            "application/json",
+            data,
+            function (response) {
+            // Sembunyikan spinner loading
+            document.getElementById("loading-spinner").style.display = "none";
+
+            if (response.status >= 200 && response.status < 300) {
+                alert("Registration successful! Token: " + response.data.token);
+                // Reset form setelah berhasil
+                document.getElementById("nameInput").value = "";
+                document.getElementById("emailInput").value = "";
+                document.getElementById("passwordInput").value = "";
+                document.getElementById("confirmPasswordInput").value = "";
+            } else {
+                alert("Error: " + response.data.message);
+            }
+        });
+    });
+});
+
 document.addEventListener('DOMContentLoaded', function () {
     const passwordInput = document.getElementById('password');
     const togglePassword = document.getElementById('togglePassword');
@@ -22,4 +84,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-

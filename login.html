@@ -39,16 +39,16 @@
             <button type="submit" class="submit-btn">Log in</button>
         </form>
 
-         <!-- Separator -->
-         <div class="separator">
+        <!-- Separator -->
+        <!-- <div class="separator">
             <span>OR</span>
-        </div>
+        </div> -->
 
         <!-- Google Login Button -->
-        <button class="google-btn" onclick="loginWithGoogle()">
+        <!-- <button class="google-btn" onclick="loginWithGoogle()">
             <img src="https://www.gstatic.com/images/branding/product/1x/gsa_512dp.png" alt="Google Logo" class="google-icon">
             Login dengan Google
-        </button>
+        </button> -->
 
 
         <!-- Register Link -->
@@ -66,11 +66,6 @@
             const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
             passwordInput.setAttribute('type', type);
         });
-
-        function loginWithGoogle() {
-            // Tambahkan logika login Google di sini (API atau redirect ke endpoint Google OAuth)
-            alert('Google Login belum dikonfigurasi.');
-        }
     </script>
     <script type="module" src="js/login.js"></script>
 </body>
