@@ -1,12 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
     const userForm = document.getElementById("userForm");
     const userTable = document.querySelector("#userTable tbody");
-    const apiUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm";
+    const apiUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/users";
+    const apiUrlEdit = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/users/details";
 
     // Fetch and display users
     async function fetchUsers() {
         try {
-            const response = await fetch(`${apiUrl}/users`);
+            const response = await fetch(apiUrl);
             if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
             const users = await response.json();
             userTable.innerHTML = users.map(user => `
@@ -40,14 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
             let response;
             if (id) {
                 // Update user
-                response = await fetch(`${apiUrl}/users`, {
+                response = await fetch(apiUrl, {
                     method: "PUT",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ ...userData, _id: id })
                 });
             } else {
                 // Create user
-                response = await fetch(`${apiUrl}/users`, {
+                response = await fetch(apiUrl, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(userData)
@@ -67,14 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
     // Edit user
     window.editUser = async (id) => {
         try {
-            const response = await fetch(`${apiUrl}/users/details?id=${id}`);
+            const response = await fetch(apiUrlEdit);
             if (!response.ok) throw new Error(`Error ${response.status}: ${response.statusText}`);
             const user = await response.json();
             document.getElementById("userId").value = user._id;
             document.getElementById("userName").value = user.name;
             document.getElementById("userEmail").value = user.email;
+            document.getElementById("userPassword").value = ""; // Kosongkan password untuk keamanan
         } catch (error) {
-            console.error("Error fetching user:", error);
+            console.error("Error fetching user details:", error);
             alert(`Failed to load user details. ${error.message}`);
         }
     };    
@@ -83,7 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.deleteUser = async (id) => {
         if (!confirm("Are you sure you want to delete this user?")) return;
         try {
-            const response = await fetch(`${apiUrl}/users`, {
+            const response = await fetch(apiUrl, {
                 method: "DELETE",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ _id: id })

@@ -5,16 +5,15 @@ import {
 document.addEventListener("DOMContentLoaded", function () {
     const registerButton = document.getElementById("registerButton");
 
-    registerButton.addEventListener("click", function (event) {
+    registerButton.addEventListener("click", async function (event) {
         event.preventDefault();
 
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const password = document.getElementById("password").value;
-        const confirmPassword = document.getElementById("confirmPassword").value;
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const password = document.getElementById("password").value.trim();
 
         // Basic validation
-        if (!name || !email || !password || !confirmPassword) {
+        if (!name || !email || !password) {
             alert("Silakan isi semua kolom.");
             return;
         }
@@ -24,39 +23,60 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        // Prepare data
-        const data = {
-            name: name,
-            email: email,
-            password: password,
-        };
+        // Cek nama unik di backend
+        try {
+            const checkUrl = `https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/check-name?name=${encodeURIComponent(name)}`;
+            const checkResponse = await fetch(checkUrl);
 
-        // URL endpoint backend
-        const target_url = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/register";
+            if (!checkResponse.ok) {
+                throw new Error("Gagal memeriksa ketersediaan nama.");
+            }
 
-        // Tampilkan spinner loading (opsional)
-        document.getElementById("loading-spinner").style.display = "block";
+            const checkData = await checkResponse.json();
 
-        postJSON(
-            target_url,
-            "Content-Type",
-            "application/json",
-            data,
-            function (response) {
+            if (checkData.exists) {
+                alert("Nama sudah digunakan. Silakan gunakan nama lain.");
+                return;
+            }
+
+            // Prepare data for registration
+            const data = {
+                name: name,
+                email: email,
+                password: password,
+            };
+
+            // URL endpoint backend
+            const target_url = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/register";
+
+            // Tampilkan spinner loading (opsional)
+            document.getElementById("loading-spinner").style.display = "block";
+
+            // Kirim data ke backend
+            const response = await postJSON(
+                target_url,
+                "Content-Type",
+                "application/json",
+                data
+            );
+
             // Sembunyikan spinner loading
             document.getElementById("loading-spinner").style.display = "none";
 
             if (response.status >= 200 && response.status < 300) {
-                alert("Registration successful! Token: " + response.data.token);
+                alert("Registration successful!");
                 // Reset form setelah berhasil
-                document.getElementById("nameInput").value = "";
-                document.getElementById("emailInput").value = "";
-                document.getElementById("passwordInput").value = "";
-                document.getElementById("confirmPasswordInput").value = "";
+                document.getElementById("name").value = "";
+                document.getElementById("email").value = "";
+                document.getElementById("password").value = "";
             } else {
                 alert("Error: " + response.data.message);
             }
-        });
+        } catch (error) {
+            console.error("Error during registration:", error);
+            alert("Terjadi kesalahan saat melakukan registrasi. Silakan coba lagi.");
+            document.getElementById("loading-spinner").style.display = "none";
+        }
     });
 });
 
@@ -71,16 +91,8 @@ document.addEventListener('DOMContentLoaded', function () {
         passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
 
         // Ganti ikon mata
-        if (isPassword) {
-            eyeIcon.innerHTML = `
-                <line x1="1" y1="1" x2="23" y2="23"></line>
-                <path d="M17.94 17.94C16.64 18.85 15 19 12 19s-4.64-.15-5.94-1.06"></path>
-            `;
-        } else {
-            eyeIcon.innerHTML = `
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                <circle cx="12" cy="12" r="3"></circle>
-            `;
-        }
+        eyeIcon.innerHTML = isPassword
+            ? '<line x1="1" y1="1" x2="23" y2="23"></line><path d="M17.94 17.94C16.64 18.85 15 19 12 19s-4.64-.15-5.94-1.06"></path>'
+            : '<path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>';
     });
 });
