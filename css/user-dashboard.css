@@ -54,6 +54,40 @@ form button {
     cursor: pointer;
 }
 
+/* Button Styles */
+button {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin: 0 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Save Button */
+form button {
+    background-color: #e53e3e;
+    color: white;
+}
+
+/* Edit Button */
+button.edit {
+    background-color: #3cce31;
+    color: white;
+}
+
+/* Delete Button */
+button.delete {
+    background-color: #e53e3e;
+    color: white;
+}
+
 /* Table */
 table {
     width: 100%;

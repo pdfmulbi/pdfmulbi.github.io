@@ -15,11 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     <td>${user.email}</td>
                     <td>${user.mergeCount || 0}</td>
                     <td>
-                        <button onclick="editUser('${user._id}')">Edit</button>
-                        <button onclick="deleteUser('${user._id}')">Delete</button>
+                        <button class="edit" onclick="editUser('${user._id}')">Edit</button>
+                        <button class="delete" onclick="deleteUser('${user._id}')">Delete</button>
                     </td>
                 </tr>
-            `).join('');
+            `).join('');            
         } catch (error) {
             console.error("Error fetching users:", error);
             alert(`Failed to load users. ${error.message}`);
