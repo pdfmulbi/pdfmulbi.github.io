@@ -11,59 +11,41 @@ body {
     flex-direction: column;
     min-height: 100vh;
     background-color: #f3f4f6;
+    overflow-x: hidden;
 }
 
 /* Navbar */
-.navbar {
-    background-color: #ffffff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 50;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 16px 24px;
-}
-
-/* Header */
 .header {
     position: sticky;
     top: 0;
     background-color: white;
     display: flex;
-    justify-content: space-between; /* Elemen kiri dan kanan terpisah */
-    align-items: center; /* Vertikal sejajar */
-    padding: 10px 20px; /* Konsisten untuk semua halaman */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
     border-bottom: 1px solid #ddd;
     z-index: 1000;
 }
 
-/* Logo */
 .logo-text {
-    text-decoration: none; /* Hilangkan garis bawah */
-    color: #e53e3e; /* Warna merah untuk logo */
-    font-size: 18px; /* Ukuran font konsisten */
+    text-decoration: none;
+    color: #e53e3e;
+    font-size: 18px;
     font-weight: bold;
     display: inline-flex;
-    align-items: center; /* Logo dan ikon sejajar vertikal */
-    gap: 5px; /* Jarak antara teks dan ikon */
+    align-items: center;
+    gap: 5px;
+    transition: opacity 0.3s ease-in-out;
 }
 
 .logo-text:hover {
-    opacity: 0.8; /* Efek hover */
+    opacity: 0.8;
 }
 
 .heart {
     color: red;
 }
 
-/* Menu */
 .menu {
     display: flex;
     gap: 15px;
@@ -74,15 +56,13 @@ body {
     color: #555;
     text-decoration: none;
     font-size: 16px;
-    cursor: pointer;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 .menu-link:hover {
-    color: #e53e3e; /* Warna merah saat hover */
+    color: #e53e3e;
 }
 
-/* Authentication Buttons */
 .auth-buttons {
     display: flex;
     gap: 10px;
@@ -93,11 +73,11 @@ body {
     color: #555;
     text-decoration: none;
     font-size: 16px;
-    transition: color 0.3s;
+    transition: color 0.3s ease-in-out;
 }
 
 .login:hover {
-    color: #e53e3e; /* Warna merah saat hover */
+    color: #e53e3e;
 }
 
 .signup {
@@ -107,11 +87,12 @@ body {
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
 }
 
 .signup:hover {
-    background-color: #c53030; /* Warna merah gelap saat hover */
+    background-color: #c53030;
+    transform: scale(1.05);
 }
 
 /* Main Content */
@@ -119,6 +100,15 @@ body {
     text-align: center;
     margin: 32px 16px;
     flex-grow: 1;
+    animation: fadeIn 1s ease-in-out;
+}
+
+.welcome-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #e53e3e;
+    margin-bottom: 16px;
+    animation: slideIn 1s ease-in-out;
 }
 
 .main-content h2 {
@@ -132,6 +122,32 @@ body {
     color: #6b7280;
 }
 
+.image-container {
+    margin: 20px 0;
+}
+
+.illustration {
+    max-width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button {
+    background-color: #e53e3e;
+    color: white;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cta-button:hover {
+    background-color: #c53030;
+    transform: scale(1.1);
+}
 
 /* Footer */
 .footer {
@@ -211,5 +227,26 @@ body {
     }
     .footer-item span {
         font-size: 12px;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
     }
 }
