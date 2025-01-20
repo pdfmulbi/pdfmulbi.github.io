@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
+    const userName = localStorage.getItem("userName");
 
     // Jika token tidak ditemukan, arahkan ke halaman login
-    if (!token) {
+    if (!token || !userName) {
         alert("Silakan login terlebih dahulu.");
         window.location.href = "https://pdfmulbi.github.io/login/";
         return;

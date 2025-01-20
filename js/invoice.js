@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", async function () {
     const invoiceList = document.getElementById("invoice-list");
     const token = localStorage.getItem("authToken");
+    const userName = localStorage.getItem("userName");
 
-    if (!token) {
+    if (!token || userName) {
         alert("Anda harus login untuk melihat invoice.");
         window.location.href = "https://pdfmulbi.github.io/login/";
         return;

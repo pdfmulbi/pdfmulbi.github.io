@@ -5,31 +5,21 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutLink = document.getElementById("logout-link"); // Tombol logout di footer
 
     let selectedAmount = 10000; // Default nominal donasi
-    const userName = localStorage.getItem("userName"); // Nama pengguna dari localStorage
     const token = localStorage.getItem("authToken");
+    const userName = localStorage.getItem("userName"); // Ambil nama pengguna dari localStorage
 
-    if (userName || token) {
-        // Jika token ditemukan
-        logoutLink.style.display = "block"; // Tampilkan tombol logout
-    } else {
-        // Jika token tidak ditemukan
+    // Validasi token dan nama pengguna
+    if (!token || !userName) {
         alert("Anda harus login untuk mendukung kami.");
         window.location.href = "https://pdfmulbi.github.io/login/";
-        logoutLink.style.display = "none"; // Sembunyikan tombol logout
+        return;
     }
-    // Fungsi logout
+
+    // Tampilkan tombol logout jika login
     if (logoutLink) {
+        logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
-            const token = localStorage.getItem("authToken");
-
-            if (!token) {
-                alert("Anda belum login.");
-                return;
-            }
-
-            const logoutUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout";
-
-            fetch(logoutUrl, {
+            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -38,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => {
                     if (response.ok) {
-                        localStorage.removeItem("authToken"); // Hapus token dari localStorage
+                        localStorage.clear(); // Hapus semua data di localStorage
                         alert("Logout berhasil.");
                         window.location.href = "https://pdfmulbi.github.io/";
                     } else {
