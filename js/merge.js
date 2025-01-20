@@ -1,5 +1,60 @@
 import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
 
+// Event Listener setelah DOM dimuat
+document.addEventListener("DOMContentLoaded", function () {
+    const authButtons = document.getElementById("auth-buttons");
+    const logoutLink = document.getElementById("logout-link");
+
+    // Periksa token di localStorage
+    const token = localStorage.getItem("authToken");
+    if (token) {
+        // Jika token ditemukan, sembunyikan login/signup dan tampilkan logout
+        authButtons.style.display = "none";
+        logoutLink.style.display = "block";
+    } else {
+        // Jika token tidak ditemukan, tampilkan login/signup dan sembunyikan logout
+        authButtons.style.display = "flex";
+        logoutLink.style.display = "none";
+    }
+
+    // Fungsi Logout
+    window.logout = function () {
+        const token = localStorage.getItem("authToken");
+
+        if (!token) {
+            alert("Anda belum login.");
+            window.location.href = "https://pdfmulbi.github.io/login/";
+            return;
+        }
+
+        const logoutUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout";
+
+        fetch(logoutUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`,
+            },
+        })
+            .then((response) => {
+                if (response.ok) {
+                    localStorage.removeItem("authToken");
+                    alert("Logout berhasil.");
+                    window.location.href = "login.html";
+                } else {
+                    return response.json().then((data) => {
+                        alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
+                    });
+                }
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+                alert("Terjadi kesalahan saat logout. Silakan coba lagi.");
+            });
+    };
+});
+
+// Kode pengelolaan PDF (merge) di bawah:
 let fileCount = 2; // Mulai dari 2 karena sudah ada 2 tombol awal
 
 // Fungsi untuk menambahkan tombol upload baru
