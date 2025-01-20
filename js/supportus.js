@@ -40,8 +40,8 @@ document.addEventListener("DOMContentLoaded", function () {
     );
 
     if (confirmation) {
-      // Arahkan ke halaman pembayaran (simulasi)
-      window.location.href = `payment.html?amount=${selectedAmount}`;
+      // Arahkan ke halaman konfirmasi atau pembayaran
+      window.location.href = `payment-success.html?amount=${selectedAmount}`;
     }
   });
 });
