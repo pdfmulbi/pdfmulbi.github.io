@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Jika token tidak ditemukan, arahkan ke halaman login
     if (!token) {
         alert("Silakan login terlebih dahulu.");
-        window.location.href = "login.html";
+        window.location.href = "https://pdfmulbi.github.io/login/";
         return;
     }
 
@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     if (response.ok) {
                         localStorage.removeItem("authToken");
                         alert("Logout berhasil.");
-                        window.location.href = "login.html";
+                        window.location.href = "https://pdfmulbi.github.io/";
                     } else {
                         return response.json().then((data) => {
                             alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
