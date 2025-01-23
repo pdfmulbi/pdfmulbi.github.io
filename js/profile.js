@@ -1,46 +1,13 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
-    const userName = localStorage.getItem("userName");
 
-    // Jika token tidak ditemukan, arahkan ke halaman login
-    if (!token || !userName) {
+    if (!token) {
         alert("Silakan login terlebih dahulu.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        window.location.href = "login.html";
         return;
     }
 
-    // Fungsi Logout
-    const logoutLink = document.getElementById("logout-link");
-    if (logoutLink) {
-        logoutLink.addEventListener("click", function () {
-            const logoutUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout";
-
-            fetch(logoutUrl, {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        localStorage.removeItem("authToken");
-                        alert("Logout berhasil.");
-                        window.location.href = "https://pdfmulbi.github.io/";
-                    } else {
-                        return response.json().then((data) => {
-                            alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
-                        });
-                    }
-                })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("Terjadi kesalahan saat logout.");
-                });
-        });
-    }
-
-    // Ambil data pengguna
+    // Fetch user profile
     fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
         method: "GET",
         headers: {
@@ -48,29 +15,34 @@ document.addEventListener("DOMContentLoaded", function () {
             "Authorization": `Bearer ${token}`,
         },
     })
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error("Gagal mengambil data pengguna.");
-            }
-        })
+        .then((response) => response.json())
         .then((user) => {
-            // Tampilkan data pengguna di profil
             document.getElementById("name").textContent = user.name;
             document.getElementById("email").textContent = user.email;
-            document.getElementById("password").textContent = "******"; // Password tidak ditampilkan langsung
+            document.getElementById("password").textContent = "******";
 
-            // Isi form edit profil
             document.getElementById("name-input").value = user.name;
             document.getElementById("email-input").value = user.email;
         })
         .catch((error) => {
-            console.error("Error:", error);
-            alert("Gagal memuat data profil.");
+            console.error("Error fetching user profile:", error);
+            alert("Gagal memuat profil pengguna.");
         });
 
-    // Simpan perubahan profil
+    // Show Edit Form
+    document.getElementById("edit-profile").addEventListener("click", function (e) {
+        e.preventDefault();
+        document.getElementById("profile-view").style.display = "none";
+        document.getElementById("profile-edit").style.display = "block";
+    });
+
+    // Hide Edit Form
+    document.getElementById("cancel-edit").addEventListener("click", function () {
+        document.getElementById("profile-edit").style.display = "none";
+        document.getElementById("profile-view").style.display = "block";
+    });
+
+    // Save Profile Changes
     document.getElementById("profile-form").addEventListener("submit", function (e) {
         e.preventDefault();
 
@@ -93,26 +65,19 @@ document.addEventListener("DOMContentLoaded", function () {
                     alert("Profil berhasil diperbarui.");
                     window.location.reload();
                 } else {
-                    return response.json().then((data) => {
-                        alert("Gagal memperbarui profil: " + (data.message || "Kesalahan tidak diketahui"));
-                    });
+                    throw new Error("Gagal memperbarui profil.");
                 }
             })
             .catch((error) => {
-                console.error("Error:", error);
+                console.error("Error updating profile:", error);
                 alert("Terjadi kesalahan saat memperbarui profil.");
             });
     });
 
-    // Event Listener untuk Edit Profil
-    document.getElementById("edit-profile").addEventListener("click", function (e) {
-        e.preventDefault();
-        document.getElementById("profile-view").style.display = "none";
-        document.getElementById("profile-edit").style.display = "block";
-    });
-
-    document.getElementById("cancel-edit").addEventListener("click", function () {
-        document.getElementById("profile-edit").style.display = "none";
-        document.getElementById("profile-view").style.display = "block";
+    // Logout
+    document.getElementById("logout-link").addEventListener("click", function () {
+        localStorage.removeItem("authToken");
+        alert("Logout berhasil.");
+        window.location.href = "login.html";
     });
 });

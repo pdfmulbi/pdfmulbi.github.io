@@ -19,16 +19,16 @@ header {
   background-color: whitesmoke;
   text-align: center;
   padding: 1rem 0;
-  position: sticky; /* Membuat header tetap berada di atas */
-  top: 0; /* Menentukan jarak dari atas layar */
+  position: sticky;
+  top: 0;
   z-index: 1000; /* Memastikan header berada di atas elemen lain */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
 }
 
 .logo-text {
   text-decoration: none; /* Hilangkan garis bawah */
-  color: #e53e3e; /* Warna merah untuk logo */
-  font-size: 18px; /* Ukuran font konsisten */
+  color: #e53e3e;
+  font-size: 18px;
   font-weight: bold;
   display: inline-flex;
   align-items: center; /* Logo dan ikon sejajar vertikal */
