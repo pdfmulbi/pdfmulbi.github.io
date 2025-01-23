@@ -1,9 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
+    const userId = localStorage.getItem("userId");
 
-    if (!token) {
+    // Redirect to login if token is missing
+    if (!token || !userId) {
         alert("Silakan login terlebih dahulu.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        window.location.href = "https://pdfmulbi.github.io/";
         return;
     }
 
@@ -30,7 +32,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Populate profile view
             document.getElementById("name").textContent = user.name || "Nama tidak ditemukan";
             document.getElementById("email").textContent = user.email || "Email tidak ditemukan";
-            document.getElementById("password").textContent = ""; // Password hidden
+            document.getElementById("password").textContent = "******"; // Password hidden
 
             // Populate profile edit form
             document.getElementById("name-input").value = user.name || "";
@@ -62,10 +64,22 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("profile-form").addEventListener("submit", async function (e) {
         e.preventDefault();
 
+        // Ambil data dari input form
+        const name = document.getElementById("name-input").value.trim();
+        const email = document.getElementById("email-input").value.trim();
+        const password = document.getElementById("password-input").value.trim();
+
+        // Validasi sederhana
+        if (!userId || !name || !email) {
+            alert("ID, Nama, dan Email tidak boleh kosong.");
+            return;
+        }
+
         const updatedData = {
-            name: document.getElementById("name-input").value,
-            email: document.getElementById("email-input").value,
-            password: document.getElementById("password-input").value || undefined, // Optional
+            id: userId, // Tambahkan ID ke data yang dikirim
+            name: name,
+            email: email,
+            password: password || undefined, // Jangan kirim password jika tidak diubah
         };
 
         try {
@@ -85,18 +99,19 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             alert("Profil berhasil diperbarui.");
-            window.location.reload(); // Reload page to refresh profile view
-
+            window.location.reload();
         } catch (error) {
             console.error("Error updating profile:", error);
-            alert("Terjadi kesalahan saat memperbarui profil.");
+            alert(error.message || "Terjadi kesalahan saat memperbarui profil.");
         }
     });
 
     // Logout
     document.getElementById("logout-link").addEventListener("click", function () {
         localStorage.removeItem("authToken");
+        localStorage.removeItem("userId");
+        localStorage.removeItem("userName");
         alert("Logout berhasil.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        window.location.href = "https://pdfmulbi.github.io/";
     });
 });
