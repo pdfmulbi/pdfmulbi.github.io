@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile - PDFMerger</title>
     <link rel="stylesheet" href="css/profile.css">
-    <link rel="icon" href="image/PDF.ico" type="image/x-icon"/>
+    <link rel="icon" href="image/PDF.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
@@ -33,30 +33,31 @@
                     <p>Email: <span id="email">resqi@example.com</span></p>
                     <p>Password: <span id="password"></span></p>
                 </div>
-                
-                <!-- Edit Profile Form -->
+
+                <!-- Form Edit Profile -->
                 <div id="profile-edit" style="display: none;">
-                    <form id="profile-form">
+                    <form id="profile-form" data-user-id="">
                         <label for="name-input">Nama:</label>
                         <input type="text" id="name-input" value="Resqi Aulia Gita Utami" required>
-                
+
                         <label for="email-input">Email:</label>
                         <input type="email" id="email-input" value="resqi@example.com" required>
-                
+
                         <label for="password-input">Password:</label>
                         <input type="password" id="password-input" placeholder="Masukkan password baru" required>
-                
+
                         <div class="form-actions">
                             <button type="button" id="cancel-edit" class="btn-cancel">Cancel</button>
                             <button type="submit" class="btn-save">Save</button>
                         </div>
                     </form>
                 </div>
+
             </div>
 
         </main>
     </div>
-    
+
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">
