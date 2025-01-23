@@ -1,9 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
-    const userId = localStorage.getItem("userId");
 
     // Redirect to login if token is missing
-    if (!token || !userId) {
+    if (!token) {
         alert("Silakan login terlebih dahulu.");
         window.location.href = "https://pdfmulbi.github.io/";
         return;
@@ -109,8 +108,6 @@ document.addEventListener("DOMContentLoaded", function () {
     // Logout
     document.getElementById("logout-link").addEventListener("click", function () {
         localStorage.removeItem("authToken");
-        localStorage.removeItem("userId");
-        localStorage.removeItem("userName");
         alert("Logout berhasil.");
         window.location.href = "https://pdfmulbi.github.io/";
     });
