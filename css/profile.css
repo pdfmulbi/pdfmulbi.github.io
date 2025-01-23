@@ -143,44 +143,67 @@
     cursor: pointer;
 }
 
+/* Edit Profile Form */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    margin-top: 16px;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 form label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 1rem;
     font-weight: bold;
-    margin-bottom: 4px;
+    color: #333333;
 }
 
 form input {
-    padding: 10px;
-    border: 1px solid #d1d5db;
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
     border-radius: 8px;
     font-size: 1rem;
+    margin-bottom: 16px;
 }
 
 .form-actions {
     display: flex;
     justify-content: space-between;
-    margin-top: 16px;
+    gap: 16px;
 }
 
-.btn-cancel, .btn-save {
-    background-color: #ffffff;
-    color: #e53e3e;
+.btn-cancel {
+    background-color: #ffcccb;
+    color: #f44336;
     padding: 10px 16px;
-    font-size: 1rem;
-    font-weight: bold;
-    border: none;
     border-radius: 6px;
+    font-weight: bold;
     cursor: pointer;
+    border: none;
     transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
-.btn-cancel:hover, .btn-save:hover {
-    background-color: #ec6464;
+.btn-save {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    border: none;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-cancel:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+.btn-save:hover {
+    background-color: #d32f2f;
     color: #ffffff;
 }
 
