@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
 
-    // Redirect to login if token is missing
     if (!token) {
         alert("Silakan login terlebih dahulu.");
-        window.location.href = "https://pdfmulbi.github.io/";
+        window.location.href = "https://pdfmulbi.github.io/login/";
         return;
     }
 
@@ -63,22 +62,10 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("profile-form").addEventListener("submit", async function (e) {
         e.preventDefault();
 
-        // Ambil data dari input form
-        const name = document.getElementById("name-input").value.trim();
-        const email = document.getElementById("email-input").value.trim();
-        const password = document.getElementById("password-input").value.trim();
-
-        // Validasi sederhana
-        if (!userId || !name || !email) {
-            alert("ID, Nama, dan Email tidak boleh kosong.");
-            return;
-        }
-
         const updatedData = {
-            id: userId, // Tambahkan ID ke data yang dikirim
-            name: name,
-            email: email,
-            password: password || undefined, // Jangan kirim password jika tidak diubah
+            name: document.getElementById("name-input").value,
+            email: document.getElementById("email-input").value,
+            password: document.getElementById("password-input").value || undefined, // Optional
         };
 
         try {
@@ -98,10 +85,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
 
             alert("Profil berhasil diperbarui.");
-            window.location.reload();
+            window.location.reload(); // Reload page to refresh profile view
+
         } catch (error) {
             console.error("Error updating profile:", error);
-            alert(error.message || "Terjadi kesalahan saat memperbarui profil.");
+            alert("Terjadi kesalahan saat memperbarui profil.");
         }
     });
 
@@ -109,6 +97,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("logout-link").addEventListener("click", function () {
         localStorage.removeItem("authToken");
         alert("Logout berhasil.");
-        window.location.href = "https://pdfmulbi.github.io/";
+        window.location.href = "https://pdfmulbi.github.io/login/";
     });
 });
