@@ -1,10 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const paymentDoneBtn = document.getElementById("paymentDoneBtn");
     const token = localStorage.getItem("authToken");
-    const userName = localStorage.getItem("userName");
     const amount = localStorage.getItem("donationAmount");
 
-    if (!token || !userName || !amount) {
+    if (!token || !amount) {
         alert("Data pembayaran tidak valid. Silakan ulangi proses.");
         window.location.href = "supportus.html";
         return;
