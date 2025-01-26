@@ -6,15 +6,48 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let selectedAmount = 10000; // Default nominal donasi
     const token = localStorage.getItem("authToken");
-    const userName = localStorage.getItem("userName"); // Ambil nama pengguna dari localStorage
 
     // Validasi token dan nama pengguna
-    if (!token || !userName) {
+    if (!token) {
         alert("Anda harus login untuk mendukung kami.");
         window.location.href = "https://pdfmulbi.github.io/login/";
         return;
     }
 
+    // Highlight pilihan donasi
+    donationOptions.forEach((option) => {
+        option.addEventListener("click", function () {
+            donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
+            this.classList.add("highlighted");
+            selectedAmount = parseInt(this.dataset.amount);
+            customAmountInput.value = ""; // Reset custom amount
+        });
+    });
+
+    // Update donasi berdasarkan input custom
+    customAmountInput.addEventListener("input", function () {
+        donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
+        selectedAmount = parseInt(this.value) || 0;
+    });
+
+    // Klik tombol "Lanjut Pembayaran"
+    donateBtn.addEventListener("click", function () {
+        if (!selectedAmount || isNaN(selectedAmount) || selectedAmount < 10000) {
+            alert("Nominal donasi minimum adalah Rp10.000!");
+            return;
+        }
+
+        const confirmation = confirm(
+            `Anda akan mendonasikan Rp${selectedAmount.toLocaleString()}. Lanjutkan ke pembayaran?`
+        );
+
+        if (confirmation) {
+            // Simpan data ke localStorage dan arahkan ke halaman pembayaran
+            localStorage.setItem("donationAmount", selectedAmount);
+            window.location.href = "payment.html";
+        }
+    });
+    
     // Tampilkan tombol logout jika login
     if (logoutLink) {
         logoutLink.style.display = "block";
@@ -43,38 +76,4 @@ document.addEventListener("DOMContentLoaded", function () {
                 });
         });
     }
-
-    // Highlight pilihan donasi
-    donationOptions.forEach((option) => {
-        option.addEventListener("click", function () {
-            donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
-            this.classList.add("highlighted");
-            selectedAmount = parseInt(this.dataset.amount);
-            customAmountInput.value = ""; // Reset custom amount
-        });
-    });
-
-    // Update donasi berdasarkan input custom
-    customAmountInput.addEventListener("input", function () {
-        donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
-        selectedAmount = parseInt(this.value) || 0;
-    });
-
-    // Klik tombol "Lanjut Pembayaran"
-    donateBtn.addEventListener("click", function () {
-        if (selectedAmount < 10000) {
-            alert("Nominal donasi minimum adalah Rp10.000!");
-            return;
-        }
-
-        const confirmation = confirm(
-            `Anda akan mendonasikan Rp${selectedAmount.toLocaleString()}. Lanjutkan ke pembayaran?`
-        );
-
-        if (confirmation) {
-            // Simpan data ke localStorage dan arahkan ke halaman pembayaran
-            localStorage.setItem("donationAmount", selectedAmount);
-            window.location.href = "payment.html";
-        }
-    });
 });

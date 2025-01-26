@@ -11,15 +11,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     paymentDoneBtn.addEventListener("click", async function () {
         try {
+            const donationAmount = parseInt(amount);
+            if (!donationAmount || donationAmount < 10000) {
+                alert("Nominal pembayaran tidak valid. Silakan ulangi proses.");
+                window.location.href = "supportus.html";
+                return;
+            }
+
             const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/payment", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`, // Sertakan token
+                    "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
                     name: userName,
-                    amount: parseInt(amount),
+                    amount: donationAmount,
                 }),
             });
 
@@ -31,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const result = await response.json();
             alert(result.message || "Pembayaran berhasil diproses.");
-            localStorage.removeItem("donationAmount"); // Hapus data setelah selesai
-            window.location.href = "invoice.html"; // Arahkan ke halaman invoice
+            localStorage.removeItem("donationAmount");
+            window.location.href = "invoice.html";
         } catch (error) {
             console.error("Error saat memproses pembayaran:", error);
             alert("Gagal memproses pembayaran. Silakan coba lagi.");
