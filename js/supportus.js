@@ -2,12 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
     const donationOptions = document.querySelectorAll(".donation-option");
     const customAmountInput = document.getElementById("customAmount");
     const donateBtn = document.getElementById("donateBtn");
-    const logoutLink = document.getElementById("logout-link"); // Tombol logout di footer
-
+    const logoutLink = document.getElementById("logout-link");
     let selectedAmount = 10000; // Default nominal donasi
     const token = localStorage.getItem("authToken");
 
-    // Validasi token dan nama pengguna
+    // Validasi login
     if (!token) {
         alert("Anda harus login untuk mendukung kami.");
         window.location.href = "https://pdfmulbi.github.io/login/";
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => {
                     if (response.ok) {
-                        localStorage.clear(); // Hapus semua data di localStorage
+                        localStorage.clear();
                         alert("Logout berhasil.");
                         window.location.href = "https://pdfmulbi.github.io/";
                     } else {
@@ -38,26 +37,34 @@ document.addEventListener("DOMContentLoaded", function () {
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    alert("Terjadi kesalahan saat logout. Silakan coba lagi.");
+                    alert("Gagal logout. Silakan coba lagi.");
                 });
         });
     }
 
-    // Highlight pilihan donasi
+    // Highlight pilihan donasi saat diklik
     donationOptions.forEach((option) => {
         option.addEventListener("click", function () {
+            // Reset highlight pada semua opsi
             donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
+            // Highlight opsi yang dipilih
             this.classList.add("highlighted");
+            // Set nominal donasi berdasarkan opsi
             selectedAmount = parseInt(this.dataset.amount);
-            customAmountInput.value = ""; // Reset custom amount
+            // Reset custom amount input
+            if (customAmountInput) customAmountInput.value = "";
         });
     });
 
-    // Update donasi berdasarkan input custom
-    customAmountInput.addEventListener("input", function () {
-        donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
-        selectedAmount = parseInt(this.value) || 0;
-    });
+    // Update nominal donasi berdasarkan input custom amount
+    if (customAmountInput) {
+        customAmountInput.addEventListener("input", function () {
+            // Reset highlight pada opsi default
+            donationOptions.forEach((opt) => opt.classList.remove("highlighted"));
+            // Set nominal donasi berdasarkan input pengguna
+            selectedAmount = parseInt(this.value) || 0;
+        });
+    }
 
     // Klik tombol "Lanjut Pembayaran"
     donateBtn.addEventListener("click", function () {
@@ -71,9 +78,9 @@ document.addEventListener("DOMContentLoaded", function () {
         );
 
         if (confirmation) {
-            // Simpan data ke localStorage dan arahkan ke halaman pembayaran
+            // Simpan nominal donasi ke localStorage
             localStorage.setItem("donationAmount", selectedAmount);
-            window.location.href = "payment.html";
+            window.location.href = "payment.html"; // Arahkan ke halaman pembayaran
         }
     });
 });
