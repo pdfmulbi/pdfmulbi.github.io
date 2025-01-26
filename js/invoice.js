@@ -39,39 +39,32 @@ document.addEventListener("DOMContentLoaded", async function () {
         alert("Error memuat data invoice: " + error.message);
     }
 
-    // Fungsi Logout
-    window.logout = function () {
-        const token = localStorage.getItem("authToken");
-
-        if (!token) {
-            alert("Anda belum login.");
-            window.location.href = "https://pdfmulbi.github.io/login/";
-            return;
-        }
-
-        const logoutUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout";
-
-        fetch(logoutUrl, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": `Bearer ${token}`,
-            },
-        })
-            .then((response) => {
-                if (response.ok) {
-                    localStorage.removeItem("authToken");
-                    alert("Logout berhasil.");
-                    window.location.href = "login.html";
-                } else {
-                    return response.json().then((data) => {
-                        alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
-                    });
-                }
+    // Tampilkan tombol logout jika login
+    if (logoutLink) {
+        logoutLink.style.display = "block";
+        logoutLink.addEventListener("click", function () {
+            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
             })
-            .catch((error) => {
-                console.error("Error:", error);
-                alert("Terjadi kesalahan saat logout. Silakan coba lagi.");
-            });
-    };
+                .then((response) => {
+                    if (response.ok) {
+                        localStorage.clear();
+                        alert("Logout berhasil.");
+                        window.location.href = "https://pdfmulbi.github.io/";
+                    } else {
+                        return response.json().then((data) => {
+                            alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Gagal logout. Silakan coba lagi.");
+                });
+        });
+    }
 });

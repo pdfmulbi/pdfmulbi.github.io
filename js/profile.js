@@ -100,10 +100,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Logout
-    document.getElementById("logout-link").addEventListener("click", function () {
-        localStorage.removeItem("authToken");
-        alert("Logout berhasil.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
-    });
+      // Tampilkan tombol logout jika login
+      if (logoutLink) {
+        logoutLink.style.display = "block";
+        logoutLink.addEventListener("click", function () {
+            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        localStorage.clear();
+                        alert("Logout berhasil.");
+                        window.location.href = "https://pdfmulbi.github.io/";
+                    } else {
+                        return response.json().then((data) => {
+                            alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    alert("Gagal logout. Silakan coba lagi.");
+                });
+        });
+    };
 });
