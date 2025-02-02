@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Jika akun admin, tampilkan tombol dashboard
         dashboardButton.style.display = "block";
     } else {
-        dashboardButton.style.display = "none";
-    }
+        dashboardButton.style.display = "none";
+    }
 
     const token = localStorage.getItem("authToken");
     if (token) {
