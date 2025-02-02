@@ -1,6 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
     const authButtons = document.getElementById("auth-buttons");
     const logoutLink = document.getElementById("logout-link"); // Tombol logout di footer
+    const dashboardButton = document.getElementById("dashboard-button");
+    const userData = JSON.parse(localStorage.getItem("userData"));
+
+    if (userData && userData.email === "admin@pdfm.com") {
+        // Jika akun admin, tampilkan tombol dashboard
+        dashboardButton.style.display = "block";
+    } else {
+        dashboardButton.style.display = "none";
+    }
 
     const token = localStorage.getItem("authToken");
     if (token) {

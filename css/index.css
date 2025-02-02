@@ -95,6 +95,22 @@ body {
     transform: scale(1.05);
 }
 
+.dashboard {
+    background-color: #e53e3e;
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease-in-out;
+}
+
+.dashboard:hover {
+    background-color: #c53030;
+    transform: scale(1.05);
+}
+
 /* Main Content */
 .main-content {
     text-align: center;
