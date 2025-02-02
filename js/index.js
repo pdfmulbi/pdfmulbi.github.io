@@ -1,11 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const authButtons = document.getElementById("auth-buttons");
-    const logoutLink = document.getElementById("logout-link"); // Tombol logout di footer
-    const dashboardButton = document.getElementById("dashboard-button");
-    const userData = JSON.parse(localStorage.getItem("userData"));
+    const logoutLink = document.getElementById("logout-link");
+    const isAdmin = localStorage.getItem("isAdmin");
 
-    if (userData && userData.email === "admin@pdfm.com") {
-        // Jika akun admin, tampilkan tombol dashboard
+    if (isAdmin !== "true") {
         dashboardButton.style.display = "block";
     } else {
         dashboardButton.style.display = "none";
@@ -14,12 +12,12 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
     if (token) {
         // Jika token ditemukan
-        authButtons.style.display = "none"; // Sembunyikan tombol login
-        logoutLink.style.display = "block"; // Tampilkan tombol logout
+        authButtons.style.display = "none";
+        logoutLink.style.display = "block";
     } else {
         // Jika token tidak ditemukan
-        authButtons.style.display = "flex"; // Tampilkan tombol login
-        logoutLink.style.display = "none"; // Sembunyikan tombol logout
+        authButtons.style.display = "flex";
+        logoutLink.style.display = "none";
     }
 
     // Fungsi logout
