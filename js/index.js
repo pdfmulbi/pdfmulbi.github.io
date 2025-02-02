@@ -1,15 +1,19 @@
 document.addEventListener("DOMContentLoaded", function () {
     const authButtons = document.getElementById("auth-buttons");
     const logoutLink = document.getElementById("logout-link");
+    const dashboardButton = document.getElementById("dashboard-button");
+
+    const token = localStorage.getItem("authToken");
     const isAdmin = localStorage.getItem("isAdmin");
 
-    if (isAdmin !== "true") {
+    // Show dashboard button only if user is admin
+    if (isAdmin === "true") {
         dashboardButton.style.display = "block";
     } else {
         dashboardButton.style.display = "none";
     }
 
-    const token = localStorage.getItem("authToken");
+    // Jika user sudah login, sembunyikan tombol login & tampilkan logout
     if (token) {
         // Jika token ditemukan
         authButtons.style.display = "none";
@@ -20,7 +24,7 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutLink.style.display = "none";
     }
 
-    // Fungsi logout
+    // Fungsi Logout
     if (logoutLink) {
         logoutLink.addEventListener("click", function () {
             const token = localStorage.getItem("authToken");
@@ -41,7 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => {
                     if (response.ok) {
-                        localStorage.removeItem("authToken"); // Hapus token dari localStorage
+                        localStorage.clear();
                         alert("Logout berhasil.");
                         window.location.href = "https://pdfmulbi.github.io/";
                     } else {
