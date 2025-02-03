@@ -4,13 +4,15 @@ import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
 document.addEventListener("DOMContentLoaded", function () {
     const authButtons = document.getElementById("auth-buttons");
     const logoutLink = document.getElementById("logout-link");
-
-    // Periksa token di localStorage
     const token = localStorage.getItem("authToken");
-    if (!token) {
+
+    // Jika user sudah login, sembunyikan tombol login & tampilkan logout
+    if (token) {
+        // Jika token ditemukan
         authButtons.style.display = "none";
         logoutLink.style.display = "block";
     } else {
+        // Jika token tidak ditemukan
         authButtons.style.display = "flex";
         logoutLink.style.display = "none";
     }
