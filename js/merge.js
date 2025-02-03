@@ -7,12 +7,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Periksa token di localStorage
     const token = localStorage.getItem("authToken");
-    if (token) {
-        // Jika token ditemukan, sembunyikan login/signup dan tampilkan logout
+    if (!token) {
         authButtons.style.display = "none";
         logoutLink.style.display = "block";
     } else {
-        // Jika token tidak ditemukan, tampilkan login/signup dan sembunyikan logout
         authButtons.style.display = "flex";
         logoutLink.style.display = "none";
     }
