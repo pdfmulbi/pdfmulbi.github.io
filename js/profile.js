@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
+    const logoutLink = document.getElementById("logout-link");
 
     if (!token) {
         alert("Silakan login terlebih dahulu.");
