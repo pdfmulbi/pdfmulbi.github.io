@@ -7,11 +7,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const isAdmin = localStorage.getItem("isAdmin");
 
     // Show dashboard button only if user is admin
-    if (isAdmin === "true") {
-        dashboardButton.style.display = "block";
+    if (dashboardButton) {
+        if (token && isAdmin === "true") {
+            dashboardButton.style.display = "block";
+        } else {
+            dashboardButton.style.display = "none";
+        }
     } else {
-        dashboardButton.style.display = "none";
-    }
+        console.error("Element dashboard-button tidak ditemukan!");
+    }    
 
     // Jika user sudah login, sembunyikan tombol login & tampilkan logout
     if (token) {
