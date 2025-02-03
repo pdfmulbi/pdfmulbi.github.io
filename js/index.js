@@ -6,16 +6,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const token = localStorage.getItem("authToken");
     const isAdmin = localStorage.getItem("isAdmin");
 
-    // Show dashboard button only if user is admin
-    if (dashboardButton) {
-        if (token && isAdmin === "true") {
-            dashboardButton.style.display = "block";
-        } else {
-            dashboardButton.style.display = "none";
-        }
+    console.log("Token:", token);
+    console.log("isAdmin dari localStorage:", isAdmin);
+
+    // Cek apakah isAdmin tersimpan sebagai string "true"
+    if (isAdmin === "true") {
+        dashboardButton.style.display = "block";
     } else {
-        console.error("Element dashboard-button tidak ditemukan!");
-    }    
+        dashboardButton.style.display = "none";
+    } 
 
     // Jika user sudah login, sembunyikan tombol login & tampilkan logout
     if (token) {
