@@ -84,10 +84,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Klik tombol "Lanjut Pembayaran"
     donateBtn.addEventListener("click", function () {
-        if (selectedAmount < 10000) {
-            alert("Nominal donasi minimum adalah Rp10.000!");
+        if (selectedAmount < 1) {
+            Swal.fire({
+                icon: "warning",
+                title: "Nominal Tidak Valid!",
+                text: "Nominal donasi minimum adalah Rp.1!",
+                confirmButtonText: "OK"
+            });
             return;
-        }
+        }        
 
         const confirmation = confirm(
             `Anda akan mendonasikan Rp${selectedAmount.toLocaleString()}. Lanjutkan ke pembayaran?`
