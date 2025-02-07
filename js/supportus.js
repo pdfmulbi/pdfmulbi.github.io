@@ -13,34 +13,50 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
     }
 
-    // Tampilkan tombol logout jika login
-    if (logoutLink) {
-        logoutLink.style.display = "block";
-        logoutLink.addEventListener("click", function () {
-            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": `Bearer ${token}`,
-                },
-            })
-                .then((response) => {
-                    if (response.ok) {
-                        localStorage.clear();
-                        alert("Logout berhasil.");
-                        window.location.href = "https://pdfmulbi.github.io/";
-                    } else {
-                        return response.json().then((data) => {
-                            alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
-                        });
-                    }
+        // Tampilkan tombol logout jika login
+        if (logoutLink) {
+            logoutLink.style.display = "block";
+            logoutLink.addEventListener("click", function () {
+                fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${token}`,
+                    },
                 })
-                .catch((error) => {
-                    console.error("Error:", error);
-                    alert("Gagal logout. Silakan coba lagi.");
-                });
-        });
-    }
+                    .then((response) => {
+                        if (response.ok) {
+                            localStorage.clear();
+                            Swal.fire({
+                                icon: "success",
+                                title: "Logout Berhasil!",
+                                text: "Anda telah berhasil logout.",
+                                confirmButtonText: "OK"
+                            }).then(() => {
+                                window.location.href = "https://pdfmulbi.github.io/";
+                            });
+                        } else {
+                            return response.json().then((data) => {
+                                Swal.fire({
+                                    icon: "error",
+                                    title: "Gagal Logout",
+                                    text: data.message || "Kesalahan tidak diketahui.",
+                                    confirmButtonText: "OK"
+                                });
+                            });
+                        }
+                    })
+                    .catch((error) => {
+                        console.error("Error:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Gagal Logout",
+                            text: "Silakan coba lagi.",
+                            confirmButtonText: "OK"
+                        });
+                    });
+            });
+        }
 
     // Highlight pilihan donasi saat diklik
     donationOptions.forEach((option) => {

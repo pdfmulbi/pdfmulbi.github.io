@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         alert("Error memuat data invoice: " + error.message);
     }
 
-    // Tampilkan tombol logout jika login
-    if (logoutLink) {
+      // Tampilkan tombol logout jika login
+        if (logoutLink) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
             fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
@@ -53,17 +53,33 @@ document.addEventListener("DOMContentLoaded", async function () {
                 .then((response) => {
                     if (response.ok) {
                         localStorage.clear();
-                        alert("Logout berhasil.");
-                        window.location.href = "https://pdfmulbi.github.io/";
+                        Swal.fire({
+                            icon: "success",
+                            title: "Logout Berhasil!",
+                            text: "Anda telah berhasil logout.",
+                            confirmButtonText: "OK"
+                        }).then(() => {
+                            window.location.href = "https://pdfmulbi.github.io/";
+                        });
                     } else {
                         return response.json().then((data) => {
-                            alert("Gagal logout: " + (data.message || "Kesalahan tidak diketahui"));
+                            Swal.fire({
+                                icon: "error",
+                                title: "Gagal Logout",
+                                text: data.message || "Kesalahan tidak diketahui.",
+                                confirmButtonText: "OK"
+                            });
                         });
                     }
                 })
                 .catch((error) => {
                     console.error("Error:", error);
-                    alert("Gagal logout. Silakan coba lagi.");
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal Logout",
+                        text: "Silakan coba lagi.",
+                        confirmButtonText: "OK"
+                    });
                 });
         });
     }
