@@ -3,8 +3,17 @@ document.addEventListener("DOMContentLoaded", async function () {
     const token = localStorage.getItem("authToken");
 
     if (!token) {
-        alert("Anda harus login untuk melihat invoice.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        Swal.fire({
+            icon: "warning",
+            title: "Akses Ditolak",
+            text: "Anda harus login untuk melihat invoice.",
+            confirmButtonText: "Login",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "https://pdfmulbi.github.io/login/";
+            }
+        });
         return;
     }
 

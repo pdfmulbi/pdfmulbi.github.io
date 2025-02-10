@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         Swal.fire({
             icon: "warning",
             title: "Akses Ditolak",
-            text: "Anda harus login untuk mendukung kami.",
+            text: "Anda harus login untuk membuka halaman profile.",
             confirmButtonText: "Login",
             allowOutsideClick: false
         }).then((result) => {
