@@ -11,13 +11,21 @@
 
 <body>
     <main>
-        <h2>Scan QR Code to Complete Payment</h2>
-        <img src="image/qr.jpg" alt="QR Code untuk pembayaran menggunakan QRIS" class="qris-code">
-        <p>Setelah pembayaran selesai, klik tombol di bawah ini:</p>
+        <h3 id="paymentAmountText">Silahkan bayar sejumlah ...</h3>
+        <img src="image/QRIS.jpg" alt="QR Code untuk pembayaran menggunakan QRIS" class="qris-code">
+        <p>Jika pembayaran telah selesai, silahkan klik tombol di bawah ini:</p>
         <button id="paymentDoneBtn">Pembayaran selesai</button>
     </main>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const paymentText = document.getElementById("paymentAmountText");
+            const amount = localStorage.getItem("donationAmount");
+            
+            if (amount) {
+                paymentText.textContent = `Silahkan bayar sejumlah Rp${parseInt(amount).toLocaleString()}`;
+            }
+        });
+    </script>
     <script src="js/payment.js"></script>
-
 </body>
-
 </html>
