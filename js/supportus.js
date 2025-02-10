@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
         // Tampilkan tombol logout jika login
-        if (logoutLink) {
+        if (logoutLink && token) {
             logoutLink.style.display = "block";
             logoutLink.addEventListener("click", function () {
                 fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
