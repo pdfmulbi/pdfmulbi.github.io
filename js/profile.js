@@ -3,10 +3,19 @@ document.addEventListener("DOMContentLoaded", function () {
     const logoutLink = document.getElementById("logout-link");
 
     if (!token) {
-        alert("Silakan login terlebih dahulu.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        Swal.fire({
+            icon: "warning",
+            title: "Akses Ditolak",
+            text: "Anda harus login untuk mendukung kami.",
+            confirmButtonText: "Login",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "https://pdfmulbi.github.io/login/";
+            }
+        });
         return;
-    }
+    } 
 
     // Fetch user profile
     const fetchUserProfile = async () => {
@@ -92,13 +101,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 throw new Error(errorData.message || "Gagal memperbarui profil.");
             }
 
-            alert("Profil berhasil diperbarui.");
-            window.location.reload(); // Reload page to refresh profile view
+            Swal.fire({
+                icon: "success",
+                title: "Berhasil",
+                text: "Profil berhasil diperbarui.",
+                confirmButtonText: "OK"
+            }).then(() => {
+                window.location.reload(); // Reload halaman untuk memperbarui tampilan profil
+            });            
 
         } catch (error) {
             console.error("Error updating profile:", error);
-            alert("Terjadi kesalahan saat memperbarui profil.");
-        }
+            Swal.fire({
+                icon: "error",
+                title: "Gagal Memperbarui Profil",
+                text: "Terjadi kesalahan saat memperbarui profil.",
+                confirmButtonText: "OK"
+            });
+        }        
     });
 
           // Tampilkan tombol logout jika login

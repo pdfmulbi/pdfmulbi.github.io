@@ -5,8 +5,14 @@ document.addEventListener("DOMContentLoaded", function () {
     const userName = localStorage.getItem("userName");
 
     if (!token || !amount || !userName) {
-        alert("Data pembayaran tidak valid. Silakan ulangi proses.");
-        window.location.href = "supportus.html";
+        Swal.fire({
+            icon: "error",
+            title: "Data Tidak Valid",
+            text: "Data pembayaran tidak valid. Silakan ulangi proses.",
+            confirmButtonText: "OK"
+        }).then(() => {
+            window.location.href = "supportus.html";
+        });
         return;
     }
 
@@ -26,17 +32,34 @@ document.addEventListener("DOMContentLoaded", function () {
 
             if (!response.ok) {
                 const error = await response.json();
-                alert("Gagal memproses pembayaran: " + (error.message || "Kesalahan tidak diketahui."));
+                Swal.fire({
+                    icon: "error",
+                    title: "Pembayaran Gagal",
+                    text: "Gagal memproses pembayaran: " + (error.message || "Kesalahan tidak diketahui."),
+                    confirmButtonText: "OK"
+                });
                 return;
             }
 
             const result = await response.json();
-            alert(result.message || "Pembayaran berhasil diproses.");
-            localStorage.removeItem("donationAmount"); // Hapus data setelah selesai
-            window.location.href = "invoice.html"; // Arahkan ke halaman invoice
+            Swal.fire({
+                icon: "success",
+                title: "Pembayaran Berhasil",
+                text: result.message || "Pembayaran berhasil diproses.",
+                confirmButtonText: "Lihat Invoice"
+            }).then(() => {
+                localStorage.removeItem("donationAmount"); // Hapus data setelah selesai
+                window.location.href = "invoice.html"; // Arahkan ke halaman invoice
+            });
+
         } catch (error) {
             console.error("Error saat memproses pembayaran:", error);
-            alert("Gagal memproses pembayaran. Silakan coba lagi.");
+            Swal.fire({
+                icon: "error",
+                title: "Kesalahan",
+                text: "Gagal memproses pembayaran. Silakan coba lagi.",
+                confirmButtonText: "OK"
+            });
         }
     });
 });

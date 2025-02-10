@@ -36,8 +36,13 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     } catch (error) {
-        alert("Error memuat data invoice: " + error.message);
-    }
+        Swal.fire({
+            icon: "error",
+            title: "Terjadi Kesalahan",
+            text: "Error memuat data invoice: " + error.message,
+            confirmButtonText: "OK"
+        });
+    }    
 
       // Tampilkan tombol logout jika login
         if (logoutLink && token) {

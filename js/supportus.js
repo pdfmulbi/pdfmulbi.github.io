@@ -8,10 +8,19 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Validasi login
     if (!token) {
-        alert("Anda harus login untuk mendukung kami.");
-        window.location.href = "https://pdfmulbi.github.io/login/";
+        Swal.fire({
+            icon: "warning",
+            title: "Akses Ditolak",
+            text: "Anda harus login untuk mendukung kami.",
+            confirmButtonText: "Login",
+            allowOutsideClick: false
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "https://pdfmulbi.github.io/login/";
+            }
+        });
         return;
-    }
+    }    
 
         // Tampilkan tombol logout jika login
         if (logoutLink && token) {

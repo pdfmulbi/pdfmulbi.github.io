@@ -144,9 +144,14 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
     }
 
     if (pdfFiles.length < 2) {
-        alert('Please upload at least two PDF files.');
+        Swal.fire({
+            icon: "warning",
+            title: "Upload Gagal",
+            text: "Please upload at least two PDF files.",
+            confirmButtonText: "OK"
+        });
         return;
-    }
+    }    
 
     try {
         const mergedPdf = await PDFDocument.create();
@@ -162,6 +167,11 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
         window.open(mergedPdfUrl, '_blank');
     } catch (error) {
         console.error('Error merging PDFs:', error);
-        alert('Failed to merge PDFs. Please try again.');
-    }
+        Swal.fire({
+            icon: "error",
+            title: "Merge Gagal",
+            text: "Failed to merge PDFs. Please try again.",
+            confirmButtonText: "OK"
+        });
+    }    
 });
