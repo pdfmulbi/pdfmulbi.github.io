@@ -101,16 +101,20 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "OK"
             });
             return;
-        }        
-
-        const confirmation = confirm(
-            `Anda akan mendonasikan Rp${selectedAmount.toLocaleString()}. Lanjutkan ke pembayaran?`
-        );
-
-        if (confirmation) {
-            // Simpan nominal donasi ke localStorage
-            localStorage.setItem("donationAmount", selectedAmount);
-            window.location.href = "payment.html"; // Arahkan ke halaman pembayaran
         }
+        Swal.fire({
+            icon: "question",
+            title: "Konfirmasi Donasi",
+            text: `Anda akan mendonasikan Rp${selectedAmount.toLocaleString()}. Lanjutkan ke pembayaran?`,
+            showCancelButton: true,
+            confirmButtonText: "Ya, Lanjutkan",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Simpan nominal donasi ke localStorage
+                localStorage.setItem("donationAmount", selectedAmount);
+                window.location.href = "payment.html"; // Arahkan ke halaman pembayaran
+            }
+        });
     });
 });
