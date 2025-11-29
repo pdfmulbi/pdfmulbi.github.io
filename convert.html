@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Converter Tools - PDFConvert</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="css/convert.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <style>
+        /* Style tambahan untuk Menu Pilihan */
+
+    </style>
+</head>
+<body>
+
+<div class="container mt-4 mb-5" style="max-width: 800px;">
+    
+    <a href="index.html" class="back-link">
+        <i></i> Convert lainnya
+    </a>
+
+    <div class="text-center mb-4 mt-2">
+        <h2 class="fw-bold text-primary">Word to PDF Converter</h2>
+        <p class="text-muted">Ubah dokumen Word (.docx) menjadi PDF di browser.</p>
+    </div>
+
+    <div class="text-center">
+        <div class="tool-switcher">
+            <a href="#" class="btn btn-active-mode shadow-sm">
+                <i class="fas fa-file-word me-2"></i> Word to PDF
+            </a>
+            
+            <a href="pdf-to-word.html" class="btn btn-inactive-mode">
+                <i class="fas fa-file-pdf me-2"></i> PDF to Word
+            </a>
+        </div>
+    </div>
+
+    <div class="upload-box shadow-sm mb-4" id="uploadZone">
+        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+        <h5>Klik untuk Pilih File Word</h5>
+        <p class="text-muted small mb-0">Format .docx saja</p>
+        <input type="file" id="fileInput" accept=".docx" style="display: none;">
+    </div>
+
+    <div id="actionArea" class="d-none text-center mb-4">
+        <button id="downloadBtn" class="btn btn-danger btn-lg shadow">
+            <i class="fas fa-file-pdf"></i> Simpan sebagai PDF
+        </button>
+    </div>
+
+    <div class="preview-container d-none" id="previewContainer">
+        <div class="text-muted small text-center mb-2">Preview Dokumen:</div>
+        <div id="documentPreview" class="page-a4 shadow">
+            </div>
+    </div>
+
+</div>
+
+<script src="js/convert.js"></script>
+
+</body>
+</html>

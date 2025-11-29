@@ -1,0 +1,29 @@
+body {
+    background-color: #f4f6f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.upload-box {
+    border: 2px dashed #dc3545;
+    background: #fff;
+    border-radius: 15px;
+    padding: 40px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.upload-box:hover {
+    background-color: #fffbfb;
+    border-color: #b02a37;
+}
+
+.d-none {
+    display: none !important;
+}
+
+/* Styling khusus text hasil */
+#summaryOutput {
+    font-size: 1.05rem;
+    color: #333;
+}
