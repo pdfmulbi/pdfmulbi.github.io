@@ -1,0 +1,112 @@
+/* =========================================
+   HEADER COMPONENT - Shared Styles
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* Header / Navbar */
+.header {
+    position: sticky;
+    top: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.logo-text {
+    text-decoration: none;
+    color: #e53e3e;
+    font-size: 1.35rem;
+    font-weight: 800;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
+}
+
+.logo-text:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+.heart {
+    color: #e53e3e;
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+/* Auth Buttons */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.login {
+    color: #4b5563;
+    text-decoration: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.login:hover {
+    color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.08);
+}
+
+.signup {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    color: white;
+    padding: 10px 24px;
+    border-radius: 10px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+}
+
+.signup:hover {
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .logo-text {
+        font-size: 1.15rem;
+    }
+
+    .signup {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    .login {
+        padding: 6px 12px;
+        font-size: 0.9rem;
+    }
+}
