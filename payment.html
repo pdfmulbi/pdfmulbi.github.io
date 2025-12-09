@@ -12,10 +12,16 @@
 <body>
     <main>
         <h3 id="paymentAmountText">Silahkan bayar sejumlah ...</h3>
+        
+        <div id="timerContainer">
+            Sisa waktu pembayaran: <span id="countdown">05:00</span>
+        </div>
+
         <img src="image/QRIS.jpg" alt="QR Code untuk pembayaran menggunakan QRIS" class="qris-code">
         <p>Jika pembayaran telah selesai, silahkan klik tombol di bawah ini:</p>
         <button id="paymentDoneBtn">Pembayaran selesai</button>
     </main>
+    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const paymentText = document.getElementById("paymentAmountText");
