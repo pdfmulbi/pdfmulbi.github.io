@@ -17,8 +17,8 @@ let processedBlob = null;
 
 // 1. Event Upload
 uploadZone.addEventListener('click', () => fileInput.click());
-fileInput.addEventListener('change', function() {
-    if(this.files.length > 0) {
+fileInput.addEventListener('change', function () {
+    if (this.files.length > 0) {
         fileNameDisplay.innerText = this.files[0].name;
         settingsCard.classList.remove('d-none');
         resultCard.classList.add('d-none');
@@ -26,8 +26,8 @@ fileInput.addEventListener('change', function() {
 });
 
 // 2. Toggle Slider (Hilang jika pilih metode Safe)
-methodSelect.addEventListener('change', function() {
-    if(this.value === 'safe') {
+methodSelect.addEventListener('change', function () {
+    if (this.value === 'safe') {
         sliderContainer.classList.add('d-none');
     } else {
         sliderContainer.classList.remove('d-none');
@@ -35,12 +35,12 @@ methodSelect.addEventListener('change', function() {
 });
 
 // 3. Update Label Slider
-qualityRange.addEventListener('input', function() {
+qualityRange.addEventListener('input', function () {
     document.getElementById('qualityValue').innerText = Math.round(this.value * 100) + "%";
 });
 
 // --- LOGIKA UTAMA (MAIN RUNNER) ---
-processBtn.addEventListener('click', async function() {
+processBtn.addEventListener('click', async function () {
     const file = fileInput.files[0];
     const method = methodSelect.value;
     const quality = parseFloat(qualityRange.value);
@@ -69,8 +69,18 @@ processBtn.addEventListener('click', async function() {
         document.getElementById('timeStat').innerText = `⏱ Waktu Proses: ${duration} detik (Metode: ${method.toUpperCase()})`;
         document.getElementById('originalSize').innerText = formatBytes(file.size);
         document.getElementById('compressedSize').innerText = formatBytes(processedBlob.size);
-        
+
         resultCard.classList.remove('d-none');
+
+        // Add notification for successful compression
+        if (window.NotificationManager) {
+            const reduction = ((1 - processedBlob.size / file.size) * 100).toFixed(0);
+            window.NotificationManager.add(
+                'compress',
+                `Compressed PDF: ${formatBytes(file.size)} → ${formatBytes(processedBlob.size)} (${reduction}% smaller)`,
+                file.name
+            );
+        }
 
     } catch (error) {
         console.error(error);
@@ -93,9 +103,9 @@ async function compressRaster(file, quality) {
     for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         // Logika Skala: Turunkan resolusi jika kualitas rendah
-        let scale = quality < 0.5 ? 0.8 : 1.5; 
+        let scale = quality < 0.5 ? 0.8 : 1.5;
         const viewport = page.getViewport({ scale: scale });
-        
+
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = viewport.width;
@@ -122,7 +132,7 @@ async function compressBW(file, quality) {
     for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
         const viewport = page.getViewport({ scale: 1.0 }); // Scale standar
-        
+
         const canvas = document.createElement('canvas');
         const ctx = canvas.getContext('2d');
         canvas.width = viewport.width;
@@ -133,11 +143,11 @@ async function compressBW(file, quality) {
         const imgDataRaw = ctx.getImageData(0, 0, canvas.width, canvas.height);
         const data = imgDataRaw.data;
         for (let j = 0; j < data.length; j += 4) {
-            const avg = (data[j] + data[j+1] + data[j+2]) / 3;
+            const avg = (data[j] + data[j + 1] + data[j + 2]) / 3;
             const color = avg > 128 ? 255 : 0; // Thresholding
             data[j] = color;     // R
-            data[j+1] = color;   // G
-            data[j+2] = color;   // B
+            data[j + 1] = color;   // G
+            data[j + 2] = color;   // B
         }
         ctx.putImageData(imgDataRaw, 0, 0);
 
@@ -154,16 +164,16 @@ async function compressSafe(file) {
     const arrayBuffer = await file.arrayBuffer();
     const { PDFDocument } = PDFLib;
     const pdfDoc = await PDFDocument.load(arrayBuffer);
-    
+
     // Teknik: Hapus Metadata & Gunakan Object Streams
     const pdfBytes = await pdfDoc.save({ useObjectStreams: true });
-    
+
     return new Blob([pdfBytes], { type: 'application/pdf' });
 }
 
 // Helper Format Bytes
 function formatBytes(bytes) {
-    if(bytes === 0) return '0 Bytes';
+    if (bytes === 0) return '0 Bytes';
     const k = 1024;
     const sizes = ['Bytes', 'KB', 'MB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
@@ -172,7 +182,7 @@ function formatBytes(bytes) {
 
 // Download Action
 downloadBtn.addEventListener('click', () => {
-    if(processedBlob) {
+    if (processedBlob) {
         const url = URL.createObjectURL(processedBlob);
         const a = document.createElement('a');
         a.href = url;

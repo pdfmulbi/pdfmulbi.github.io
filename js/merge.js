@@ -151,7 +151,7 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
             confirmButtonText: "OK"
         });
         return;
-    }    
+    }
 
     try {
         const mergedPdf = await PDFDocument.create();
@@ -165,6 +165,15 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
         const mergedPdfBytes = await mergedPdf.save();
         const mergedPdfUrl = URL.createObjectURL(new Blob([mergedPdfBytes], { type: 'application/pdf' }));
         window.open(mergedPdfUrl, '_blank');
+
+        // Add notification for successful merge
+        if (window.NotificationManager) {
+            window.NotificationManager.add(
+                'merge',
+                `Successfully merged ${pdfFiles.length} PDF files`,
+                'merged_output.pdf'
+            );
+        }
     } catch (error) {
         console.error('Error merging PDFs:', error);
         Swal.fire({
@@ -173,5 +182,6 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
             text: "Failed to merge PDFs. Please try again.",
             confirmButtonText: "OK"
         });
-    }    
+    }
 });
+
