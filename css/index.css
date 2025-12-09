@@ -1,20 +1,21 @@
 /* =========================================
    1. RESET & GLOBAL STYLES
    ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
 body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: #f3f4f6;
+    background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f6 50%, #eef0f5 100%);
     overflow-x: hidden;
-    /* Memberi ruang di bawah agar konten tidak tertutup footer fixed */
     padding-bottom: 80px;
 }
 
@@ -24,33 +25,51 @@ body {
 .header {
     position: sticky;
     top: 0;
-    background-color: white;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px 5%;
-    /* Padding responsif */
-    border-bottom: 1px solid #e5e7eb;
+    border-bottom: 1px solid rgba(229, 231, 235, 0.8);
     z-index: 1000;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
 }
 
 .logo-text {
     text-decoration: none;
     color: #e53e3e;
-    font-size: 1.25rem;
+    font-size: 1.35rem;
     font-weight: 800;
     display: inline-flex;
     align-items: center;
     gap: 5px;
+    letter-spacing: -0.5px;
+    transition: all 0.3s ease;
 }
 
 .logo-text:hover {
     opacity: 0.9;
+    transform: scale(1.02);
 }
 
 .heart {
     color: #e53e3e;
+    display: inline-block;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
 }
 
 /* Auth Buttons */
@@ -63,31 +82,36 @@ body {
 .login {
     color: #4b5563;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.2s;
+    font-weight: 600;
+    padding: 8px 16px;
+    border-radius: 8px;
+    transition: all 0.3s ease;
 }
 
 .login:hover {
     color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.08);
 }
 
 .signup,
 .dashboard {
-    background-color: #e53e3e;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
     color: white;
-    padding: 8px 20px;
-    border-radius: 6px;
+    padding: 10px 24px;
+    border-radius: 10px;
     border: none;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
-    transition: all 0.2s;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
 }
 
 .signup:hover,
 .dashboard:hover {
-    background-color: #c53030;
-    transform: translateY(-1px);
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
 }
 
 /* =========================================
@@ -95,93 +119,143 @@ body {
    ========================================= */
 .main-content {
     text-align: center;
-    margin: 40px auto;
+    margin: 50px auto;
     width: 90%;
     max-width: 1200px;
     flex-grow: 1;
-    animation: fadeIn 0.8s ease-out;
+    animation: fadeInUp 0.8s ease-out;
 }
 
 .welcome-text {
-    font-size: 2.5rem;
+    font-size: 2.8rem;
     font-weight: 800;
     color: #1f2937;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    letter-spacing: -1px;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 .main-content h2 {
-    font-size: 1.5rem;
-    color: #4b5563;
-    font-weight: 600;
-    margin-bottom: 15px;
+    font-size: 1.4rem;
+    color: #6b7280;
+    font-weight: 500;
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
 }
 
-.main-content p {
+.main-content>p {
     color: #6b7280;
-    line-height: 1.6;
-    margin-bottom: 40px;
+    line-height: 1.7;
+    margin-bottom: 50px;
+    font-size: 1.05rem;
+}
+
+.main-content>p strong {
+    color: #e53e3e;
+    font-weight: 600;
 }
 
 /* =========================================
-   4. GRID SYSTEM & CARDS (BAGIAN KRUSIAL)
+   4. GRID SYSTEM & CARDS
    ========================================= */
 
 /* Grid Container */
 .list-wrapper {
     display: grid;
-    /* Membuat kolom responsif: minimal 240px lebar, sisanya mengisi ruang */
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 28px;
     align-items: stretch;
-    /* Memaksa semua kartu punya TINGGI SAMA */
 }
 
 /* Kartu Fitur */
 .feature-row {
-    background-color: #fff;
-    border: 1px solid #e5e7eb;
-    border-radius: 12px;
-    padding: 30px 25px;
-    transition: transform 0.3s, box-shadow 0.3s;
-
-    /* Flexbox Column: Kunci agar elemen didalamnya bisa diatur posisinya */
+    background: white;
+    border: 1px solid rgba(229, 231, 235, 0.6);
+    border-radius: 20px;
+    padding: 32px 28px;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     display: flex;
     flex-direction: column;
     height: 100%;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+.feature-row::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #e53e3e 0%, #f56565 100%);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .feature-row:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-    border-color: #e53e3e;
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    border-color: transparent;
 }
 
-/* Wadah Gambar (Menjaga posisi icon tetap sejajar) */
+.feature-row:hover::before {
+    transform: scaleX(1);
+}
+
+/* Staggered animation for cards */
+.feature-row:nth-child(1) {
+    animation: fadeInUp 0.6s ease-out 0.1s both;
+}
+
+.feature-row:nth-child(2) {
+    animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.feature-row:nth-child(3) {
+    animation: fadeInUp 0.6s ease-out 0.3s both;
+}
+
+.feature-row:nth-child(4) {
+    animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+/* Wadah Gambar */
 .image-container {
     width: 100%;
     height: 100px;
-    /* Tinggi TETAP area gambar */
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
+    transition: transform 0.4s ease;
 }
 
-/* Gambar Icon (Memaksa ukuran seragam) */
+.feature-row:hover .image-container {
+    transform: scale(1.08);
+}
+
+/* Gambar Icon */
 .illustration {
     width: 80px !important;
-    /* Lebar paksa */
     height: 80px !important;
-    /* Tinggi paksa */
     object-fit: contain;
-    /* Gambar menyesuaikan diri tanpa gepeng */
     display: block;
     margin: 0 auto;
-
-    /* Reset properti lain yang mungkin mengganggu */
     max-width: none;
     border: none;
     box-shadow: none;
+    transition: all 0.4s ease;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+}
+
+.feature-row:hover .illustration {
+    filter: drop-shadow(0 8px 16px rgba(0, 0, 0, 0.15));
 }
 
 /* Remove background from image */
@@ -189,46 +263,72 @@ body {
     mix-blend-mode: multiply;
 }
 
-/* Deskripsi (Mengisi ruang kosong agar tombol terdorong ke bawah) */
+/* Deskripsi */
 .description-container {
     text-align: left;
-    margin-bottom: 25px;
+    margin-bottom: 24px;
     flex-grow: 1;
-    /* Mendorong tombol ke bawah */
 }
 
 .description-container h3 {
     margin: 0 0 10px 0;
     color: #111827;
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     font-weight: 700;
+    letter-spacing: -0.3px;
 }
 
 .description-container p {
     margin: 0;
     color: #6b7280;
     font-size: 0.95rem;
-    line-height: 1.5;
+    line-height: 1.6;
 }
 
 /* Tombol Aksi */
 .cta-button {
-    background-color: #e53e3e;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
     color: white;
     width: 100%;
-    padding: 12px;
-    font-size: 1rem;
+    padding: 14px 20px;
+    font-size: 0.95rem;
     font-weight: 600;
     border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background-color 0.2s;
+    transition: all 0.3s ease;
     margin-top: auto;
-    /* Pastikan selalu di dasar kartu */
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.25);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
 }
 
 .cta-button:hover {
-    background-color: #9b2c2c;
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(229, 62, 62, 0.35);
+}
+
+.cta-button:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+.cta-button:active {
+    transform: translateY(0);
 }
 
 /* =========================================
@@ -239,10 +339,12 @@ body {
     bottom: 0;
     left: 0;
     width: 100%;
-    background-color: #fff;
-    border-top: 1px solid #e5e7eb;
-    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.02);
-    padding: 10px 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(229, 231, 235, 0.5);
+    box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.06);
+    padding: 12px 0;
     z-index: 900;
 }
 
@@ -265,39 +367,49 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 0.75rem;
-    transition: color 0.2s;
+    font-size: 0.7rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    padding: 8px;
+    border-radius: 12px;
 }
 
 .footer-item i {
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     margin-bottom: 4px;
+    transition: transform 0.3s ease;
 }
 
 .footer-item a:hover {
     color: #e53e3e;
+    background-color: rgba(229, 62, 62, 0.06);
+}
+
+.footer-item a:hover i {
+    transform: scale(1.15);
 }
 
 /* Tombol Upload Tengah Bulat */
 .footer-item.upload a i {
-    background-color: #e53e3e;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
     color: white;
-    width: 45px;
-    height: 45px;
+    width: 52px;
+    height: 52px;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     margin-bottom: 0;
-    box-shadow: 0 4px 6px rgba(229, 62, 62, 0.3);
-    transform: translateY(-15px);
-    /* Efek melayang keluar batas */
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+    transform: translateY(-18px);
+    transition: all 0.3s ease;
 }
 
 .footer-item.upload a:hover i {
-    background-color: #c53030;
-    transform: translateY(-17px);
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+    transform: translateY(-22px) scale(1.05);
+    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.5);
 }
 
 /* =========================================
@@ -312,5 +424,53 @@ body {
     to {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   7. RESPONSIVE ENHANCEMENTS
+   ========================================= */
+@media (max-width: 768px) {
+    .welcome-text {
+        font-size: 2rem;
+    }
+
+    .main-content h2 {
+        font-size: 1.2rem;
+    }
+
+    .feature-row {
+        padding: 24px 20px;
+    }
+
+    .list-wrapper {
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .welcome-text {
+        font-size: 1.75rem;
+    }
+
+    .logo-text {
+        font-size: 1.15rem;
+    }
+
+    .signup {
+        padding: 8px 16px;
+        font-size: 0.9rem;
     }
 }
