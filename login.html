@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - PDF Merger</title>
+    <link rel="stylesheet" href="/css/login.css">
+    <link rel="icon" href="../image/PDF.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="body-bg">
+    <div class="card">
+        <!-- Back to Homepage Link -->
+        <a href="https://pdfmulbi.github.io/" class="back-link">
+            <i class="fas fa-arrow-left"></i> Kembali ke halaman utama
+        </a>
+
+        <!-- Logo and Title -->
+        <h1 class="logo-title">
+            <div class="logo">PDF <span>❤</span> Merger</div>
+        </h1>
+        <h3 class="subtitle">Login Disini</h3>
+
+        <!-- Login Form -->
+        <form action="/login" method="POST" class="form">
+            <!-- Email Input -->
+            <div class="relative">
+                <span class="icon-left">
+                    <i class="fa-solid fa-envelope"></i>
+                </span>
+                <input type="email" name="email" placeholder="Masukkan Email Anda" class="input" required>
+            </div>
+
+            <!-- Password Input -->
+            <div class="relative">
+                <span class="icon-left">
+                    <i class="fa-solid fa-key"></i>
+                </span>
+                <input type="password" id="password" name="password" placeholder="Kata Sandi" class="input" required>
+                <button type="button" id="togglePassword" class="toggle-password">
+                    <i class="fa-solid fa-eye-slash"></i>
+                </button>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Log in</button>
+        </form>
+
+        <!-- Register Link -->
+        <p class="register-link">
+            Tidak memiliki akun? <a href="https://pdfmulbi.github.io/register/" class="signup-link">Buat akun disini!</a>
+        </p>
+    </div>
+
+    <script type="module" src="/js/login.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+</body>
+
+</html>
