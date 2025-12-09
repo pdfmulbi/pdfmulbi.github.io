@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "OK"
             }).then(() => {
                 window.location.reload(); // Reload halaman untuk memperbarui tampilan profil
-            });            
+            });
 
         } catch (error) {
             console.error("Error updating profile:", error);
@@ -118,10 +118,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 text: "Terjadi kesalahan saat memperbarui profil.",
                 confirmButtonText: "OK"
             });
-        }        
+        }
     });
 
-          // Tampilkan tombol logout jika login
+    // Tampilkan tombol logout jika login
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
@@ -141,7 +141,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
                         }).then(() => {
-                            window.location.href = "https://pdfmulbi.github.io/";
+                            window.location.href = "index.html";
                         });
                     } else {
                         return response.json().then((data) => {

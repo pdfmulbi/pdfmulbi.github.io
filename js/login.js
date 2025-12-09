@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     showConfirmButton: false,
                     timerProgressBar: true
                 }).then(() => {
-                    window.location.href = "https://pdfmulbi.github.io/";
+                    window.location.href = "index.html";
                 });
 
             } catch (error) {

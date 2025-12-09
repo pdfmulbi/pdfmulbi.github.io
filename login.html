@@ -5,18 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - PDF Merger</title>
-    <link rel="stylesheet" href="/css/login.css">
-    <link rel="icon" href="../image/PDF.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/notification.css">
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" href="image/PDF.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body class="body-bg">
-    <div class="card">
-        <!-- Back to Homepage Link -->
-        <a href="https://pdfmulbi.github.io/" class="back-link">
-            <i class="fas fa-arrow-left"></i> Kembali ke halaman utama
-        </a>
+    <!-- Header -->
+    <header class="header">
+        <div class="logo">
+            <a href="index.html" class="logo-text">
+                PDF <span class="heart">❤</span>Merger
+            </a>
+        </div>
 
+        <div class="auth-buttons" id="auth-buttons">
+            <!-- Notification Bell -->
+            <div class="notification-wrapper" id="notification-wrapper">
+                <button class="notification-btn" id="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notification-badge">0</span>
+                </button>
+                <div class="notification-dropdown" id="notification-dropdown">
+                    <div class="notification-header">
+                        <span>Notifications</span>
+                        <button id="clear-notifications">Clear All</button>
+                    </div>
+                    <div class="notification-list" id="notification-list">
+                    </div>
+                </div>
+            </div>
+
+            <a href="login.html" class="login">Login</a>
+            <button class="signup" onclick="klikSignup()">Sign up</button>
+        </div>
+    </header>
+
+    <div class="card">
         <!-- Logo and Title -->
         <h1 class="logo-title">
             <div class="logo">PDF <span>❤</span> Merger</div>
@@ -54,8 +81,49 @@
         </p>
     </div>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-item">
+                <a href="index.html">
+                    <i class="fas fa-home"></i>
+                    <span>Home</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="supportus.html">
+                    <i class="fa-solid fa-hand-holding-dollar"></i>
+                    <span>Support Us</span>
+                </a>
+            </div>
+            <div class="footer-item upload">
+                <a href="merge.html">
+                    <i class="fa-solid fa-file-arrow-up"></i>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="profile.html">
+                    <i class="fas fa-user"></i>
+                    <span>Profile</span>
+                </a>
+            </div>
+            <div class="footer-item">
+                <a href="javascript:void(0)" id="logout-link">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/notification.js"></script>
     <script type="module" src="js/login.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        function klikSignup() {
+            window.location.href = 'register.html';
+        }
+    </script>
 
 </body>
 

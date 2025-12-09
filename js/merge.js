@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
                         }).then(() => {
-                            window.location.href = "https://pdfmulbi.github.io/";
+                            window.location.href = "index.html";
                         });
                     } else {
                         return response.json().then((data) => {

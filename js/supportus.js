@@ -16,56 +16,56 @@ document.addEventListener("DOMContentLoaded", function () {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "https://pdfmulbi.github.io/login/";
+                window.location.href = "login.html";
             }
         });
         return;
-    }    
+    }
 
-        // Tampilkan tombol logout jika login
-        if (logoutLink && token) {
-            logoutLink.style.display = "block";
-            logoutLink.addEventListener("click", function () {
-                fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`,
-                    },
-                })
-                    .then((response) => {
-                        if (response.ok) {
-                            localStorage.clear();
-                            Swal.fire({
-                                icon: "success",
-                                title: "Logout Berhasil!",
-                                text: "Anda telah berhasil logout.",
-                                confirmButtonText: "OK"
-                            }).then(() => {
-                                window.location.href = "https://pdfmulbi.github.io/";
-                            });
-                        } else {
-                            return response.json().then((data) => {
-                                Swal.fire({
-                                    icon: "error",
-                                    title: "Gagal Logout",
-                                    text: data.message || "Kesalahan tidak diketahui.",
-                                    confirmButtonText: "OK"
-                                });
-                            });
-                        }
-                    })
-                    .catch((error) => {
-                        console.error("Error:", error);
+    // Tampilkan tombol logout jika login
+    if (logoutLink && token) {
+        logoutLink.style.display = "block";
+        logoutLink.addEventListener("click", function () {
+            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    if (response.ok) {
+                        localStorage.clear();
                         Swal.fire({
-                            icon: "error",
-                            title: "Gagal Logout",
-                            text: "Silakan coba lagi.",
+                            icon: "success",
+                            title: "Logout Berhasil!",
+                            text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
+                        }).then(() => {
+                            window.location.href = "index.html";
                         });
+                    } else {
+                        return response.json().then((data) => {
+                            Swal.fire({
+                                icon: "error",
+                                title: "Gagal Logout",
+                                text: data.message || "Kesalahan tidak diketahui.",
+                                confirmButtonText: "OK"
+                            });
+                        });
+                    }
+                })
+                .catch((error) => {
+                    console.error("Error:", error);
+                    Swal.fire({
+                        icon: "error",
+                        title: "Gagal Logout",
+                        text: "Silakan coba lagi.",
+                        confirmButtonText: "OK"
                     });
-            });
-        }
+                });
+        });
+    }
 
     // Highlight pilihan donasi saat diklik
     donationOptions.forEach((option) => {

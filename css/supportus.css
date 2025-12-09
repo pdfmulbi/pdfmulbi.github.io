@@ -21,22 +21,28 @@ header {
   padding: 1rem 0;
   position: sticky;
   top: 0;
-  z-index: 1000; /* Memastikan header berada di atas elemen lain */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Menambahkan efek bayangan */
+  z-index: 1000;
+  /* Memastikan header berada di atas elemen lain */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  /* Menambahkan efek bayangan */
 }
 
 .logo-text {
-  text-decoration: none; /* Hilangkan garis bawah */
+  text-decoration: none;
+  /* Hilangkan garis bawah */
   color: #e53e3e;
   font-size: 18px;
   font-weight: bold;
   display: inline-flex;
-  align-items: center; /* Logo dan ikon sejajar vertikal */
-  gap: 5px; /* Jarak antara teks dan ikon */
+  align-items: center;
+  /* Logo dan ikon sejajar vertikal */
+  gap: 5px;
+  /* Jarak antara teks dan ikon */
 }
 
 .logo-text:hover {
-  opacity: 0.8; /* Efek hover */
+  opacity: 0.8;
+  /* Efek hover */
 }
 
 .heart {
@@ -46,6 +52,9 @@ header {
 /* Main Content */
 main {
   padding: 1rem;
+  padding-bottom: 120px;
+  /* Space for fixed footer */
+  flex: 1;
 }
 
 .donation-section {
@@ -180,10 +189,14 @@ main {
 
 /* Gaya untuk elemen link */
 .footer-item a {
-  text-decoration: none; /* Menghapus garis bawah */
-  color: inherit; /* Warna sesuai dengan elemen parent */
-  display: flex; /* Membuat elemen link merangkul ikon dan teks */
-  flex-direction: column; /* Ikon di atas teks */
+  text-decoration: none;
+  /* Menghapus garis bawah */
+  color: inherit;
+  /* Warna sesuai dengan elemen parent */
+  display: flex;
+  /* Membuat elemen link merangkul ikon dan teks */
+  flex-direction: column;
+  /* Ikon di atas teks */
   align-items: center;
   justify-content: center;
 }
@@ -200,12 +213,15 @@ main {
   border-radius: 50%;
   padding: 15px;
   font-size: 25px;
-  width: 50px; /* Lebar sama dengan tinggi */
-  height: 50px; /* Tinggi sama dengan lebar */
+  width: 50px;
+  /* Lebar sama dengan tinggi */
+  height: 50px;
+  /* Tinggi sama dengan lebar */
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto; /* Merapikan di tengah */
+  margin: 0 auto;
+  /* Merapikan di tengah */
 }
 
 .footer-item.upload span {
@@ -217,15 +233,17 @@ main {
 }
 
 .footer-item a:hover {
-  color: #f44336; /* Memberikan warna hover yang sama */
+  color: #f44336;
+  /* Memberikan warna hover yang sama */
 }
 
 /* Responsif */
 @media (max-width: 600px) {
   .footer-item i {
-      font-size: 18px;
+    font-size: 18px;
   }
+
   .footer-item span {
-      font-size: 12px;
+    font-size: 12px;
   }
 }

@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", async function () {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "https://pdfmulbi.github.io/login/";
+                window.location.href = "login.html";
             }
         });
         return;
@@ -51,10 +51,10 @@ document.addEventListener("DOMContentLoaded", async function () {
             text: "Error memuat data invoice: " + error.message,
             confirmButtonText: "OK"
         });
-    }    
+    }
 
-      // Tampilkan tombol logout jika login
-        if (logoutLink && token) {
+    // Tampilkan tombol logout jika login
+    if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
             fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
@@ -73,7 +73,7 @@ document.addEventListener("DOMContentLoaded", async function () {
                             text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
                         }).then(() => {
-                            window.location.href = "https://pdfmulbi.github.io/";
+                            window.location.href = "index.html";
                         });
                     } else {
                         return response.json().then((data) => {

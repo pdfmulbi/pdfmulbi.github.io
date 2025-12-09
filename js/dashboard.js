@@ -7,24 +7,24 @@ const API_BASE = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger";
 // =========================================
 // ADMIN ACCESS CHECK
 // =========================================
-// function checkAdminAccess() {
-//     const token = localStorage.getItem("authToken");
-//     const isAdmin = localStorage.getItem("isAdmin");
+function checkAdminAccess() {
+    const token = localStorage.getItem("authToken");
+    const isAdmin = localStorage.getItem("isAdmin");
 
-//     if (!token || isAdmin !== "true") {
-//         Swal.fire({
-//             icon: "error",
-//             title: "Akses Ditolak!",
-//             text: "Anda bukan admin. Silakan login sebagai admin.",
-//             confirmButtonText: "OK",
-//             confirmButtonColor: "#e53e3e"
-//         }).then(() => {
-//             window.location.href = "https://pdfmulbi.github.io/";
-//         });
-//         return false;
-//     }
-//     return true;
-// }
+    if (!token || isAdmin !== "true") {
+        Swal.fire({
+            icon: "error",
+            title: "Akses Ditolak!",
+            text: "Anda bukan admin. Silakan login sebagai admin.",
+            confirmButtonText: "OK",
+            confirmButtonColor: "#e53e3e"
+        }).then(() => {
+            window.location.href = "https://pdfmulbi.github.io/";
+        });
+        return false;
+    }
+    return true;
+}
 
 // =========================================
 // INITIALIZATION
@@ -55,7 +55,7 @@ function setupLogout() {
                     localStorage.removeItem("authToken");
                     localStorage.removeItem("userName");
                     localStorage.removeItem("isAdmin");
-                    window.location.href = "https://pdfmulbi.github.io/";
+                    window.location.href = "index.html";
                 }
             });
         });

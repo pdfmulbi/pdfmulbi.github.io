@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
         dashboardButton.style.display = "block";
     } else {
         dashboardButton.style.display = "none";
-    } 
+    }
 
     // Jika user sudah login, sembunyikan tombol login & tampilkan logout
     if (token) {
@@ -27,8 +27,8 @@ document.addEventListener("DOMContentLoaded", function () {
         logoutLink.style.display = "none";
     }
 
-        // Tampilkan tombol logout jika login
-        if (logoutLink && token) {
+    // Tampilkan tombol logout jika login
+    if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
             fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             text: "Anda telah berhasil logout.",
                             confirmButtonText: "OK"
                         }).then(() => {
-                            window.location.href = "https://pdfmulbi.github.io/";
+                            window.location.href = "index.html";
                         });
                     } else {
                         return response.json().then((data) => {

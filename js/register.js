@@ -95,7 +95,7 @@ document.addEventListener("DOMContentLoaded", function () {
                         document.getElementById("password").value = "";
 
                         // Redirect ke halaman login
-                        window.location.href = "https://pdfmulbi.github.io/login";
+                        window.location.href = "login.html";
                     });
 
                 } else {
