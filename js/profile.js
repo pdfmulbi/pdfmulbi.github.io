@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
             allowOutsideClick: false
         }).then((result) => {
             if (result.isConfirmed) {
-                window.location.href = "https://pdfmulbi.github.io/login/";
+                window.location.href = "login.html";
             }
         });
         return;

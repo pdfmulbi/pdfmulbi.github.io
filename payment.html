@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/payment.css">
+    <link rel="stylesheet" href="css/darkmode.css">
 </head>
 
 <body>
@@ -40,6 +41,9 @@
 
             <a href="login.html" class="login">Login</a>
             <button class="signup" onclick="klikSignup()">Sign up</button>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -69,6 +73,7 @@
             window.location.href = 'register.html';
         }
     </script>
+    <script src="js/theme.js"></script>
     <script src="js/notification.js"></script>
     <script src="js/payment.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>

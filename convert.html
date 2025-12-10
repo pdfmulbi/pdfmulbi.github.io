@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/convert.css">
+    <link rel="stylesheet" href="css/darkmode.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -43,6 +44,9 @@
 
             <a href="login.html" class="login">Login</a>
             <button class="signup" onclick="klikSignup()">Sign up</button>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -121,6 +125,7 @@
     </div>
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/notification.js"></script>
 <script src="js/convert.js"></script>
 <script>

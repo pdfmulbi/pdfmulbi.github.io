@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="css/header.css">
     <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/summary.css">
+    <link rel="stylesheet" href="css/darkmode.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
@@ -42,6 +43,9 @@
 
             <a href="login.html" class="login">Login</a>
             <button class="signup" onclick="klikSignup()">Sign up</button>
+            <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+                <i class="fas fa-moon"></i>
+            </button>
         </div>
     </header>
 
@@ -118,6 +122,7 @@
     </div>
 </footer>
 
+<script src="js/theme.js"></script>
 <script src="js/notification.js"></script>
 <script type="module" src="js/summary.js"></script>
 <script>

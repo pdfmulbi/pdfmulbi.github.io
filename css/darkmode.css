@@ -1,0 +1,449 @@
+/* =========================================
+   DARK MODE / LIGHT MODE THEME SYSTEM
+   ========================================= */
+
+/* =========================================
+   1. CSS VARIABLES - LIGHT MODE (DEFAULT)
+   ========================================= */
+:root {
+    /* Background Colors */
+    --bg-primary: #f8f9fc;
+    --bg-secondary: #f3f4f6;
+    --bg-tertiary: #eef0f5;
+    --bg-card: #ffffff;
+    --bg-card-rgba: rgba(255, 255, 255, 0.95);
+    --bg-card-solid: rgba(255, 255, 255, 0.98);
+
+    /* Text Colors */
+    --text-primary: #1f2937;
+    --text-secondary: #4b5563;
+    --text-tertiary: #6b7280;
+    --text-muted: #9ca3af;
+
+    /* Border Colors */
+    --border-color: rgba(229, 231, 235, 0.8);
+    --border-light: rgba(229, 231, 235, 0.6);
+    --border-card: rgba(229, 231, 235, 0.5);
+
+    /* Accent Colors (Red) - Stays same in both themes */
+    --accent-primary: #e53e3e;
+    --accent-secondary: #c53030;
+    --accent-dark: #9b2c2c;
+    --accent-light: #f56565;
+    --accent-bg: rgba(229, 62, 62, 0.08);
+    --accent-shadow: rgba(229, 62, 62, 0.3);
+
+    /* Shadow Colors */
+    --shadow-sm: rgba(0, 0, 0, 0.04);
+    --shadow-md: rgba(0, 0, 0, 0.06);
+    --shadow-lg: rgba(0, 0, 0, 0.08);
+    --shadow-xl: rgba(0, 0, 0, 0.1);
+
+    /* Input Colors */
+    --input-bg: #fafbfc;
+    --input-border: #e5e7eb;
+
+    /* Footer Colors */
+    --footer-bg: rgba(255, 255, 255, 0.95);
+    --footer-border: rgba(229, 231, 235, 0.5);
+
+    /* Decorative */
+    --decorative-circle-1: rgba(229, 62, 62, 0.1);
+    --decorative-circle-2: rgba(229, 62, 62, 0.07);
+}
+
+/* =========================================
+   2. CSS VARIABLES - DARK MODE
+   ========================================= */
+[data-theme="dark"] {
+    /* Background Colors */
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+    --bg-tertiary: #334155;
+    --bg-card: #1e293b;
+    --bg-card-rgba: rgba(30, 41, 59, 0.95);
+    --bg-card-solid: rgba(30, 41, 59, 0.98);
+
+    /* Text Colors */
+    --text-primary: #f1f5f9;
+    --text-secondary: #cbd5e1;
+    --text-tertiary: #94a3b8;
+    --text-muted: #64748b;
+
+    /* Border Colors */
+    --border-color: rgba(71, 85, 105, 0.6);
+    --border-light: rgba(71, 85, 105, 0.4);
+    --border-card: rgba(71, 85, 105, 0.3);
+
+    /* Accent Colors (Brighter Red for dark mode) */
+    --accent-primary: #ef4444;
+    --accent-secondary: #dc2626;
+    --accent-dark: #b91c1c;
+    --accent-light: #f87171;
+    --accent-bg: rgba(239, 68, 68, 0.15);
+    --accent-shadow: rgba(239, 68, 68, 0.4);
+
+    /* Shadow Colors */
+    --shadow-sm: rgba(0, 0, 0, 0.2);
+    --shadow-md: rgba(0, 0, 0, 0.3);
+    --shadow-lg: rgba(0, 0, 0, 0.4);
+    --shadow-xl: rgba(0, 0, 0, 0.5);
+
+    /* Input Colors */
+    --input-bg: #0f172a;
+    --input-border: #475569;
+
+    /* Footer Colors */
+    --footer-bg: rgba(30, 41, 59, 0.95);
+    --footer-border: rgba(71, 85, 105, 0.5);
+
+    /* Decorative */
+    --decorative-circle-1: rgba(239, 68, 68, 0.15);
+    --decorative-circle-2: rgba(239, 68, 68, 0.1);
+}
+
+/* =========================================
+   3. THEME TOGGLE BUTTON
+   ========================================= */
+.theme-toggle {
+    background: transparent;
+    border: 2px solid var(--border-color);
+    color: var(--text-secondary);
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.theme-toggle:hover {
+    background: var(--accent-bg);
+    border-color: var(--accent-primary);
+    color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.theme-toggle i {
+    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.theme-toggle:hover i {
+    transform: rotate(20deg);
+}
+
+/* Dark mode specific styling */
+[data-theme="dark"] .theme-toggle {
+    border-color: var(--border-color);
+    color: #fbbf24;
+}
+
+[data-theme="dark"] .theme-toggle:hover {
+    background: rgba(251, 191, 36, 0.15);
+    border-color: #fbbf24;
+    color: #fbbf24;
+}
+
+/* =========================================
+   4. GLOBAL DARK MODE OVERRIDES
+   ========================================= */
+
+/* Body Background */
+[data-theme="dark"] body,
+[data-theme="dark"] .body-bg,
+[data-theme="dark"] .bg-gray-100 {
+    background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-tertiary) 100%) !important;
+}
+
+/* Header */
+[data-theme="dark"] .header {
+    background: var(--bg-card-rgba) !important;
+    border-bottom-color: var(--border-color) !important;
+    box-shadow: 0 4px 20px var(--shadow-sm) !important;
+}
+
+/* Logo */
+[data-theme="dark"] .logo-text {
+    color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .heart {
+    color: var(--accent-primary) !important;
+}
+
+/* Auth Buttons */
+[data-theme="dark"] .login {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .login:hover {
+    color: var(--accent-primary) !important;
+    background-color: var(--accent-bg) !important;
+}
+
+/* Text Colors */
+[data-theme="dark"] .welcome-text,
+[data-theme="dark"] .main-title,
+[data-theme="dark"] .page-title,
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3 {
+    color: var(--text-primary) !important;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--text-secondary) 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+[data-theme="dark"] .main-content h2,
+[data-theme="dark"] .main-description,
+[data-theme="dark"] p,
+[data-theme="dark"] .description-container p {
+    color: var(--text-tertiary) !important;
+}
+
+[data-theme="dark"] .subtitle {
+    color: var(--text-tertiary) !important;
+}
+
+/* Cards */
+[data-theme="dark"] .feature-row,
+[data-theme="dark"] .card,
+[data-theme="dark"] .pdf-actions,
+[data-theme="dark"] .profile-card {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+    box-shadow: 0 10px 40px var(--shadow-lg) !important;
+}
+
+[data-theme="dark"] .feature-row:hover {
+    box-shadow: 0 20px 40px var(--shadow-xl) !important;
+}
+
+[data-theme="dark"] .description-container h3 {
+    color: var(--text-primary) !important;
+}
+
+/* Footer */
+[data-theme="dark"] .footer {
+    background: var(--footer-bg) !important;
+    border-top-color: var(--footer-border) !important;
+    box-shadow: 0 -8px 30px var(--shadow-md) !important;
+}
+
+[data-theme="dark"] .footer-item a {
+    color: var(--text-tertiary) !important;
+}
+
+[data-theme="dark"] .footer-item a:hover {
+    color: var(--accent-primary) !important;
+    background-color: var(--accent-bg) !important;
+}
+
+/* Forms & Inputs */
+[data-theme="dark"] .input {
+    background: var(--input-bg) !important;
+    border-color: var(--input-border) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .input::placeholder {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .input:focus {
+    background: var(--bg-card) !important;
+    border-color: var(--accent-primary) !important;
+    box-shadow: 0 0 0 4px var(--accent-bg) !important;
+}
+
+[data-theme="dark"] .icon-left {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .relative:focus-within .icon-left {
+    color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .toggle-password {
+    color: var(--text-muted) !important;
+}
+
+[data-theme="dark"] .toggle-password:hover {
+    color: var(--accent-primary) !important;
+    background: var(--accent-bg) !important;
+}
+
+/* Register/Login Links */
+[data-theme="dark"] .register-link {
+    color: var(--text-tertiary) !important;
+    border-top-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] .signup-link {
+    color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .signup-link:hover {
+    background: var(--accent-bg) !important;
+}
+
+/* Select PDF Buttons */
+[data-theme="dark"] .select-pdf {
+    background: var(--bg-card) !important;
+    color: var(--accent-primary) !important;
+    border-color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .select-pdf:hover {
+    background: var(--accent-bg) !important;
+}
+
+/* Sidebar */
+[data-theme="dark"] .sidebar {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] .sidebar-title {
+    color: var(--accent-primary) !important;
+}
+
+[data-theme="dark"] .menu li a {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .menu li a:hover,
+[data-theme="dark"] .menu li a.active {
+    background: var(--accent-bg) !important;
+    color: var(--accent-primary) !important;
+}
+
+/* Container */
+[data-theme="dark"] .container {
+    background: transparent !important;
+}
+
+[data-theme="dark"] .content {
+    background: transparent !important;
+}
+
+/* Notification Dropdown */
+[data-theme="dark"] .notification-dropdown {
+    background: var(--bg-card) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 10px 40px var(--shadow-lg) !important;
+}
+
+[data-theme="dark"] .notification-header {
+    border-bottom-color: var(--border-light) !important;
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .notification-item {
+    border-bottom-color: var(--border-light) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .notification-item:hover {
+    background: var(--accent-bg) !important;
+}
+
+[data-theme="dark"] .notification-btn {
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .notification-btn:hover {
+    color: var(--accent-primary) !important;
+}
+
+/* Decorative circles */
+[data-theme="dark"] .body-bg::before {
+    background: linear-gradient(135deg, var(--decorative-circle-1) 0%, rgba(239, 68, 68, 0.03) 100%) !important;
+}
+
+[data-theme="dark"] .body-bg::after {
+    background: linear-gradient(135deg, var(--decorative-circle-2) 0%, rgba(239, 68, 68, 0.02) 100%) !important;
+}
+
+/* Dashboard specific */
+[data-theme="dark"] .dashboard-card,
+[data-theme="dark"] .stat-card {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+}
+
+/* Invoice/Payment specific */
+[data-theme="dark"] .invoice-card,
+[data-theme="dark"] .payment-card {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+}
+
+/* Tables */
+[data-theme="dark"] table {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] th {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] td {
+    color: var(--text-secondary) !important;
+    border-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] tr:hover {
+    background: var(--accent-bg) !important;
+}
+
+/* Labels */
+[data-theme="dark"] label {
+    color: var(--text-secondary) !important;
+}
+
+/* Strong text accent */
+[data-theme="dark"] .main-content>p strong {
+    color: var(--accent-primary) !important;
+}
+
+/* Edit links */
+[data-theme="dark"] .edit-link {
+    color: var(--accent-primary) !important;
+}
+
+/* Cancel buttons */
+[data-theme="dark"] .btn-cancel {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-secondary) !important;
+    border-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .btn-cancel:hover {
+    background: var(--bg-secondary) !important;
+}
+
+/* =========================================
+   5. SMOOTH TRANSITION FOR THEME CHANGE
+   ========================================= */
+body,
+.header,
+.footer,
+.card,
+.feature-row,
+.pdf-actions,
+.sidebar,
+.input,
+.notification-dropdown {
+    transition: background-color 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        box-shadow 0.3s ease;
+}
