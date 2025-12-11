@@ -54,6 +54,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     // Tampilkan tombol logout jika login
+    const logoutLink = document.getElementById("logout-link");
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
