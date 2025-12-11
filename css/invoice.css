@@ -210,3 +210,129 @@
         font-size: 12px;
     }
 }
+
+/* New Invoice Styles */
+
+/* Date Cell */
+.date-cell {
+    display: flex;
+    flex-direction: column;
+}
+
+.date-main {
+    font-weight: 500;
+    color: #333;
+}
+
+.date-time {
+    font-size: 12px;
+    color: #888;
+}
+
+/* Amount Cell */
+.amount-cell {
+    font-weight: 600;
+    color: #2d3748;
+}
+
+/* Payment Method Badge */
+.payment-method {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    background: #f0f4f8;
+    border-radius: 4px;
+    font-size: 13px;
+    color: #4a5568;
+}
+
+.payment-method i {
+    color: #3182ce;
+}
+
+/* Status badges with icons */
+.status-paid i,
+.status-pending i,
+.status-failed i {
+    margin-right: 5px;
+}
+
+/* Empty State */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px !important;
+}
+
+/* Summary Row */
+.summary-row {
+    background: #f8f9fc !important;
+    border-top: 2px solid #e2e8f0;
+}
+
+.summary-row td {
+    padding: 15px 10px !important;
+}
+
+/* Retry Button */
+.retry-btn {
+    transition: background-color 0.3s ease;
+}
+
+.retry-btn:hover {
+    background-color: #dc2626;
+}
+
+/* Support Button in empty state */
+.support-btn {
+    transition: all 0.3s ease;
+}
+
+.support-btn:hover {
+    background-color: #dc2626;
+    transform: translateY(-2px);
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Loading Spinner */
+.fa-spinner {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+    .invoice-table th,
+    .invoice-table td {
+        padding: 8px 6px;
+        font-size: 12px;
+    }
+    
+    .payment-method {
+        padding: 3px 6px;
+        font-size: 11px;
+    }
+    
+    .date-time {
+        font-size: 10px;
+    }
+}
