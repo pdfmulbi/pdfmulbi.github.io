@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("paymentEndTime", endTime);
     }
 
-    const timerInterval = setInterval(function() {
+    const timerInterval = setInterval(function () {
         const now = new Date().getTime();
         const distance = endTime - now;
 
@@ -38,8 +38,8 @@ document.addEventListener("DOMContentLoaded", function () {
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
         // Tampilkan hasil format 00:00
-        countdownElement.innerHTML = 
-            (minutes < 10 ? "0" + minutes : minutes) + ":" + 
+        countdownElement.innerHTML =
+            (minutes < 10 ? "0" + minutes : minutes) + ":" +
             (seconds < 10 ? "0" + seconds : seconds);
 
         // Jika waktu habis
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
             countdownElement.innerHTML = "WAKTU HABIS";
             paymentDoneBtn.disabled = true; // Matikan tombol
             paymentDoneBtn.style.backgroundColor = "#ccc"; // Ubah warna jadi abu
-            
+
             // Hapus session waktu
             localStorage.removeItem("paymentEndTime");
 
@@ -66,8 +66,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
     paymentDoneBtn.addEventListener("click", async function () {
         // Matikan timer saat tombol diklik agar tidak redirect otomatis saat proses loading
-        clearInterval(timerInterval); 
-        
+        clearInterval(timerInterval);
+
         try {
             const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/payment", {
                 method: "POST",
@@ -76,7 +76,6 @@ document.addEventListener("DOMContentLoaded", function () {
                     "Authorization": `Bearer ${token}`,
                 },
                 body: JSON.stringify({
-                    name: userName,
                     amount: parseInt(amount),
                 }),
             });
@@ -100,9 +99,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 confirmButtonText: "Lihat Invoice"
             }).then(() => {
                 // Hapus data setelah selesai agar bersih untuk transaksi berikutnya
-                localStorage.removeItem("donationAmount"); 
+                localStorage.removeItem("donationAmount");
                 localStorage.removeItem("paymentEndTime"); // Hapus timer
-                window.location.href = "invoice.html"; 
+                window.location.href = "invoice.html";
             });
 
         } catch (error) {
