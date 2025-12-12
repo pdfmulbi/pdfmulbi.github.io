@@ -61,13 +61,26 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    // Load profile photo from localStorage
-    const loadProfilePhoto = () => {
-        const savedPhoto = localStorage.getItem("profilePhoto");
-        const profilePhotoDiv = document.getElementById("profile-photo");
+    // Load profile photo from backend API
+    const loadProfilePhoto = async () => {
+        try {
+            const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/profile/photo", {
+                method: "GET",
+                headers: {
+                    "Authorization": `Bearer ${token}`
+                }
+            });
 
-        if (savedPhoto && profilePhotoDiv) {
-            profilePhotoDiv.innerHTML = `<img src="${savedPhoto}" alt="Profile Photo">`;
+            if (response.ok) {
+                const data = await response.json();
+                const profilePhotoDiv = document.getElementById("profile-photo");
+
+                if (data.profilePhoto && profilePhotoDiv) {
+                    profilePhotoDiv.innerHTML = `<img src="${data.profilePhoto}" alt="Profile Photo">`;
+                }
+            }
+        } catch (error) {
+            console.error("Error loading profile photo:", error);
         }
     };
 
@@ -89,24 +102,46 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
                 const reader = new FileReader();
-                reader.onload = function (event) {
+                reader.onload = async function (event) {
                     const photoData = event.target.result;
 
-                    // Save to localStorage
-                    localStorage.setItem("profilePhoto", photoData);
+                    try {
+                        // Upload to backend API
+                        const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/profile/photo", {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": `Bearer ${token}`
+                            },
+                            body: JSON.stringify({ profilePhoto: photoData })
+                        });
 
-                    // Update display
-                    const profilePhotoDiv = document.getElementById("profile-photo");
-                    if (profilePhotoDiv) {
-                        profilePhotoDiv.innerHTML = `<img src="${photoData}" alt="Profile Photo">`;
+                        if (!response.ok) {
+                            const errorData = await response.json();
+                            throw new Error(errorData.message || "Gagal mengupload foto profil");
+                        }
+
+                        // Update display
+                        const profilePhotoDiv = document.getElementById("profile-photo");
+                        if (profilePhotoDiv) {
+                            profilePhotoDiv.innerHTML = `<img src="${photoData}" alt="Profile Photo">`;
+                        }
+
+                        Swal.fire({
+                            icon: "success",
+                            title: "Berhasil",
+                            text: "Foto profil berhasil diperbarui!",
+                            confirmButtonText: "OK"
+                        });
+                    } catch (error) {
+                        console.error("Error uploading profile photo:", error);
+                        Swal.fire({
+                            icon: "error",
+                            title: "Gagal",
+                            text: "Gagal mengupload foto profil. Silakan coba lagi.",
+                            confirmButtonText: "OK"
+                        });
                     }
-
-                    Swal.fire({
-                        icon: "success",
-                        title: "Berhasil",
-                        text: "Foto profil berhasil diperbarui!",
-                        confirmButtonText: "OK"
-                    });
                 };
                 reader.readAsDataURL(file);
             }
