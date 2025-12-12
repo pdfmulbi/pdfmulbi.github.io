@@ -1,29 +1,394 @@
+/* =========================================
+   SUMMARY PAGE - Modern Visual Enhancement
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =========================================
+   1. BODY & BACKGROUND
+   ========================================= */
 body {
-    background-color: #f4f6f9;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f6 50%, #eef0f5 100%);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding-bottom: 100px;
 }
 
-.upload-box {
-    border: 2px dashed #dc3545;
-    background: #fff;
-    border-radius: 15px;
-    padding: 40px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+/* Container Animation */
+.container {
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.upload-box:hover {
-    background-color: #fffbfb;
-    border-color: #b02a37;
+/* Page Title Enhancement */
+.container h2 {
+    font-weight: 800 !important;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
 }
 
+.container h2 .fa-robot {
+    -webkit-text-fill-color: #9333ea;
+    margin-right: 10px;
+    animation: robotPulse 2s ease-in-out infinite;
+}
+
+@keyframes robotPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+.container p.text-muted {
+    color: #6b7280 !important;
+    font-size: 1rem;
+}
+
+/* Utility untuk sembunyikan elemen */
 .d-none {
     display: none !important;
 }
 
-/* Styling khusus text hasil */
+/* =========================================
+   2. UPLOAD BOX - Glassmorphism Style
+   ========================================= */
+.upload-box,
+#uploadZone {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px dashed #9333ea !important;
+    border-radius: 20px !important;
+    padding: 50px 40px !important;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.upload-box::before,
+#uploadZone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.03) 0%, rgba(147, 51, 234, 0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.upload-box:hover,
+#uploadZone:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: #7c3aed !important;
+    border-style: solid !important;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(147, 51, 234, 0.15);
+}
+
+.upload-box:hover::before,
+#uploadZone:hover::before {
+    opacity: 1;
+}
+
+/* Upload Icon Animation */
+.upload-box .fa-file-pdf,
+#uploadZone .fa-file-pdf {
+    color: #9333ea !important;
+    font-size: 4rem !important;
+    margin-bottom: 20px !important;
+    animation: bounce 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(147, 51, 234, 0.25));
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.upload-box h5,
+#uploadZone h5 {
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 8px !important;
+    font-size: 1.15rem;
+}
+
+/* =========================================
+   3. STATUS AREA - Loading State
+   ========================================= */
+#statusArea {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+#statusArea h5 {
+    font-weight: 600;
+    color: #374151;
+}
+
+#statusArea .spinner-border {
+    color: #9333ea !important;
+    width: 3rem;
+    height: 3rem;
+}
+
+/* Progress Bar */
+#statusArea .progress {
+    background: rgba(147, 51, 234, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+#progressBar {
+    background: linear-gradient(90deg, #9333ea 0%, #a855f7 50%, #9333ea 100%) !important;
+    background-size: 200% 100%;
+    animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+/* =========================================
+   4. RESULT CARD - AI Summary Output
+   ========================================= */
+#resultCard {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(147, 51, 234, 0.2) !important;
+    border-radius: 20px !important;
+    overflow: hidden;
+    box-shadow: 0 8px 30px rgba(147, 51, 234, 0.1);
+    animation: successPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes successPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Card Header */
+#resultCard .card-header {
+    background: linear-gradient(135deg, rgba(147, 51, 234, 0.05) 0%, rgba(147, 51, 234, 0.1) 100%) !important;
+    border-bottom: 1px solid rgba(147, 51, 234, 0.15) !important;
+    padding: 18px 24px !important;
+    font-weight: 700 !important;
+    color: #1f2937;
+}
+
+#resultCard .card-header i {
+    color: #9333ea !important;
+    margin-right: 10px;
+}
+
+/* Card Body */
+#resultCard .card-body {
+    padding: 24px !important;
+}
+
+/* Summary Output Text */
 #summaryOutput {
     font-size: 1.05rem;
-    color: #333;
+    color: #374151;
+    line-height: 1.9 !important;
+    text-align: justify;
+    background: rgba(0, 0, 0, 0.02);
+    padding: 20px;
+    border-radius: 12px;
+    border-left: 4px solid #9333ea;
+}
+
+#resultCard hr {
+    border-color: rgba(147, 51, 234, 0.15);
+    margin: 20px 0;
+}
+
+/* Copy Button */
+#copyBtn {
+    background: transparent;
+    border: 2px solid #9333ea !important;
+    color: #9333ea !important;
+    border-radius: 10px !important;
+    padding: 10px 20px !important;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+#copyBtn:hover {
+    background: #9333ea !important;
+    color: white !important;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(147, 51, 234, 0.35);
+}
+
+#copyBtn i {
+    margin-right: 6px;
+}
+
+/* =========================================
+   5. ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   6. DARK MODE SUPPORT
+   ========================================= */
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+[data-theme="dark"] .container h2 {
+    background: linear-gradient(135deg, #a855f7 0%, #c084fc 100%) !important;
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+}
+
+[data-theme="dark"] .container h2 .fa-robot {
+    -webkit-text-fill-color: #a855f7;
+}
+
+[data-theme="dark"] .container p.text-muted {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .upload-box,
+[data-theme="dark"] #uploadZone {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: #a855f7 !important;
+}
+
+[data-theme="dark"] .upload-box:hover,
+[data-theme="dark"] #uploadZone:hover {
+    background: rgba(30, 41, 59, 0.95) !important;
+    box-shadow: 0 12px 40px rgba(168, 85, 247, 0.2);
+}
+
+[data-theme="dark"] .upload-box h5,
+[data-theme="dark"] #uploadZone h5 {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] .upload-box .text-muted,
+[data-theme="dark"] #uploadZone .text-muted {
+    color: #64748b !important;
+}
+
+[data-theme="dark"] .upload-box .fa-file-pdf,
+[data-theme="dark"] #uploadZone .fa-file-pdf {
+    color: #a855f7 !important;
+}
+
+[data-theme="dark"] #statusArea h5 {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] #statusArea .spinner-border {
+    color: #a855f7 !important;
+}
+
+[data-theme="dark"] #statusArea .progress {
+    background: rgba(168, 85, 247, 0.15);
+}
+
+[data-theme="dark"] #resultCard {
+    background: rgba(30, 41, 59, 0.95) !important;
+    border-color: rgba(168, 85, 247, 0.3) !important;
+}
+
+[data-theme="dark"] #resultCard .card-header {
+    background: rgba(168, 85, 247, 0.1) !important;
+    border-bottom-color: rgba(168, 85, 247, 0.2) !important;
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] #resultCard .card-header i {
+    color: #a855f7 !important;
+}
+
+[data-theme="dark"] #resultCard .card-body {
+    color: #e2e8f0;
+}
+
+[data-theme="dark"] #summaryOutput {
+    color: #cbd5e1;
+    background: rgba(0, 0, 0, 0.2);
+    border-left-color: #a855f7;
+}
+
+[data-theme="dark"] #resultCard hr {
+    border-color: rgba(168, 85, 247, 0.2);
+}
+
+[data-theme="dark"] #copyBtn {
+    border-color: #a855f7 !important;
+    color: #a855f7 !important;
+}
+
+[data-theme="dark"] #copyBtn:hover {
+    background: #a855f7 !important;
+    color: white !important;
+}
+
+/* =========================================
+   7. RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media (max-width: 576px) {
+
+    .upload-box,
+    #uploadZone {
+        padding: 35px 25px !important;
+    }
+
+    #resultCard .card-header,
+    #resultCard .card-body {
+        padding: 16px !important;
+    }
+
+    #summaryOutput {
+        padding: 15px;
+        font-size: 1rem;
+    }
 }
