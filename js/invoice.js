@@ -30,6 +30,20 @@ document.addEventListener("DOMContentLoaded", async function () {
 
         const invoices = await response.json();
 
+        // Cek jika invoice kosong
+        if (!invoices || invoices.length === 0) {
+            const emptyRow = document.createElement("tr");
+            emptyRow.innerHTML = `
+                <td colspan="5" style="text-align: center; padding: 40px; color: #666;">
+                    <i class="fas fa-file-invoice" style="font-size: 48px; margin-bottom: 16px; display: block; opacity: 0.5;"></i>
+                    <span style="font-size: 16px;">Belum ada invoice</span><br>
+                    <small style="color: #999;">Dukung kami untuk mendapatkan invoice pertama Anda!</small>
+                </td>
+            `;
+            invoiceList.appendChild(emptyRow);
+            return;
+        }
+
         invoices.forEach((invoice) => {
             const row = document.createElement("tr");
 
@@ -45,12 +59,18 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
     } catch (error) {
-        Swal.fire({
-            icon: "error",
-            title: "Terjadi Kesalahan",
-            text: "Error memuat data invoice: " + error.message,
-            confirmButtonText: "OK"
-        });
+        console.error("Error fetching invoices:", error);
+
+        // Tampilkan pesan error yang lebih ramah
+        const errorRow = document.createElement("tr");
+        errorRow.innerHTML = `
+            <td colspan="5" style="text-align: center; padding: 40px; color: #666;">
+                <i class="fas fa-exclamation-circle" style="font-size: 48px; margin-bottom: 16px; display: block; color: #e74c3c;"></i>
+                <span style="font-size: 16px;">Gagal memuat invoice</span><br>
+                <small style="color: #999;">Silakan refresh halaman atau coba lagi nanti.</small>
+            </td>
+        `;
+        invoiceList.appendChild(errorRow);
     }
 
     // Tampilkan tombol logout jika login
