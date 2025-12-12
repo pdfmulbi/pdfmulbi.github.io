@@ -2,7 +2,7 @@
 // DASHBOARD - ADMIN USER MANAGEMENT
 // =========================================
 
-const API_BASE = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger";
+const API_BASE = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger";
 
 // =========================================
 // ADMIN ACCESS CHECK

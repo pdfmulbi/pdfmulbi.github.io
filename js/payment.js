@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Ambil data user dari token
     let userName = "";
     try {
-        const userResponse = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
+        const userResponse = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
             headers: {
                 "Authorization": `Bearer ${token}`,
             },
@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         });
 
         try {
-            const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/payment", {
+            const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/payment", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

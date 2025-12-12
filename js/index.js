@@ -31,7 +31,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
-            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+            fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

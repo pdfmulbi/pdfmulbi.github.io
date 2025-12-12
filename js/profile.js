@@ -15,12 +15,12 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
         return;
-    } 
+    }
 
     // Fetch user profile
     const fetchUserProfile = async () => {
         try {
-            const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
+            const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/getone/users", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Updated Data:", updatedData);
 
         try {
-            const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/update/users", {
+            const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/update/users", {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
-            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+            fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

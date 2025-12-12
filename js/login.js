@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", function () {
             loginButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Loading...';
 
             const data = { email, password };
-            const target_url = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/login";
+            const target_url = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/login";
 
             try {
                 const response = await fetch(target_url, {

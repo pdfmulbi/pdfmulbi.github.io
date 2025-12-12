@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     }
 
     try {
-        const response = await fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/invoices", {
+        const response = await fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/invoices", {
             headers: {
                 "Authorization": `Bearer ${token}`,
             },
@@ -78,7 +78,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     if (logoutLink && token) {
         logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
-            fetch("https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/logout", {
+            fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/logout", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",

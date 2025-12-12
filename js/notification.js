@@ -5,7 +5,7 @@
 
 const NotificationManager = {
     // Configuration
-    API_BASE_URL: 'https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm',
+    API_BASE_URL: 'https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm',
     notifications: [],
     isDropdownOpen: false,
 

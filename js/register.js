@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             try {
                 // URL endpoint backend
-                const targetUrl = "https://asia-southeast2-pdfulbi.cloudfunctions.net/pdfmerger/pdfm/register";
+                const targetUrl = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/register";
 
                 // Kirim data ke backend
                 const response = await fetch(targetUrl, {
