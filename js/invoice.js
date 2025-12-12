@@ -47,12 +47,26 @@ document.addEventListener("DOMContentLoaded", async function () {
         invoices.forEach((invoice) => {
             const row = document.createElement("tr");
 
+            // Determine status icon
+            let statusIcon = '';
+            let statusClass = invoice.status.toLowerCase();
+            if (statusClass === 'paid') {
+                statusIcon = '<i class="fas fa-check-circle"></i>';
+            } else if (statusClass === 'pending') {
+                statusIcon = '<i class="fas fa-clock"></i>';
+            } else if (statusClass === 'failed') {
+                statusIcon = '<i class="fas fa-times-circle"></i>';
+            }
+
             row.innerHTML = `
-                <td>${new Date(invoice.createdAt).toLocaleDateString()}</td>
-                <td class="status-${invoice.status.toLowerCase()}">${invoice.status}</td>
-                <td>${invoice.details || "N/A"}</td>
-                <td>Rp${parseInt(invoice.amount || 0).toLocaleString()}</td>
-                <td>${invoice.paymentMethod || "QRIS"}</td>
+                <td class="date-cell">
+                    <span class="date-main"><i class="fas fa-calendar"></i> ${new Date(invoice.createdAt).toLocaleDateString()}</span>
+                    <span class="date-time"><i class="fas fa-clock"></i> ${new Date(invoice.createdAt).toLocaleTimeString()}</span>
+                </td>
+                <td><span class="status-${statusClass}">${statusIcon} ${invoice.status}</span></td>
+                <td><i class="fas fa-file-invoice" style="color: #6b7280; margin-right: 6px;"></i>${invoice.details || "N/A"}</td>
+                <td class="amount-cell"><i class="fas fa-rupiah-sign" style="color: #10b981; margin-right: 4px;"></i>Rp${parseInt(invoice.amount || 0).toLocaleString()}</td>
+                <td><span class="payment-method"><i class="fas fa-qrcode"></i> ${invoice.paymentMethod || "QRIS"}</span></td>
             `;
 
             invoiceList.appendChild(row);

@@ -42,6 +42,12 @@ document.addEventListener("DOMContentLoaded", function () {
             document.getElementById("email").textContent = user.email || "Email tidak ditemukan";
             document.getElementById("password").textContent = "******"; // Password hidden
 
+            // Update user display name in header
+            const userDisplayName = document.getElementById("user-display-name");
+            if (userDisplayName) {
+                userDisplayName.textContent = user.name || "User";
+            }
+
             // Populate profile edit form
             document.getElementById("name-input").value = user.name || "";
             document.getElementById("email-input").value = user.email || "";
@@ -54,6 +60,61 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Gagal memuat data profil. Silakan coba lagi.");
         }
     };
+
+    // Load profile photo from localStorage
+    const loadProfilePhoto = () => {
+        const savedPhoto = localStorage.getItem("profilePhoto");
+        const profilePhotoDiv = document.getElementById("profile-photo");
+
+        if (savedPhoto && profilePhotoDiv) {
+            profilePhotoDiv.innerHTML = `<img src="${savedPhoto}" alt="Profile Photo">`;
+        }
+    };
+
+    // Handle profile photo upload
+    const photoInput = document.getElementById("photo-input");
+    if (photoInput) {
+        photoInput.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file) {
+                // Validate file size (max 2MB)
+                if (file.size > 2 * 1024 * 1024) {
+                    Swal.fire({
+                        icon: "warning",
+                        title: "File Terlalu Besar",
+                        text: "Ukuran foto maksimal 2MB",
+                        confirmButtonText: "OK"
+                    });
+                    return;
+                }
+
+                const reader = new FileReader();
+                reader.onload = function (event) {
+                    const photoData = event.target.result;
+
+                    // Save to localStorage
+                    localStorage.setItem("profilePhoto", photoData);
+
+                    // Update display
+                    const profilePhotoDiv = document.getElementById("profile-photo");
+                    if (profilePhotoDiv) {
+                        profilePhotoDiv.innerHTML = `<img src="${photoData}" alt="Profile Photo">`;
+                    }
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "Berhasil",
+                        text: "Foto profil berhasil diperbarui!",
+                        confirmButtonText: "OK"
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    // Load profile photo on page load
+    loadProfilePhoto();
 
     // Fetch and display user profile on page load
     fetchUserProfile();

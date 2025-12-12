@@ -1,25 +1,19 @@
+/**
+ * auth.js - Authentication state handler for all pages
+ * Handles hide/show of login and signup buttons based on login state
+ * Also handles logout functionality
+ */
+
 document.addEventListener("DOMContentLoaded", function () {
     const logoutLink = document.getElementById("logout-link");
-    const dashboardButton = document.getElementById("dashboard-button");
 
     // Cari elemen login dan signup secara spesifik
     const loginBtn = document.querySelector('.login');
     const signupBtn = document.querySelector('.signup');
 
     const token = localStorage.getItem("authToken");
-    const isAdmin = localStorage.getItem("isAdmin");
 
-    console.log("Token:", token);
-    console.log("isAdmin dari localStorage:", isAdmin);
-
-    // Cek apakah isAdmin tersimpan sebagai string "true"
-    if (isAdmin === "true") {
-        dashboardButton.style.display = "block";
-    } else {
-        dashboardButton.style.display = "none";
-    }
-
-    // Jika user sudah login, sembunyikan hanya tombol login & signup, bukan seluruh auth-buttons
+    // Jika user sudah login, sembunyikan hanya tombol login & signup
     if (token) {
         // Jika token ditemukan - sembunyikan tombol login dan signup saja
         if (loginBtn) loginBtn.style.display = "none";
@@ -32,9 +26,8 @@ document.addEventListener("DOMContentLoaded", function () {
         if (logoutLink) logoutLink.style.display = "none";
     }
 
-    // Tampilkan tombol logout jika login
+    // Handle logout
     if (logoutLink && token) {
-        logoutLink.style.display = "block";
         logoutLink.addEventListener("click", function () {
             fetch("https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/logout", {
                 method: "POST",

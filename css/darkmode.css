@@ -431,6 +431,95 @@
 }
 
 /* =========================================
+   INVOICE PAGE - DARK MODE SPECIFIC
+   ========================================= */
+
+/* Invoice Container */
+[data-theme="dark"] .invoice-container {
+    background: var(--bg-card) !important;
+    border-color: var(--border-light) !important;
+    box-shadow: 0 4px 20px var(--shadow-lg) !important;
+}
+
+[data-theme="dark"] .invoice-container h2 {
+    color: var(--text-primary) !important;
+}
+
+/* Invoice Table */
+[data-theme="dark"] .invoice-table {
+    background: var(--bg-card) !important;
+}
+
+[data-theme="dark"] .invoice-table thead {
+    background: var(--bg-tertiary) !important;
+}
+
+[data-theme="dark"] .invoice-table th {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-primary) !important;
+    border-bottom-color: var(--border-color) !important;
+}
+
+[data-theme="dark"] .invoice-table td {
+    color: var(--text-secondary) !important;
+    border-bottom-color: var(--border-light) !important;
+}
+
+[data-theme="dark"] .invoice-table tbody tr:hover {
+    background: var(--accent-bg) !important;
+}
+
+/* Date Cell */
+[data-theme="dark"] .date-main {
+    color: var(--text-primary) !important;
+}
+
+[data-theme="dark"] .date-time {
+    color: var(--text-muted) !important;
+}
+
+/* Amount Cell */
+[data-theme="dark"] .amount-cell {
+    color: var(--text-primary) !important;
+}
+
+/* Payment Method Badge */
+[data-theme="dark"] .payment-method {
+    background: var(--bg-tertiary) !important;
+    color: var(--text-secondary) !important;
+}
+
+[data-theme="dark"] .payment-method i {
+    color: var(--accent-light) !important;
+}
+
+/* Summary Row */
+[data-theme="dark"] .summary-row {
+    background: var(--bg-tertiary) !important;
+    border-top-color: var(--border-color) !important;
+}
+
+/* Empty State */
+[data-theme="dark"] .empty-state {
+    color: var(--text-tertiary) !important;
+}
+
+/* Download Button */
+[data-theme="dark"] .download-btn {
+    background-color: #10b981 !important;
+    color: white !important;
+}
+
+[data-theme="dark"] .download-btn:hover {
+    background-color: #059669 !important;
+}
+
+/* Main Content for Invoice */
+[data-theme="dark"] .main-content {
+    background: transparent !important;
+}
+
+/* =========================================
    5. SMOOTH TRANSITION FOR THEME CHANGE
    ========================================= */
 body,
@@ -441,7 +530,9 @@ body,
 .pdf-actions,
 .sidebar,
 .input,
-.notification-dropdown {
+.notification-dropdown,
+.invoice-container,
+.invoice-table {
     transition: background-color 0.3s ease,
         border-color 0.3s ease,
         color 0.3s ease,

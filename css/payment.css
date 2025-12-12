@@ -4,48 +4,154 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Inter', Arial, sans-serif;
-    background-color: #f9f9f9;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #f8f9fc 0%, #eef0f5 50%, #f3f4f6 100%);
     color: #333;
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Decorative Background Elements */
+body::before {
+    content: '';
+    position: fixed;
+    top: -100px;
+    right: -100px;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(40, 167, 69, 0.08) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    bottom: -80px;
+    left: -80px;
+    width: 280px;
+    height: 280px;
+    background: radial-gradient(circle, rgba(229, 62, 62, 0.06) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    pointer-events: none;
 }
 
 /* Main container styling */
 main {
     text-align: center;
-    background: #ffffff;
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    max-width: 350px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 2rem;
+    border-radius: 24px;
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.08),
+        0 0 0 1px rgba(40, 167, 69, 0.05);
+    max-width: 400px;
     width: 90%;
     margin: 40px auto;
     flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
 }
 
-#timerContainer {
-    font-size: 16px;
-    margin-bottom: 15px;
-    color: #555;
+/* Decorative top border */
+main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #28a745, #34d058, #28a745);
+    background-size: 200% 100%;
+    animation: shimmer 3s ease-in-out infinite;
 }
 
-#countdown {
-    font-size: 20px;
-    font-weight: bold;
-    color: #dc3545;
-    /* Warna Merah */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
 }
 
 /* Title styling */
 h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
-    color: #444;
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+h3::before {
+    content: '💳';
+    font-size: 1.3rem;
+}
+
+/* Timer Container */
+#timerContainer {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #6b7280;
+    padding: 1rem 1.5rem;
+    background: linear-gradient(145deg, #fff5f5 0%, #fef2f2 100%);
+    border-radius: 14px;
+    border: 1px solid rgba(220, 53, 69, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    position: relative;
+    overflow: hidden;
+}
+
+#timerContainer::before {
+    content: '⏱️';
+    font-size: 1.2rem;
+}
+
+/* Countdown timer */
+#countdown {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: #dc3545;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 2px;
+    animation: pulse 1s ease-in-out infinite;
+    text-shadow: 0 2px 10px rgba(220, 53, 69, 0.2);
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
 }
 
 /* QR Code container styling */
@@ -53,50 +159,185 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 15px;
+    margin-bottom: 1.5rem;
 }
 
 /* QR Code image styling */
 .qris-code {
     max-width: 100%;
     height: auto;
-    border: 2px solid #ddd;
-    border-radius: 8px;
+    border: 3px solid #e5e7eb;
+    border-radius: 16px;
+    padding: 8px;
+    background: white;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.1),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.8);
+    transition: all 0.3s ease;
+    position: relative;
 }
 
-/* Button styling */
-button {
-    background-color: #28a745;
+.qris-code:hover {
+    transform: scale(1.02);
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.15),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.9);
+    border-color: #28a745;
+}
+
+/* Instruction text */
+main>p {
+    color: #6b7280;
+    font-size: 0.95rem;
+    margin: 1.25rem 0;
+    line-height: 1.6;
+}
+
+/* Payment Done Button styling */
+#paymentDoneBtn {
+    width: 100%;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
     color: #ffffff;
     border: none;
-    padding: 12px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border-radius: 5px;
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 14px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow:
+        0 4px 15px rgba(40, 167, 69, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
-button:hover {
-    background-color: #218838;
+#paymentDoneBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent);
+    transition: left 0.5s ease;
 }
 
-button:active {
-    background-color: #1e7e34;
+#paymentDoneBtn:hover {
+    background: linear-gradient(135deg, #218838 0%, #1aa179 100%);
+    transform: translateY(-2px);
+    box-shadow:
+        0 8px 25px rgba(40, 167, 69, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#paymentDoneBtn:hover::before {
+    left: 100%;
+}
+
+#paymentDoneBtn:active {
+    transform: translateY(0);
+    box-shadow:
+        0 4px 15px rgba(40, 167, 69, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+#paymentDoneBtn::after {
+    content: '✓';
+    font-size: 1.2rem;
+    transition: transform 0.3s ease;
+}
+
+#paymentDoneBtn:hover::after {
+    transform: scale(1.2);
 }
 
 /* Responsive adjustments */
 @media (max-width: 480px) {
     main {
-        padding: 15px;
+        padding: 1.5rem 1rem;
+        margin: 20px auto;
     }
 
     h3 {
-        font-size: 18px;
+        font-size: 1.2rem;
     }
 
-    button {
-        font-size: 14px;
-        padding: 10px 15px;
+    #countdown {
+        font-size: 1.3rem;
     }
+
+    #paymentDoneBtn {
+        font-size: 1rem;
+        padding: 14px 20px;
+    }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] main {
+    background: rgba(30, 41, 59, 0.95);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(40, 167, 69, 0.1);
+}
+
+[data-theme="dark"] main::before {
+    background: linear-gradient(90deg, #10b981, #34d399, #10b981);
+    background-size: 200% 100%;
+}
+
+[data-theme="dark"] h3 {
+    background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+[data-theme="dark"] #timerContainer {
+    background: linear-gradient(145deg, #3f1a1a 0%, #4a1e1e 100%);
+    border-color: rgba(239, 68, 68, 0.3);
+    color: #cbd5e1;
+}
+
+[data-theme="dark"] #countdown {
+    color: #f87171;
+    text-shadow: 0 2px 10px rgba(248, 113, 113, 0.3);
+}
+
+[data-theme="dark"] .qris-code {
+    border-color: #475569;
+    box-shadow:
+        0 8px 25px rgba(0, 0, 0, 0.3),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .qris-code:hover {
+    border-color: #10b981;
+    box-shadow:
+        0 12px 35px rgba(0, 0, 0, 0.4),
+        inset 0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] main>p {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] #paymentDoneBtn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    box-shadow:
+        0 4px 15px rgba(16, 185, 129, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] #paymentDoneBtn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%);
+    box-shadow:
+        0 8px 25px rgba(16, 185, 129, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }

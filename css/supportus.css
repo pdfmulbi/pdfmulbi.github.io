@@ -3,14 +3,43 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f3f4f6;
+  background: linear-gradient(135deg, #f8f9fc 0%, #eef0f5 50%, #f3f4f6 100%);
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Decorative Background Elements */
+body::before {
+  content: '';
+  position: fixed;
+  top: -150px;
+  right: -150px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(229, 62, 62, 0.08) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -100px;
+  left: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(229, 62, 62, 0.05) 0%, transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Header */
@@ -22,140 +51,360 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  /* Memastikan header berada di atas elemen lain */
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  /* Menambahkan efek bayangan */
 }
 
 .logo-text {
   text-decoration: none;
-  /* Hilangkan garis bawah */
   color: #e53e3e;
   font-size: 18px;
   font-weight: bold;
   display: inline-flex;
   align-items: center;
-  /* Logo dan ikon sejajar vertikal */
   gap: 5px;
-  /* Jarak antara teks dan ikon */
 }
 
 .logo-text:hover {
   opacity: 0.8;
-  /* Efek hover */
 }
 
 .heart {
   color: red;
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.1);
+  }
 }
 
 /* Main Content */
 main {
-  padding: 1rem;
-  padding-bottom: 120px;
-  /* Space for fixed footer */
+  padding: 2rem 1rem;
+  padding-bottom: 140px;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
+/* Donation Section */
 .donation-section {
-  max-width: 600px;
+  max-width: 500px;
   margin: auto;
   text-align: center;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 24px;
+  padding: 2rem 1.5rem;
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.08),
+    0 0 0 1px rgba(229, 62, 62, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Decorative gradient inside card */
+.donation-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, #e53e3e, #f87171, #e53e3e);
+  background-size: 200% 100%;
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
 .donation-section h2 {
-  font-size: 20px;
-  margin-bottom: 20px;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #1f2937 0%, #4b5563 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 
+.donation-section h2::before {
+  content: '❤️';
+  font-size: 1.2rem;
+}
+
+/* Donation Options Grid */
 .donation-options {
   display: grid;
-  grid-template-columns: 1fr;
-  gap: 10px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+  margin-bottom: 1.5rem;
 }
 
+/* Donation Option Card */
 .donation-option {
-  padding: 15px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  background: linear-gradient(145deg, #ffffff 0%, #f8f9fc 100%);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.8);
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
 }
 
+.donation-option::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(229, 62, 62, 0.1) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.donation-option:hover {
+  transform: translateY(-4px);
+  border-color: rgba(229, 62, 62, 0.3);
+  box-shadow:
+    0 12px 30px rgba(229, 62, 62, 0.15),
+    0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.donation-option:hover::before {
+  opacity: 1;
+}
+
+/* Highlighted (Selected) Option */
 .donation-option.highlighted {
-  background: whitesmoke;
+  background: linear-gradient(145deg, #fff5f5 0%, #fee2e2 100%);
   border: 2px solid #e53e3e;
+  box-shadow:
+    0 8px 25px rgba(229, 62, 62, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  transform: scale(1.02);
+}
+
+.donation-option.highlighted::after {
+  content: '✓';
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 22px;
+  height: 22px;
+  background: linear-gradient(135deg, #e53e3e 0%, #dc2626 100%);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 8px rgba(229, 62, 62, 0.4);
+}
+
+/* First option spans full width */
+.donation-option:first-child {
+  grid-column: 1 / -1;
+  background: linear-gradient(145deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid #fca5a5;
+}
+
+.donation-option:first-child::before {
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent);
+  animation: shine 2s ease-in-out infinite;
+}
+
+@keyframes shine {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 .donation-option p {
-  font-size: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
   margin: 0;
+  color: #1f2937;
+  position: relative;
+  z-index: 1;
 }
 
 .donation-option small {
   display: block;
-  margin-top: 5px;
-  color: #555;
+  margin-top: 6px;
+  color: #6b7280;
+  font-size: 0.8rem;
+  position: relative;
+  z-index: 1;
 }
 
-.donation-option:hover {
-  background: #f18989;
-}
-
+/* Custom Donation Section */
 .custom-donation {
-  margin-top: 20px;
+  margin-top: 1.5rem;
   text-align: left;
+  padding: 1.25rem;
+  background: linear-gradient(145deg, #f8f9fc 0%, #f1f5f9 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(229, 231, 235, 0.8);
 }
 
 .custom-donation h3 {
-  font-size: 16px;
-  margin-bottom: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #374151;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.custom-donation h3::before {
+  content: '💰';
+  font-size: 1.1rem;
 }
 
 .input-group {
   display: flex;
   align-items: center;
-  background: #f9f9f9;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 5px;
+  background: #ffffff;
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.input-group:focus-within {
+  border-color: #e53e3e;
+  box-shadow:
+    0 0 0 4px rgba(229, 62, 62, 0.1),
+    0 4px 12px rgba(229, 62, 62, 0.1);
 }
 
 .input-group span {
-  font-size: 16px;
-  color: #333;
-  margin-right: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #e53e3e;
+  margin-right: 8px;
 }
 
 .input-group input {
   border: none;
   outline: none;
-  font-size: 16px;
+  font-size: 1.1rem;
   flex: 1;
+  font-weight: 500;
+  color: #1f2937;
+  background: transparent;
+}
+
+.input-group input::placeholder {
+  color: #9ca3af;
+  font-weight: 400;
 }
 
 .custom-donation small {
-  color: #888;
-  margin-top: 5px;
+  color: #9ca3af;
+  margin-top: 8px;
   display: block;
+  font-size: 0.8rem;
 }
 
+/* Donate Button */
 .donate-btn {
-  background: #e53e3e;
+  width: 100%;
+  background: linear-gradient(135deg, #e53e3e 0%, #dc2626 100%);
   color: white;
   border: none;
-  padding: 10px 20px;
-  margin-top: 20px;
-  font-size: 16px;
+  padding: 16px 24px;
+  margin-top: 1.5rem;
+  font-size: 1.1rem;
+  font-weight: 600;
   cursor: pointer;
-  border-radius: 5px;
-  transition: background-color 0.3s ease;
+  border-radius: 14px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow:
+    0 4px 15px rgba(229, 62, 62, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.donate-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 255, 255, 0.2),
+      transparent);
+  transition: left 0.5s ease;
 }
 
 .donate-btn:hover {
-  background: #e53e3e;
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  transform: translateY(-2px);
+  box-shadow:
+    0 8px 25px rgba(229, 62, 62, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.donate-btn:hover::before {
+  left: 100%;
+}
+
+.donate-btn:active {
+  transform: translateY(0);
+}
+
+.donate-btn::after {
+  content: '→';
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.donate-btn:hover::after {
+  transform: translateX(4px);
 }
 
 /* Footer */
@@ -163,12 +412,15 @@ main {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #fff;
-  border-top: 1px solid #ddd;
-  box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
   display: flex;
   justify-content: center;
-  padding: 10px 0;
+  padding: 12px 0;
+  z-index: 100;
 }
 
 .footer-container {
@@ -182,23 +434,26 @@ main {
 .footer-item {
   text-align: center;
   flex: 1;
-  color: #555;
+  color: #6b7280;
   font-size: 14px;
-  transition: color 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Gaya untuk elemen link */
 .footer-item a {
   text-decoration: none;
-  /* Menghapus garis bawah */
   color: inherit;
-  /* Warna sesuai dengan elemen parent */
   display: flex;
-  /* Membuat elemen link merangkul ikon dan teks */
   flex-direction: column;
-  /* Ikon di atas teks */
   align-items: center;
   justify-content: center;
+  padding: 8px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+.footer-item a:hover {
+  background: rgba(229, 62, 62, 0.08);
+  color: #e53e3e;
 }
 
 .footer-item i {
@@ -209,19 +464,23 @@ main {
 
 .footer-item.upload a i {
   color: white;
-  background-color: #f44336;
+  background: linear-gradient(135deg, #e53e3e 0%, #dc2626 100%);
   border-radius: 50%;
   padding: 15px;
   font-size: 25px;
   width: 50px;
-  /* Lebar sama dengan tinggi */
   height: 50px;
-  /* Tinggi sama dengan lebar */
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto;
-  /* Merapikan di tengah */
+  box-shadow: 0 4px 15px rgba(229, 62, 62, 0.4);
+  transition: all 0.3s ease;
+}
+
+.footer-item.upload a:hover i {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(229, 62, 62, 0.5);
 }
 
 .footer-item.upload span {
@@ -229,16 +488,24 @@ main {
 }
 
 .footer-item:hover {
-  color: #f44336;
+  color: #e53e3e;
 }
 
-.footer-item a:hover {
-  color: #f44336;
-  /* Memberikan warna hover yang sama */
-}
-
-/* Responsif */
+/* Responsive */
 @media (max-width: 600px) {
+  .donation-options {
+    grid-template-columns: 1fr;
+  }
+
+  .donation-option:first-child {
+    grid-column: 1;
+  }
+
+  .donation-section {
+    padding: 1.5rem 1rem;
+    margin: 0 0.5rem;
+  }
+
   .footer-item i {
     font-size: 18px;
   }
@@ -246,4 +513,83 @@ main {
   .footer-item span {
     font-size: 12px;
   }
+}
+
+/* Dark Mode Support */
+[data-theme="dark"] .donation-section {
+  background: rgba(30, 41, 59, 0.95);
+  box-shadow:
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(239, 68, 68, 0.1);
+}
+
+[data-theme="dark"] .donation-section h2 {
+  background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+[data-theme="dark"] .donation-option {
+  background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+  box-shadow:
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+[data-theme="dark"] .donation-option p {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .donation-option small {
+  color: #94a3b8;
+}
+
+[data-theme="dark"] .donation-option:hover {
+  border-color: rgba(239, 68, 68, 0.4);
+  box-shadow:
+    0 12px 30px rgba(239, 68, 68, 0.2),
+    0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .donation-option.highlighted {
+  background: linear-gradient(145deg, #3f1a1a 0%, #4a1e1e 100%);
+  border-color: #ef4444;
+}
+
+[data-theme="dark"] .donation-option:first-child {
+  background: linear-gradient(145deg, #3f1a1a 0%, #451a1a 100%);
+  border-color: #f87171;
+}
+
+[data-theme="dark"] .custom-donation {
+  background: linear-gradient(145deg, #1e293b 0%, #334155 100%);
+  border-color: rgba(71, 85, 105, 0.5);
+}
+
+[data-theme="dark"] .custom-donation h3 {
+  color: #e2e8f0;
+}
+
+[data-theme="dark"] .input-group {
+  background: #0f172a;
+  border-color: #475569;
+}
+
+[data-theme="dark"] .input-group:focus-within {
+  border-color: #ef4444;
+  box-shadow:
+    0 0 0 4px rgba(239, 68, 68, 0.15),
+    0 4px 12px rgba(239, 68, 68, 0.15);
+}
+
+[data-theme="dark"] .input-group input {
+  color: #f1f5f9;
+}
+
+[data-theme="dark"] .input-group input::placeholder {
+  color: #64748b;
+}
+
+[data-theme="dark"] .custom-donation small {
+  color: #64748b;
 }
