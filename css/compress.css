@@ -1,27 +1,487 @@
-body { 
-    background-color: #f4f6f9; 
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+/* =========================================
+   COMPRESS PAGE - Modern Visual Enhancement
+   ========================================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+/* =========================================
+   1. BODY & BACKGROUND
+   ========================================= */
+body {
+    background: linear-gradient(135deg, #f8f9fc 0%, #f3f4f6 50%, #eef0f5 100%);
+    font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    padding-bottom: 100px;
 }
 
-.upload-box {
-    border: 2px dashed #0d6efd;
-    background: #fff;
-    border-radius: 10px;
-    padding: 30px;
-    text-align: center;
-    cursor: pointer;
-    transition: 0.3s;
+/* Container Enhancement */
+.container {
+    animation: fadeInUp 0.6s ease-out;
 }
 
-.upload-box:hover { 
-    background-color: #e9f2ff; 
+/* Page Title */
+.container h2 {
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(135deg, #1f2937 0%, #374151 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
-.result-card { 
-    border-left: 5px solid #198754; 
-}
-
-/* Utility untuk sembunyikan elemen */
+/* Utility untuk sembunyikan elemen - Bootstrap override */
 .d-none {
     display: none !important;
+}
+
+/* =========================================
+   2. UPLOAD BOX - Glassmorphism Style
+   ========================================= */
+.upload-box,
+#uploadZone {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px dashed #e53e3e !important;
+    border-radius: 20px !important;
+    padding: 40px 30px !important;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.upload-box::before,
+#uploadZone::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(229, 62, 62, 0.03) 0%, rgba(229, 62, 62, 0.08) 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.upload-box:hover,
+#uploadZone:hover {
+    background: rgba(255, 255, 255, 0.95) !important;
+    border-color: #c53030 !important;
+    border-style: solid !important;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(229, 62, 62, 0.15);
+}
+
+.upload-box:hover::before,
+#uploadZone:hover::before {
+    opacity: 1;
+}
+
+/* Upload Icon Animation */
+.upload-box .fa-file-pdf,
+#uploadZone .fa-file-pdf {
+    color: #e53e3e !important;
+    font-size: 4rem !important;
+    margin-bottom: 20px !important;
+    animation: pulse 2s ease-in-out infinite;
+    filter: drop-shadow(0 4px 8px rgba(229, 62, 62, 0.2));
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.05);
+        opacity: 0.85;
+    }
+}
+
+.upload-box h5,
+#uploadZone h5 {
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 12px !important;
+}
+
+#fileNameDisplay {
+    color: #6b7280 !important;
+    font-size: 0.9rem !important;
+    padding: 8px 16px;
+    background: rgba(0, 0, 0, 0.03);
+    border-radius: 8px;
+    display: inline-block;
+}
+
+/* =========================================
+   3. SETTINGS CARD - Glassmorphism
+   ========================================= */
+#settingsCard {
+    background: rgba(255, 255, 255, 0.9) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(229, 231, 235, 0.6) !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+#settingsCard label.fw-bold {
+    color: #1f2937;
+    font-weight: 700 !important;
+    font-size: 1rem;
+}
+
+/* Enhanced Select Dropdown */
+#methodSelect {
+    background: white !important;
+    border: 2px solid #e5e7eb !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #374151;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#methodSelect:hover {
+    border-color: #e53e3e !important;
+}
+
+#methodSelect:focus {
+    border-color: #e53e3e !important;
+    box-shadow: 0 0 0 4px rgba(229, 62, 62, 0.1) !important;
+    outline: none;
+}
+
+/* Quality Slider Container */
+#sliderContainer {
+    background: rgba(0, 0, 0, 0.02);
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 8px;
+}
+
+#qualityValue {
+    color: #e53e3e !important;
+    font-weight: 700 !important;
+}
+
+/* Custom Range Slider */
+#qualityRange {
+    height: 8px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #e53e3e 0%, #f87171 100%);
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+#qualityRange::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 10px rgba(229, 62, 62, 0.4);
+    transition: all 0.3s ease;
+}
+
+#qualityRange::-webkit-slider-thumb:hover {
+    transform: scale(1.15);
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.5);
+}
+
+#qualityRange::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    border-radius: 50%;
+    cursor: pointer;
+    border: 3px solid white;
+    box-shadow: 0 2px 10px rgba(229, 62, 62, 0.4);
+}
+
+/* Process Button */
+#processBtn {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 16px 24px !important;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.35);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+#processBtn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s ease;
+}
+
+#processBtn:hover {
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(229, 62, 62, 0.45);
+}
+
+#processBtn:hover::before {
+    left: 100%;
+}
+
+#processBtn:active {
+    transform: translateY(-1px);
+}
+
+#processBtn i {
+    margin-right: 8px;
+}
+
+/* =========================================
+   4. RESULT CARD - Success State
+   ========================================= */
+#resultCard {
+    background: rgba(255, 255, 255, 0.95) !important;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 2px solid #10b981 !important;
+    border-radius: 20px !important;
+    padding: 30px !important;
+    box-shadow: 0 8px 30px rgba(16, 185, 129, 0.15);
+    animation: successPop 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    position: relative;
+    overflow: hidden;
+}
+
+#resultCard::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #10b981 0%, #34d399 100%);
+}
+
+@keyframes successPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Success Header */
+#resultCard h5.text-success {
+    color: #10b981 !important;
+    font-weight: 700;
+    font-size: 1.25rem;
+}
+
+#resultCard h5.text-success i {
+    animation: checkBounce 0.6s ease-out;
+}
+
+@keyframes checkBounce {
+    0% {
+        transform: scale(0);
+    }
+
+    50% {
+        transform: scale(1.3);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Time Stats */
+#timeStat {
+    background: linear-gradient(135deg, #f0fdf4 0%, #ecfdf5 100%) !important;
+    border: 1px solid #bbf7d0 !important;
+    border-radius: 12px !important;
+    padding: 12px 16px !important;
+    color: #166534 !important;
+    font-weight: 600;
+}
+
+#timeStat i {
+    color: #10b981;
+    margin-right: 6px;
+}
+
+/* Size Comparison */
+#resultCard .d-flex.justify-content-between {
+    background: rgba(0, 0, 0, 0.02);
+    border-radius: 12px;
+    padding: 20px !important;
+}
+
+#originalSize {
+    font-size: 1.1rem;
+    color: #6b7280 !important;
+}
+
+#compressedSize {
+    font-size: 1.25rem;
+    color: #10b981 !important;
+    font-weight: 800 !important;
+}
+
+/* Download Button */
+#downloadBtn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+    border: none !important;
+    border-radius: 14px !important;
+    padding: 16px 24px !important;
+    font-size: 1rem;
+    font-weight: 700;
+    box-shadow: 0 6px 20px rgba(16, 185, 129, 0.35);
+    transition: all 0.3s ease;
+}
+
+#downloadBtn:hover {
+    background: linear-gradient(135deg, #059669 0%, #047857 100%) !important;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.45);
+}
+
+#downloadBtn i {
+    margin-right: 8px;
+}
+
+/* =========================================
+   5. ANIMATIONS
+   ========================================= */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================
+   6. DARK MODE SUPPORT
+   ========================================= */
+[data-theme="dark"] body {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);
+}
+
+[data-theme="dark"] .container h2 {
+    background: linear-gradient(135deg, #f1f5f9 0%, #cbd5e1 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+}
+
+[data-theme="dark"] .upload-box,
+[data-theme="dark"] #uploadZone {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: #ef4444 !important;
+}
+
+[data-theme="dark"] .upload-box:hover,
+[data-theme="dark"] #uploadZone:hover {
+    background: rgba(30, 41, 59, 0.95) !important;
+}
+
+[data-theme="dark"] .upload-box h5,
+[data-theme="dark"] #uploadZone h5 {
+    color: #f1f5f9;
+}
+
+[data-theme="dark"] #fileNameDisplay {
+    background: rgba(255, 255, 255, 0.05);
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] #settingsCard {
+    background: rgba(30, 41, 59, 0.9) !important;
+    border-color: rgba(71, 85, 105, 0.6) !important;
+}
+
+[data-theme="dark"] #settingsCard label {
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] #methodSelect {
+    background: #0f172a !important;
+    border-color: #475569 !important;
+    color: #f1f5f9 !important;
+}
+
+[data-theme="dark"] #sliderContainer {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] #resultCard {
+    background: rgba(30, 41, 59, 0.95) !important;
+}
+
+[data-theme="dark"] #timeStat {
+    background: rgba(16, 185, 129, 0.15) !important;
+    border-color: rgba(16, 185, 129, 0.3) !important;
+    color: #34d399 !important;
+}
+
+[data-theme="dark"] #originalSize {
+    color: #94a3b8 !important;
+}
+
+[data-theme="dark"] #resultCard .d-flex.justify-content-between {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] #resultCard .text-muted {
+    color: #94a3b8 !important;
+}
+
+/* =========================================
+   7. RESPONSIVE ADJUSTMENTS
+   ========================================= */
+@media (max-width: 576px) {
+
+    .upload-box,
+    #uploadZone {
+        padding: 30px 20px !important;
+    }
+
+    #settingsCard,
+    #resultCard {
+        padding: 20px !important;
+    }
+
+    #processBtn,
+    #downloadBtn {
+        padding: 14px 20px !important;
+    }
 }

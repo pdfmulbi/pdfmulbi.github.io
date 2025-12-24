@@ -2,19 +2,24 @@ import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
 
 // Event Listener setelah DOM dimuat
 document.addEventListener("DOMContentLoaded", function () {
-    const authButtons = document.getElementById("auth-buttons");
     const logoutLink = document.getElementById("logout-link");
     const token = localStorage.getItem("authToken");
 
-    // Jika user sudah login, sembunyikan tombol login & tampilkan logout
+    // Cari elemen login dan signup secara spesifik (BUKAN seluruh auth-buttons)
+    const loginBtn = document.querySelector('.login');
+    const signupBtn = document.querySelector('.signup');
+
+    // Jika user sudah login, sembunyikan hanya tombol login & signup
     if (token) {
-        // Jika token ditemukan
-        authButtons.style.display = "none";
-        logoutLink.style.display = "block";
+        // Jika token ditemukan - sembunyikan tombol login dan signup SAJA
+        if (loginBtn) loginBtn.style.display = "none";
+        if (signupBtn) signupBtn.style.display = "none";
+        if (logoutLink) logoutLink.style.display = "block";
     } else {
-        // Jika token tidak ditemukan
-        authButtons.style.display = "flex";
-        logoutLink.style.display = "none";
+        // Jika token tidak ditemukan - tampilkan tombol login dan signup
+        if (loginBtn) loginBtn.style.display = "inline-flex";
+        if (signupBtn) signupBtn.style.display = "inline-flex";
+        if (logoutLink) logoutLink.style.display = "none";
     }
 
     // Tampilkan tombol logout jika login
