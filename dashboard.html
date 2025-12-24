@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management Dashboard - PDF Merger</title>
     <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/notification.css">
     <link rel="stylesheet" href="css/darkmode.css">
     <link rel="icon" href="image/PDF.ico" type="image/x-icon" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -19,14 +20,35 @@
             </a>
         </div>
 
+        <!-- Admin Dashboard Title - Centered -->
         <div class="header-title">
             <h1><i class="fas fa-shield-alt"></i> Admin Dashboard</h1>
         </div>
 
-        <div class="header-actions">
+        <div class="auth-buttons" id="auth-buttons">
+            <!-- Notification Bell -->
+            <div class="notification-wrapper" id="notification-wrapper">
+                <button class="notification-btn" id="notification-btn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge" id="notification-badge">0</span>
+                </button>
+                <div class="notification-dropdown" id="notification-dropdown">
+                    <div class="notification-header">
+                        <span>Notifications</span>
+                        <button id="clear-notifications">Clear All</button>
+                    </div>
+                    <div class="notification-list" id="notification-list">
+                        <!-- Notifications will be rendered here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Theme Toggle -->
             <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
                 <i class="fas fa-moon"></i>
             </button>
+            
+            <!-- Logout Button -->
             <button id="logout-btn" class="btn-logout">
                 <i class="fas fa-sign-out-alt"></i> Logout
             </button>
@@ -106,6 +128,7 @@
     </footer>
 
     <script src="js/theme.js"></script>
+    <script src="js/notification.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

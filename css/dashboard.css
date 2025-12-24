@@ -70,6 +70,13 @@ body {
     }
 }
 
+/* Header Title - Centered */
+.header-title {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
 .header-title h1 {
     font-size: 1.4rem;
     font-weight: 700;
@@ -77,9 +84,44 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
+    white-space: nowrap;
 }
 
 .header-title h1 i {
+    color: #e53e3e;
+}
+
+/* Auth Buttons - Consistent with index.html */
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+/* Theme Toggle */
+.theme-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle:hover {
+    background-color: rgba(229, 62, 62, 0.08);
+}
+
+.theme-toggle i {
+    font-size: 1.2rem;
+    color: #4b5563;
+    transition: color 0.3s ease;
+}
+
+.theme-toggle:hover i {
     color: #e53e3e;
 }
 
