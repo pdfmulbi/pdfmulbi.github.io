@@ -39,26 +39,34 @@ document.addEventListener("DOMContentLoaded", function () {
 // Setup logout button
 function setupLogout() {
     const logoutBtn = document.getElementById("logout-btn");
-    if (logoutBtn) {
-        logoutBtn.addEventListener("click", function () {
-            Swal.fire({
-                title: "Logout?",
-                text: "Apakah Anda yakin ingin keluar?",
-                icon: "question",
-                showCancelButton: true,
-                confirmButtonColor: "#e53e3e",
-                cancelButtonColor: "#6b7280",
-                confirmButtonText: "Ya, Logout",
-                cancelButtonText: "Batal"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    localStorage.removeItem("authToken");
-                    localStorage.removeItem("userName");
-                    localStorage.removeItem("isAdmin");
-                    window.location.href = "index.html";
-                }
-            });
+    const logoutLink = document.getElementById("logout-link");
+
+    const handleLogout = function () {
+        Swal.fire({
+            title: "Logout?",
+            text: "Apakah Anda yakin ingin keluar?",
+            icon: "question",
+            showCancelButton: true,
+            confirmButtonColor: "#e53e3e",
+            cancelButtonColor: "#6b7280",
+            confirmButtonText: "Ya, Logout",
+            cancelButtonText: "Batal"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("userName");
+                localStorage.removeItem("isAdmin");
+                window.location.href = "index.html";
+            }
         });
+    };
+
+    if (logoutBtn) {
+        logoutBtn.addEventListener("click", handleLogout);
+    }
+
+    if (logoutLink) {
+        logoutLink.addEventListener("click", handleLogout);
     }
 }
 

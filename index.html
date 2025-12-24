@@ -40,16 +40,17 @@
                 </div>
             </div>
 
-            <a href="login.html" class="login">Login</a>
-            <button class="signup" onclick="klikSignup()">Sign up</button>
             <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
                 <i class="fas fa-moon"></i>
             </button>
-        </div>
-    
-        <!-- Tombol dashboard admin (hanya muncul jika admin) -->
-        <div id="dashboard-button" style="display: none;">
-            <a href="dashboard.html" class="dashboard">Dashboard</a>
+
+            <!-- Tombol dashboard admin (hanya muncul jika admin) -->
+            <div id="dashboard-button" style="display: none;">
+                <a href="dashboard.html" class="dashboard">Dashboard</a>
+            </div>
+
+            <a href="login.html" class="login" id="login-link">Login</a>
+            <button class="signup" id="signup-btn" onclick="klikSignup()">Sign up</button>
         </div>
     </header>    
 
