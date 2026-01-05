@@ -1,5 +1,30 @@
 import { PDFDocument } from 'https://cdn.skypack.dev/pdf-lib';
 
+async function saveMergeLog(inputList) {
+    const token = localStorage.getItem("authToken"); 
+    // Ganti URL ini jika nanti sudah di-deploy ke server lain
+    const backendUrl = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/log/merge"; 
+
+    if (!token) return; // Kalau user tidak login, tidak usah dicatat
+
+    try {
+        await fetch(backendUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                input_files: inputList,
+                output_file: "Merged_Result.pdf"
+            })
+        });
+        console.log("✅ Log merge berhasil disimpan ke database");
+    } catch (error) {
+        console.error("❌ Gagal simpan log:", error);
+    }
+}
+// ==========================================
 // Event Listener setelah DOM dimuat
 document.addEventListener("DOMContentLoaded", function () {
     const logoutLink = document.getElementById("logout-link");
