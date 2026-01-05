@@ -166,10 +166,12 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
     event.preventDefault();
 
     const pdfFiles = [];
+    const fileNamesLog = [];
     for (let i = 1; i <= fileCount; i++) {
         const fileInput = document.getElementById(`pdf-files${i}`);
         if (fileInput && fileInput.files[0]) {
             pdfFiles.push(await fileInput.files[0].arrayBuffer());
+            fileNamesLog.push(fileInput.files[0].name);
         }
     }
 
@@ -195,7 +197,8 @@ document.getElementById('merge-form').addEventListener('submit', async (event) =
         const mergedPdfBytes = await mergedPdf.save();
         const mergedPdfUrl = URL.createObjectURL(new Blob([mergedPdfBytes], { type: 'application/pdf' }));
         window.open(mergedPdfUrl, '_blank');
-
+        // Kirim data ke Backend (MongoDB)
+        await saveMergeLog(fileNamesLog);
         // Add notification for successful merge
         if (window.NotificationManager) {
             window.NotificationManager.add(
