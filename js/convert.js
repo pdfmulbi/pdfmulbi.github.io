@@ -7,6 +7,31 @@ const downloadBtn = document.getElementById('downloadBtn');
 
 let fileName = "document.pdf";
 
+async function saveConvertLog(fileName) {
+    const token = localStorage.getItem("authToken"); 
+    const backendUrl = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/log/convert"; 
+
+    if (!token) return; 
+
+    try {
+        await fetch(backendUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                file_name: fileName,
+                source_format: "docx", // Karena ini fitur Word to PDF
+                target_format: "pdf"
+            })
+        });
+        console.log("✅ Log convert berhasil disimpan");
+    } catch (error) {
+        console.error("❌ Gagal simpan log:", error);
+    }
+}
+
 // 1. Klik Upload Zone
 uploadZone.addEventListener('click', () => fileInput.click());
 
@@ -68,9 +93,19 @@ downloadBtn.addEventListener('click', function() {
     };
 
     // Eksekusi Convert (Ambil elemen preview -> jadikan PDF)
-    html2pdf().set(opt).from(documentPreview).save().then(() => {
+    html2pdf().set(opt).from(documentPreview).save().then(async() => {
         // Reset Tombol setelah selesai
         downloadBtn.innerHTML = originalText;
         downloadBtn.disabled = false;
+
+        await saveConvertLog(fileName);
+
+        if (window.NotificationManager) {
+            window.NotificationManager.add(
+                'convert', 
+                'Berhasil convert DOCX ke PDF', 
+                fileName
+            );
+        }
     });
 });

@@ -7,6 +7,31 @@ env.allowLocalModels = false;
 // Setup Worker PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
+async function saveSummaryLog(fileName, summaryText) {
+    const token = localStorage.getItem("authToken"); 
+    const backendUrl = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/log/summary"; 
+
+    if (!token) return; 
+
+    try {
+        await fetch(backendUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                file_name: fileName,
+                summary_text: summaryText,  // Kita simpan hasil ringkasannya
+                status: "Success"
+            })
+        });
+        console.log("✅ Log summary berhasil disimpan");
+    } catch (error) {
+        console.error("❌ Gagal simpan log:", error);
+    }
+}
+
 // DOM Elements
 const uploadZone = document.getElementById('uploadZone');
 const fileInput = document.getElementById('fileInput');
@@ -73,10 +98,22 @@ fileInput.addEventListener('change', async function() {
 
         // Tampilkan Hasil
         progressBar.style.width = '100%';
-        setTimeout(() => {
+        setTimeout(async() => {
             statusArea.classList.add('d-none');
             resultCard.classList.remove('d-none');
-            summaryOutput.innerText = output[0].summary_text;
+            const resultText = output[0].summary_text;
+            summaryOutput.innerText = resultText;
+
+            await saveSummaryLog(file.name, resultText);
+
+            // B. Tampilkan Notifikasi Lonceng
+            if (window.NotificationManager) {
+                window.NotificationManager.add(
+                    'summary', 
+                    'Berhasil merangkum dokumen dengan AI', 
+                    file.name
+                );
+            }
         }, 500);
 
     } catch (err) {

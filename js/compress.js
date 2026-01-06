@@ -13,6 +13,32 @@ const processBtn = document.getElementById('processBtn');
 const resultCard = document.getElementById('resultCard');
 const downloadBtn = document.getElementById('downloadBtn');
 
+async function saveCompressLog(fileName, originalSize, compressedSize) {
+    const token = localStorage.getItem("authToken"); 
+    const backendUrl = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/log/compress"; 
+
+    if (!token) return; 
+
+    try {
+        await fetch(backendUrl, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            body: JSON.stringify({
+                file_name: fileName,
+                original_size: parseInt(originalSize),      // Pastikan kirim Angka (Byte)
+                compressed_size: parseInt(compressedSize),  // Pastikan kirim Angka (Byte)
+                status: "Success"
+            })
+        });
+        console.log("✅ Log compress berhasil disimpan");
+    } catch (error) {
+        console.error("❌ Gagal simpan log:", error);
+    }
+}
+
 let processedBlob = null;
 
 // 1. Event Upload
@@ -72,6 +98,8 @@ processBtn.addEventListener('click', async function () {
 
         resultCard.classList.remove('d-none');
 
+        await saveCompressLog(file.name, file.size, processedBlob.size);
+        
         // Add notification for successful compression
         if (window.NotificationManager) {
             const reduction = ((1 - processedBlob.size / file.size) * 100).toFixed(0);
