@@ -114,6 +114,33 @@ body {
     box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
 }
 
+/* Logout Button in Header */
+.logout-btn {
+    display: none;
+    /* Hidden by default, shown via JS when logged in */
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.3);
+    font-size: 0.9rem;
+}
+
+.logout-btn:hover {
+    background: linear-gradient(135deg, #c53030 0%, #9b2c2c 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.4);
+}
+
+.logout-btn i {
+    margin-right: 5px;
+}
+
 /* =========================================
    3. MAIN CONTENT
    ========================================= */
