@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Converter Tools - PDFConvert</title>
+    <title>Converter Tools - PDF Merger</title>
     <link rel="icon" href="image/PDF.ico" type="image/x-icon"/>
     
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -15,131 +15,102 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
+
     <header class="header">
         <div class="logo">
-            <a href="index.html" class="logo-text">
-                PDF <span class="heart">❤</span>Merger
-            </a>
+            <a href="index.html" class="logo-text">PDF <span class="heart">❤</span>Merger</a>
         </div>
-
-        <div class="auth-buttons" id="auth-buttons">
-            <!-- Notification Bell -->
+        <div class="auth-buttons">
             <div class="notification-wrapper" id="notification-wrapper">
-                <button class="notification-btn" id="notification-btn" title="Notifications">
+                <button class="notification-btn" id="notification-btn">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge" id="notification-badge">0</span>
                 </button>
                 <div class="notification-dropdown" id="notification-dropdown">
-                    <div class="notification-header">
-                        <span>Notifications</span>
-                        <button id="clear-notifications">Clear All</button>
-                    </div>
-                    <div class="notification-list" id="notification-list">
-                    </div>
+                    <div class="notification-header"><span>Notifications</span><button id="clear-notifications">Clear All</button></div>
+                    <div class="notification-list" id="notification-list"></div>
                 </div>
             </div>
-
-            <a href="login.html" class="login">Login</a>
-            <button class="signup" onclick="klikSignup()">Sign up</button>
-            <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
-                <i class="fas fa-moon"></i>
-            </button>
+            <button class="theme-toggle" id="theme-toggle"><i class="fas fa-moon"></i></button>
         </div>
     </header>
 
-<div class="container mt-4 mb-5" style="max-width: 800px;">
+    <div class="container mt-4 mb-5" style="max-width: 800px;">
 
-    <div class="text-center mb-4 mt-2">
-        <h2 class="fw-bold text-primary">Word to PDF Converter</h2>
-        <p class="text-muted">Ubah dokumen Word (.docx) menjadi PDF di browser.</p>
-    </div>
-
-    <div class="text-center">
-        <div class="tool-switcher">
-            <a href="#" class="btn btn-active-mode shadow-sm">
-                <i class="fas fa-file-word me-2"></i> Word to PDF
-            </a>
-            
-            <a href="pdf-to-word.html" class="btn btn-inactive-mode">
-                <i class="fas fa-file-pdf me-2"></i> PDF to Word
-            </a>
+        <div class="text-center mb-4 mt-2">
+            <h2 class="fw-bold text-primary" id="pageTitle">Word to PDF Converter</h2>
+            <p class="text-muted" id="pageDesc">Ubah dokumen Word (.docx) menjadi PDF di browser.</p>
         </div>
-    </div>
 
-    <div class="upload-box shadow-sm mb-4" id="uploadZone">
-        <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
-        <h5>Klik untuk Pilih File Word</h5>
-        <p class="text-muted small mb-0">Format .docx saja</p>
-        <input type="file" id="fileInput" accept=".docx" style="display: none;">
-    </div>
-
-    <div id="actionArea" class="d-none text-center mb-4">
-        <button id="downloadBtn" class="btn btn-danger btn-lg shadow">
-            <i class="fas fa-file-pdf"></i> Simpan sebagai PDF
-        </button>
-    </div>
-
-    <div class="preview-container d-none" id="previewContainer">
-        <div class="text-muted small text-center mb-2">Preview Dokumen:</div>
-        <div id="documentPreview" class="page-a4 shadow">
+        <div class="text-center mb-4">
+            <div class="tool-switcher">
+                <button onclick="switchTab('word')" id="tabWord" class="btn btn-active-mode shadow-sm">
+                    <i class="fas fa-file-word me-2"></i> Word to PDF
+                </button>
+                <button onclick="switchTab('pdf')" id="tabPdf" class="btn btn-inactive-mode">
+                    <i class="fas fa-file-pdf me-2"></i> PDF to Word
+                </button>
             </div>
+        </div>
+
+        <div id="panelWord">
+            <div class="upload-box shadow-sm mb-4" id="wordUploadZone">
+                <i class="fas fa-cloud-upload-alt fa-3x text-primary mb-3"></i>
+                <h5>Pilih File Word (.docx)</h5>
+                <p class="text-muted small mb-0">Format .docx saja</p>
+                <input type="file" id="wordInput" accept=".docx" style="display: none;">
+            </div>
+
+            <div id="wordActionArea" class="d-none text-center mb-4">
+                <button id="wordDownloadBtn" class="btn btn-danger btn-lg shadow">
+                    <i class="fas fa-file-pdf"></i> Simpan sebagai PDF
+                </button>
+            </div>
+
+            <div class="preview-container d-none" id="wordPreviewContainer">
+                <div class="text-muted small text-center mb-2">Preview Dokumen:</div>
+                <div id="wordDocumentPreview" class="page-a4 shadow"></div>
+            </div>
+        </div>
+
+        <div id="panelPdf" class="d-none"> <div class="upload-box shadow-sm mb-4" id="pdfUploadZone" style="border-color: #dc3545;">
+                <i class="fas fa-file-pdf fa-3x text-danger mb-3"></i>
+                <h5>Pilih File PDF (.pdf)</h5>
+                <p class="text-muted small mb-0">Format .pdf saja</p>
+                <input type="file" id="pdfInput" accept=".pdf" style="display: none;">
+            </div>
+
+            <div id="pdfActionArea" class="d-none text-center mb-4">
+                <button id="pdfDownloadBtn" class="btn btn-primary btn-lg shadow">
+                    <i class="fas fa-file-word"></i> Simpan sebagai Word
+                </button>
+            </div>
+
+            <div class="preview-container d-none" id="pdfPreviewContainer">
+                <div class="text-muted small text-center mb-2">Text Preview (Extracted):</div>
+                <div id="pdfDocumentPreview" class="page-a4 shadow" style="white-space: pre-wrap; text-align: left; font-family: 'Times New Roman', serif;"></div>
+            </div>
+        </div>
+
     </div>
 
-</div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-item"><a href="index.html"><i class="fas fa-home"></i><span>Home</span></a></div>
+            <div class="footer-item"><a href="supportus.html"><i class="fa-solid fa-hand-holding-dollar"></i><span>Support</span></a></div>
+            <div class="footer-item upload"><a href="merge.html"><div class="upload-btn-circle"><i class="fa-solid fa-file-arrow-up"></i></div></a></div>
+            <div class="footer-item"><a href="feedback.html"><i class="fas fa-comment-dots"></i><span>Feedback</span></a></div>
+            <div class="footer-item"><a href="profile.html"><i class="fas fa-user"></i><span>Profile</span></a></div>
+        </div>
+    </footer>
 
-<!-- Footer -->
-<footer class="footer">
-    <div class="footer-container">
-        <div class="footer-item">
-            <a href="index.html">
-                <i class="fas fa-home"></i>
-                <span>Home</span>
-            </a>
-        </div>
-        <div class="footer-item">
-            <a href="supportus.html">
-                <i class="fa-solid fa-hand-holding-dollar"></i>
-                <span>Support Us</span>
-            </a>
-        </div>
-        <div class="footer-item upload">
-            <a href="merge.html">
-                <i class="fa-solid fa-file-arrow-up"></i>
-            </a>
-        </div>
-        <div class="footer-item">
-            <a href="profile.html">
-                <i class="fas fa-user"></i>
-                <span>Profile</span>
-            </a>
-        </div>
-        <div class="footer-item">
-                <a href="feedback.html">
-                <i class="fas fa-comment-dots"></i>
-                <span>Feedback</span>
-                </a>
-                </div>
-        <div class="footer-item">
-            <a href="javascript:void(0)" id="logout-link">
-                <i class="fas fa-sign-out-alt"></i>
-                <span>Logout</span>
-            </a>
-        </div>
-    </div>
-</footer>
-
-<script src="js/theme.js"></script>
-<script src="js/notification.js"></script>
-<script src="js/auth.js"></script>
-<script src="js/convert.js"></script>
-<script>
-    function klikSignup() {
-        window.location.href = 'register.html';
-    }
-</script>
-
+    <script src="js/theme.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/auth.js"></script>
+    
+    <script src="js/convert.js"></script> 
 </body>
 </html>

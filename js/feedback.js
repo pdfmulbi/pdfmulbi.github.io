@@ -36,13 +36,16 @@ document.addEventListener('DOMContentLoaded', async () => {
 // 2. Event: Saat Tombol Kirim Ditekan
 if (feedbackForm) {
     feedbackForm.addEventListener('submit', async (e) => {
-        e.preventDefault(); // Mencegah reload halaman
+        e.preventDefault(); 
+
+        // [TAMBAHAN KEAMANAN] Cek jika tombol sudah disabled, hentikan proses
+        if (submitBtn.disabled) return; 
 
         // Simpan teks asli tombol
         const originalBtnText = submitBtn.innerHTML;
 
-        // UI Loading State (Biar user tau lagi proses)
-        submitBtn.disabled = true;
+        // UI Loading State 
+        submitBtn.disabled = true; // Ini kunci agar tidak bisa diklik 2x
         submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Mengirim...';
 
         // Ambil Data dari Input Form
