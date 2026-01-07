@@ -649,40 +649,235 @@ button.delete:hover {
         flex: 1;
         min-width: 100%;
     }
+
+    .tab-content.active {
+        flex-direction: column;
+    }
 }
 
 @media (max-width: 768px) {
+
+    /* Header Mobile Layout */
     .header {
-        flex-direction: column;
-        gap: 15px;
+        flex-direction: column !important;
+        gap: 12px;
         padding: 15px;
+        position: relative;
+    }
+
+    /* Hide logo on mobile, show only Admin Dashboard */
+    .header .logo {
+        display: none !important;
+    }
+
+    /* Center the Admin Dashboard title */
+    .header-title {
+        position: static !important;
+        transform: none !important;
+        order: 1;
+        width: 100%;
     }
 
     .header-title h1 {
-        font-size: 1.2rem;
+        font-size: 1.15rem;
+        text-align: center;
+        justify-content: center;
     }
 
+    /* Auth buttons row */
+    .auth-buttons {
+        order: 2;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    /* Tab Navigation - Stack on mobile */
+    .tab-navigation {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .tab-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px 20px;
+        font-size: 0.95rem;
+    }
+
+    /* Main content */
     main {
-        padding: 20px;
+        padding: 15px;
+        gap: 20px;
     }
 
+    /* Cards */
     .card {
-        padding: 20px;
+        padding: 18px;
+        border-radius: 16px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .section-header h2,
+    .card h2 {
+        font-size: 1.1rem;
+    }
+
+    /* Table Mobile Handling */
+    .table-container {
+        overflow-x: auto;
+        margin: 0 -18px;
+        padding: 0 18px;
+    }
+
+    table {
+        min-width: 600px;
     }
 
     table th,
     table td {
-        padding: 10px 12px;
+        padding: 12px 14px;
         font-size: 0.85rem;
+        white-space: nowrap;
+    }
+
+    /* Pagination Mobile */
+    .pagination {
+        flex-wrap: wrap;
+        gap: 6px;
+    }
+
+    .pagination button {
+        padding: 8px 12px;
+        font-size: 0.85rem;
+    }
+
+    /* Form Mobile */
+    .form-group input {
+        padding: 12px 14px;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-actions .btn {
+        width: 100%;
+    }
+
+    /* Logout Button */
+    .btn-logout {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+
+    /* Footer Mobile */
+    body {
+        padding-bottom: 90px;
     }
 }
 
 @media (max-width: 480px) {
-    .form-actions {
-        flex-direction: column;
+
+    /* Extra small screens */
+    .header {
+        padding: 12px;
+    }
+
+    .header-title h1 {
+        font-size: 1rem;
+    }
+
+    .auth-buttons {
+        gap: 8px;
+    }
+
+    /* Notification, Theme Toggle smaller */
+    .notification-btn,
+    .theme-toggle {
+        padding: 8px;
+    }
+
+    .notification-btn i,
+    .theme-toggle i {
+        font-size: 1rem;
+    }
+
+    /* Logout button - icon only */
+    .btn-logout {
+        padding: 8px 12px;
     }
 
     .btn-logout span {
         display: none;
+    }
+
+    /* Tab buttons */
+    .tab-btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+    }
+
+    .tab-btn i {
+        font-size: 1rem;
+    }
+
+    /* Cards */
+    .card {
+        padding: 14px;
+        border-radius: 14px;
+    }
+
+    .card h2,
+    .section-header h2 {
+        font-size: 1rem;
+    }
+
+    /* User count and feedback count badges */
+    .user-count,
+    .feedback-count {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* Table even smaller */
+    table th,
+    table td {
+        padding: 10px 12px;
+        font-size: 0.8rem;
+    }
+
+    /* Action buttons in table */
+    button.edit,
+    button.delete {
+        padding: 6px 10px;
+        font-size: 0.75rem;
+    }
+
+    /* Form */
+    .form-group label {
+        font-size: 0.85rem;
+    }
+
+    .form-group input {
+        padding: 10px 12px;
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 10px 16px;
+        font-size: 0.85rem;
+    }
+
+    /* Pagination */
+    .pagination button {
+        padding: 6px 10px;
+        font-size: 0.8rem;
     }
 }
