@@ -4,6 +4,11 @@
 
 const API_BASE = "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger";
 
+// Pagination state
+let allUsers = [];
+let currentPage = 1;
+const USERS_PER_PAGE = 4;
+
 // =========================================
 // ADMIN ACCESS CHECK
 // =========================================
@@ -71,6 +76,34 @@ function setupLogout() {
 }
 
 // =========================================
+// TAB SWITCHING
+// =========================================
+function switchTab(tabName) {
+    // Update tab buttons
+    document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.tab === tabName) {
+            btn.classList.add('active');
+        }
+    });
+
+    // Update tab content
+    document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+    });
+
+    const targetTab = document.getElementById(`${tabName}-tab`);
+    if (targetTab) {
+        targetTab.classList.add('active');
+    }
+
+    // Load feedback data when switching to feedback tab
+    if (tabName === 'feedback') {
+        fetchFeedback();
+    }
+}
+
+// =========================================
 // FETCH ALL USERS
 // =========================================
 async function fetchUsers() {
@@ -93,12 +126,13 @@ async function fetchUsers() {
 
         if (!response.ok) throw new Error(`Failed to fetch users: ${response.status}`);
 
-        const users = await response.json();
+        allUsers = await response.json();
 
         if (loading) loading.style.display = "none";
 
-        populateUserTable(users);
-        updateUserCount(users.length);
+        currentPage = 1;
+        renderUserTable();
+        updateUserCount(allUsers.length);
 
     } catch (error) {
         console.error("Error fetching users:", error);
@@ -115,27 +149,33 @@ async function fetchUsers() {
 }
 
 // =========================================
-// POPULATE USER TABLE
+// RENDER USER TABLE WITH PAGINATION
 // =========================================
-function populateUserTable(users) {
+function renderUserTable() {
     const tableBody = document.querySelector("#user-table tbody");
     if (!tableBody) return;
 
     tableBody.innerHTML = "";
 
-    if (users.length === 0) {
+    if (allUsers.length === 0) {
         tableBody.innerHTML = `
             <tr>
-                <td colspan="6" style="text-align: center; color: #6b7280; padding: 40px;">
+                <td colspan="5" style="text-align: center; color: #6b7280; padding: 40px;">
                     <i class="fas fa-users-slash" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
                     Tidak ada user ditemukan
                 </td>
             </tr>
         `;
+        renderPagination();
         return;
     }
 
-    users.forEach((user, index) => {
+    // Calculate pagination
+    const startIndex = (currentPage - 1) * USERS_PER_PAGE;
+    const endIndex = startIndex + USERS_PER_PAGE;
+    const usersToShow = allUsers.slice(startIndex, endIndex);
+
+    usersToShow.forEach((user, index) => {
         const row = document.createElement("tr");
         row.style.animation = `fadeInUp 0.3s ease-out ${index * 0.05}s both`;
         row.innerHTML = `
@@ -147,8 +187,7 @@ function populateUserTable(users) {
                 </span>
             </td>
             <td>${formatDate(user.createdAt)}</td>
-            <td>${formatDate(user.updatedAt)}</td>
-            <td>
+            <td class="action-buttons">
                 <button class="edit" onclick="editUser('${user.id}')">
                     <i class="fas fa-edit"></i> Edit
                 </button>
@@ -159,6 +198,49 @@ function populateUserTable(users) {
         `;
         tableBody.appendChild(row);
     });
+
+    renderPagination();
+}
+
+// =========================================
+// RENDER PAGINATION
+// =========================================
+function renderPagination() {
+    const paginationContainer = document.getElementById("user-pagination");
+    if (!paginationContainer) return;
+
+    const totalPages = Math.ceil(allUsers.length / USERS_PER_PAGE);
+
+    if (totalPages <= 1) {
+        paginationContainer.innerHTML = "";
+        return;
+    }
+
+    let html = '';
+
+    // Previous button
+    html += `<button onclick="goToPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}>
+        <i class="fas fa-chevron-left"></i>
+    </button>`;
+
+    // Page numbers
+    for (let i = 1; i <= totalPages; i++) {
+        html += `<button class="${i === currentPage ? 'active' : ''}" onclick="goToPage(${i})">${i}</button>`;
+    }
+
+    // Next button
+    html += `<button onclick="goToPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>
+        <i class="fas fa-chevron-right"></i>
+    </button>`;
+
+    paginationContainer.innerHTML = html;
+}
+
+function goToPage(page) {
+    const totalPages = Math.ceil(allUsers.length / USERS_PER_PAGE);
+    if (page < 1 || page > totalPages) return;
+    currentPage = page;
+    renderUserTable();
 }
 
 // Format date helper
@@ -177,6 +259,84 @@ function updateUserCount(count) {
     const userCount = document.getElementById("user-count");
     if (userCount) {
         userCount.textContent = `${count} user${count !== 1 ? 's' : ''}`;
+    }
+}
+
+// =========================================
+// FETCH ALL FEEDBACK (Admin)
+// =========================================
+async function fetchFeedback() {
+    const loading = document.getElementById("feedback-loading");
+    const tableBody = document.getElementById("feedback-list");
+
+    if (loading) loading.style.display = "block";
+    if (tableBody) tableBody.innerHTML = "";
+
+    try {
+        const token = localStorage.getItem("authToken");
+        const response = await fetch(`${API_BASE}/pdfm/feedback`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${token}`
+            },
+            mode: "cors",
+        });
+
+        if (!response.ok) throw new Error(`Failed to fetch feedback: ${response.status}`);
+
+        const feedbacks = await response.json();
+
+        if (loading) loading.style.display = "none";
+
+        populateFeedbackTable(feedbacks);
+        updateFeedbackCount(feedbacks.length);
+
+    } catch (error) {
+        console.error("Error fetching feedback:", error);
+        if (loading) loading.innerHTML = '<i class="fas fa-exclamation-circle"></i> Gagal memuat data feedback';
+    }
+}
+
+// =========================================
+// POPULATE FEEDBACK TABLE
+// =========================================
+function populateFeedbackTable(feedbacks) {
+    const tableBody = document.getElementById("feedback-list");
+    if (!tableBody) return;
+
+    tableBody.innerHTML = "";
+
+    if (!feedbacks || feedbacks.length === 0) {
+        tableBody.innerHTML = `
+            <tr>
+                <td colspan="4" style="text-align: center; color: #6b7280; padding: 40px;">
+                    <i class="fas fa-comments" style="font-size: 2rem; margin-bottom: 10px; display: block;"></i>
+                    Belum ada feedback dari user
+                </td>
+            </tr>
+        `;
+        return;
+    }
+
+    feedbacks.forEach((feedback, index) => {
+        const row = document.createElement("tr");
+        row.style.animation = `fadeInUp 0.3s ease-out ${index * 0.05}s both`;
+        row.innerHTML = `
+            <td><strong>${feedback.name || '-'}</strong></td>
+            <td>${feedback.email || '-'}</td>
+            <td class="feedback-message">${feedback.message || '-'}</td>
+            <td>${formatDate(feedback.created_at)}</td>
+        `;
+        tableBody.appendChild(row);
+    });
+}
+
+// Update feedback count
+function updateFeedbackCount(count) {
+    const feedbackCount = document.getElementById("feedback-count");
+    if (feedbackCount) {
+        feedbackCount.textContent = `${count} feedback`;
     }
 }
 
@@ -380,25 +540,35 @@ function resetForm() {
 // =========================================
 document.getElementById("user-form").addEventListener("submit", saveUser);
 
-// Add CSS for badges dynamically
+// Add CSS for badges and action buttons dynamically
 const style = document.createElement('style');
 style.textContent = `
     .badge {
-        padding: 4px 10px;
+        padding: 6px 12px;
         border-radius: 20px;
         font-size: 0.8rem;
         font-weight: 600;
         display: inline-flex;
         align-items: center;
-        gap: 4px;
+        gap: 5px;
     }
     .badge-success {
-        background: #d1fae5;
+        background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
         color: #059669;
     }
     .badge-default {
         background: #f3f4f6;
         color: #6b7280;
     }
+    .action-buttons {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+    }
+    .feedback-message {
+        max-width: 350px;
+        line-height: 1.5;
+    }
 `;
 document.head.appendChild(style);
+

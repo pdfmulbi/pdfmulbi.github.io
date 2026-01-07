@@ -172,7 +172,74 @@ main {
 }
 
 /* =========================================
-   4. CARDS
+   4. TAB NAVIGATION
+   ========================================= */
+.tab-navigation {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 24px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.tab-btn {
+    padding: 14px 28px;
+    border: none;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: white;
+    color: #6b7280;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+    border: 2px solid transparent;
+}
+
+.tab-btn:hover {
+    background: #fef2f2;
+    color: #e53e3e;
+    border-color: #fecaca;
+}
+
+.tab-btn.active {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    color: white;
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.35);
+}
+
+.tab-btn.active i {
+    color: white;
+}
+
+.tab-btn i {
+    font-size: 1.1rem;
+    color: #9ca3af;
+    transition: color 0.3s ease;
+}
+
+.tab-btn:hover i {
+    color: #e53e3e;
+}
+
+/* Tab Content */
+.tab-content {
+    display: none;
+    animation: fadeInUp 0.4s ease-out;
+    width: 100%;
+}
+
+.tab-content.active {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+}
+
+/* =========================================
+   5. CARDS
    ========================================= */
 .card {
     background: white;
@@ -282,6 +349,68 @@ table tbody tr:last-child td {
 .loading i {
     margin-right: 8px;
     color: #e53e3e;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid #f3f4f6;
+}
+
+.pagination button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #f3f4f6;
+    color: #4b5563;
+}
+
+.pagination button:hover:not(:disabled) {
+    background: #e5e7eb;
+}
+
+.pagination button.active {
+    background: linear-gradient(135deg, #e53e3e 0%, #c53030 100%);
+    color: white;
+    box-shadow: 0 2px 10px rgba(229, 62, 62, 0.3);
+}
+
+.pagination button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Full Width Card for Feedback */
+.card.full-width {
+    flex: 1 1 100%;
+    min-width: 100%;
+}
+
+/* Feedback Count Badge */
+.feedback-count {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+/* Feedback Table Message Column */
+#feedback-table td:nth-child(3) {
+    max-width: 400px;
+    white-space: normal;
+    word-wrap: break-word;
+    line-height: 1.5;
 }
 
 /* =========================================
