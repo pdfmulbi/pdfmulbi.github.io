@@ -23,13 +23,16 @@ body {
 }
 
 /* 2. GLASS CARD (Form Container) */
-.feedback-card, .glass-effect {
+.feedback-card,
+.glass-effect {
     background: rgba(255, 255, 255, 0.9) !important;
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(254, 202, 202, 0.6); /* Border Merah Tipis */
+    border: 1px solid rgba(254, 202, 202, 0.6);
+    /* Border Merah Tipis */
     border-radius: 24px !important;
-    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.1); /* Red Shadow Soft */
+    box-shadow: 0 10px 40px rgba(220, 38, 38, 0.1);
+    /* Red Shadow Soft */
     animation: fadeInUp 0.6s ease-out;
 }
 
@@ -58,7 +61,8 @@ body {
 
 .form-control {
     background: rgba(255, 255, 255, 0.8) !important;
-    border: 2px solid #fee2e2 !important; /* Merah Sangat Muda */
+    border: 2px solid #fee2e2 !important;
+    /* Merah Sangat Muda */
     border-radius: 12px !important;
     padding: 14px 14px 14px 45px !important;
     font-size: 0.95rem;
@@ -69,13 +73,15 @@ body {
 /* Saat Input di-klik (Focus) jadi Merah */
 .form-control:focus {
     background: #fff !important;
-    border-color: #ef4444 !important; /* Merah Cerah */
+    border-color: #ef4444 !important;
+    /* Merah Cerah */
     box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.15) !important;
 }
 
-.form-control:focus + i, 
+.form-control:focus+i,
 .input-wrapper:focus-within i {
-    color: #ef4444 !important; /* Ikon jadi Merah */
+    color: #ef4444 !important;
+    /* Ikon jadi Merah */
 }
 
 /* 4. SUBMIT BUTTON (Gradient Merah) */
@@ -101,20 +107,39 @@ body {
 
 /* 5. SUCCESS ANIMATION & CARD */
 .success-icon i {
-    color: #16a34a !important; /* Hijau (Sukses tetap hijau biar umum) */
+    color: #16a34a !important;
+    /* Hijau (Sukses tetap hijau biar umum) */
     animation: popUp 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
+
 /* Opsional: Kalau mau ikon sukses merah juga, ganti color di atas jadi #dc2626 */
 
 @keyframes popUp {
-    0% { transform: scale(0); opacity: 0; }
-    60% { transform: scale(1.2); }
-    100% { transform: scale(1); opacity: 1; }
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    60% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
 }
 
 @keyframes fadeInUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* 6. DARK MODE SUPPORT */
@@ -167,97 +192,122 @@ body {
 }
 
 /* ============================
-   FOOTER FIXED - GRID SYSTEM
+   FOOTER FIXED - FLEX SYSTEM (Same as supportus.css)
    ============================ */
 .footer {
     position: fixed;
     bottom: 0;
-    left: 0;
     width: 100%;
-    background: #ffffff; /* Ganti warna background sesuai tema */
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.05);
-    z-index: 1000;
-    padding-bottom: env(safe-area-inset-bottom); /* Support iPhone X ke atas */
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-top: 1px solid rgba(229, 231, 235, 0.5);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    justify-content: center;
+    padding: 12px 0;
+    z-index: 100;
 }
 
 .footer-container {
-    display: grid;
-    /* RAHASIA RAPI: 5 Kolom. 
-       Kolom 3 (Tengah) fix 80px, sisanya (1fr) bagi rata otomatis */
-    grid-template-columns: 1fr 1fr 80px 1fr 1fr;
-    align-items: end; /* Agar item sejajar di bawah */
-    height: 70px;
-    max-width: 600px; /* Batas lebar agar tidak terlalu lebar di PC */
-    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
 }
 
-/* Style Item Biasa */
+.footer-item {
+    text-align: center;
+    flex: 1;
+    color: #6b7280;
+    font-size: 14px;
+    transition: all 0.3s ease-in-out;
+}
+
 .footer-item a {
+    text-decoration: none;
+    color: inherit;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-decoration: none;
-    color: #94a3b8; /* Warna Ikon Mati */
-    font-size: 0.75rem;
-    padding-bottom: 12px;
+    padding: 8px;
+    border-radius: 12px;
     transition: all 0.3s ease;
 }
 
+.footer-item a:hover {
+    background: rgba(229, 62, 62, 0.08);
+    color: #e53e3e;
+}
+
 .footer-item i {
-    font-size: 1.3rem;
-    margin-bottom: 4px;
+    display: block;
+    font-size: 20px;
+    margin-bottom: 5px;
 }
 
-/* Efek Hover/Aktif */
-.footer-item a:hover, 
-.footer-item a.active {
-    color: #e53e3e; /* Merah */
-}
-
-/* Style Tombol Upload (Tengah) */
-.footer-item.upload {
-    position: relative;
-    top: -25px; /* Angkat ke atas */
-    display: flex;
-    justify-content: center;
-}
-
-.upload-btn-circle {
-    width: 60px;
-    height: 60px;
-    background: linear-gradient(135deg, #e53e3e 0%, #b91c1c 100%);
+.footer-item.upload a i {
+    color: white;
+    background: linear-gradient(135deg, #e53e3e 0%, #dc2626 100%);
     border-radius: 50%;
+    padding: 15px;
+    font-size: 25px;
+    width: 50px;
+    height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 20px rgba(229, 62, 62, 0.4);
-    border: 4px solid #ffffff; /* Border putih agar terpisah dari footer */
-    transition: transform 0.2s;
+    margin: 0 auto;
+    box-shadow: 0 4px 15px rgba(229, 62, 62, 0.4);
+    transition: all 0.3s ease;
 }
 
-.upload-btn-circle i {
-    color: white;
-    font-size: 1.5rem;
-    margin: 0;
+.footer-item.upload a:hover i {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(229, 62, 62, 0.5);
 }
 
-.upload-btn-circle:active {
-    transform: scale(0.95);
+.footer-item.upload span {
+    display: none;
+}
+
+.footer-item:hover {
+    color: #e53e3e;
 }
 
 /* Dark Mode Support untuk Footer */
 [data-theme="dark"] .footer {
-    background: #1e293b;
-    box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    background: rgba(30, 41, 59, 0.95);
+    border-top-color: rgba(71, 85, 105, 0.5);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
 }
-[data-theme="dark"] .upload-btn-circle {
-    border-color: #1e293b; /* Border mengikuti warna footer dark mode */
+
+[data-theme="dark"] .footer-item {
+    color: #94a3b8;
+}
+
+[data-theme="dark"] .footer-item a:hover {
+    background: rgba(239, 68, 68, 0.1);
+    color: #f87171;
+}
+
+[data-theme="dark"] .footer-item:hover {
+    color: #f87171;
 }
 
 /* Responsive */
 @media (max-width: 576px) {
     .feedback-card {
         padding: 25px !important;
+    }
+
+    .footer-item i {
+        font-size: 18px;
+    }
+
+    .footer-item span {
+        font-size: 12px;
     }
 }

@@ -434,6 +434,10 @@ body::before {
     box-shadow: 0 6px 20px rgba(239, 68, 68, 0.5);
 }
 
+.footer-item.upload span {
+    display: none;
+}
+
 .footer-item:hover {
     color: #ef4444;
 }
