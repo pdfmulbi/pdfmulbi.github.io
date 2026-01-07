@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feedback - PDF Merger</title>
+    <link rel="icon" href="image/PDF.ico" type="image/x-icon" />
+
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+
+    <link rel="stylesheet" href="css/header.css" />
+    <link rel="stylesheet" href="css/notification.css" />
+    <link rel="stylesheet" href="css/darkmode.css" />
+
+    <link rel="stylesheet" href="css/feedback.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">
+        <a href="index.html" class="logo-text">
+          PDF <span class="heart">❤</span>Merger
+        </a>
+      </div>
+
+      <div class="auth-buttons" id="auth-buttons">
+        <div class="notification-wrapper" id="notification-wrapper">
+          <button
+            class="notification-btn"
+            id="notification-btn"
+            title="Notifications"
+          >
+            <i class="fas fa-bell"></i>
+            <span class="notification-badge" id="notification-badge">0</span>
+          </button>
+          <div class="notification-dropdown" id="notification-dropdown">
+            <div class="notification-header">
+              <span>Notifications</span>
+              <button id="clear-notifications">Clear All</button>
+            </div>
+            <div class="notification-list" id="notification-list"></div>
+          </div>
+        </div>
+
+        <a href="login.html" class="login">Login</a>
+        <button class="signup" onclick="klikSignup()">Sign up</button>
+        <button class="theme-toggle" id="theme-toggle" title="Toggle Dark Mode">
+          <i class="fas fa-moon"></i>
+        </button>
+      </div>
+    </header>
+
+    <div class="container mt-5 mb-5" style="max-width: 600px">
+      <div class="text-center mb-4 section-title">
+        <h2 class="fw-bold">Kirim Masukan & Saran</h2>
+        <p class="text-muted">
+          Suara Anda membantu kami berkembang lebih baik.
+        </p>
+      </div>
+
+      <div class="feedback-card shadow-sm p-4" id="formCard">
+        <form id="feedbackForm">
+          <div class="mb-3 input-group-modern">
+            <label for="nameInput" class="form-label fw-bold small"
+              >Nama Lengkap</label
+            >
+            <div class="input-wrapper">
+              <i class="fas fa-user text-muted"></i>
+              <input
+                type="text"
+                class="form-control"
+                id="nameInput"
+                placeholder="Masukkan nama Anda"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-3 input-group-modern">
+            <label for="emailInput" class="form-label fw-bold small"
+              >Email</label
+            >
+            <div class="input-wrapper">
+              <i class="fas fa-envelope text-muted"></i>
+              <input
+                type="email"
+                class="form-control"
+                id="emailInput"
+                placeholder="nama@email.com"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="mb-4 input-group-modern">
+            <label for="messageInput" class="form-label fw-bold small"
+              >Pesan / Laporan Bug</label
+            >
+            <div class="input-wrapper textarea-wrapper">
+              <i class="fas fa-comment-dots text-muted mt-2"></i>
+              <textarea
+                class="form-control"
+                id="messageInput"
+                rows="5"
+                placeholder="Tuliskan pengalaman, saran, atau masalah yang Anda temukan..."
+                required
+              ></textarea>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            id="submitBtn"
+            class="btn btn-primary w-100 py-3 fw-bold"
+          >
+            <i class="fas fa-paper-plane me-2"></i> Kirim Feedback
+          </button>
+        </form>
+      </div>
+
+      <div
+        id="successCard"
+        class="card p-5 shadow-sm d-none border-0 text-center glass-effect"
+      >
+        <div class="success-icon mb-3">
+          <i class="fas fa-check-circle fa-4x text-success"></i>
+        </div>
+        <h3 class="fw-bold text-success mb-2">Terima Kasih!</h3>
+        <p class="text-muted mb-4">
+          Masukan Anda telah kami terima dan akan segera kami pelajari.
+        </p>
+
+        <button
+          onclick="window.location.href='index.html'"
+          class="btn btn-outline-success rounded-pill px-4"
+        >
+          <i class="fas fa-home me-2"></i> Kembali ke Beranda
+        </button>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-item">
+          <a href="index.html">
+            <i class="fas fa-home"></i>
+            <span>Home</span>
+          </a>
+        </div>
+
+        <div class="footer-item">
+          <a href="supportus.html">
+            <i class="fa-solid fa-hand-holding-dollar"></i>
+            <span>Support</span>
+          </a>
+        </div>
+
+        <div class="footer-item upload">
+          <a href="merge.html">
+            <div class="upload-btn-circle">
+              <i class="fa-solid fa-file-arrow-up"></i>
+            </div>
+          </a>
+        </div>
+
+        <div class="footer-item">
+          <a href="feedback.html">
+            <i class="fas fa-comment-dots"></i>
+            <span>Feedback</span>
+          </a>
+        </div>
+
+        <div class="footer-item">
+          <a href="profile.html">
+            <i class="fas fa-user"></i>
+            <span>Profile</span>
+          </a>
+        </div>
+        <div class="footer-item">
+            <a href="javascript:void(0)" id="logout-link">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Logout</span>
+            </a>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/theme.js"></script>
+    <script src="js/notification.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/feedback.js"></script>
+
+    <script>
+      // LOGIKA FEEDBACK PAGE
+      document.addEventListener("DOMContentLoaded", async () => {
+        const token = localStorage.getItem("authToken");
+
+        // 1. Auto-Fill Form jika user Login
+        if (token) {
+          try {
+            // Panggil API GetOneUser untuk dapat nama & email
+            const response = await fetch(
+              "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/getone/users",
+              {
+                headers: { Authorization: "Bearer " + token },
+              }
+            );
+            if (response.ok) {
+              const user = await response.json();
+              document.getElementById("nameInput").value = user.name || "";
+              document.getElementById("emailInput").value = user.email || "";
+              // Optional: Disable input agar tidak diubah (kalau mau strict)
+              // document.getElementById('nameInput').readOnly = true;
+              // document.getElementById('emailInput').readOnly = true;
+            }
+          } catch (e) {
+            console.log("Guest mode or API error");
+          }
+        }
+
+        // 2. Handle Submit Form
+        const form = document.getElementById("feedbackForm");
+        const submitBtn = document.getElementById("submitBtn");
+        const formCard = document.getElementById("formCard");
+        const successCard = document.getElementById("successCard");
+
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          // Loading State
+          submitBtn.disabled = true;
+          submitBtn.innerHTML =
+            '<span class="spinner-border spinner-border-sm"></span> Mengirim...';
+
+          // Ambil Data
+          const payload = {
+            name: document.getElementById("nameInput").value,
+            email: document.getElementById("emailInput").value,
+            message: document.getElementById("messageInput").value,
+          };
+
+          const headers = { "Content-Type": "application/json" };
+          if (token) headers["Authorization"] = "Bearer " + token;
+
+          try {
+            // KIRIM KE BACKEND
+            const res = await fetch(
+              "https://asia-southeast2-personalsmz.cloudfunctions.net/pdfmerger/pdfm/feedback",
+              {
+                method: "POST",
+                headers: headers,
+                body: JSON.stringify(payload),
+              }
+            );
+
+            if (res.ok) {
+              // SUKSES: Ganti Tampilan (Tanpa Notifikasi Lonceng)
+              formCard.classList.add("d-none");
+              successCard.classList.remove("d-none");
+            } else {
+              alert("Gagal mengirim feedback. Silakan coba lagi.");
+            }
+          } catch (err) {
+            console.error(err);
+            alert("Terjadi kesalahan jaringan.");
+          } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML =
+              '<i class="fas fa-paper-plane me-2"></i> Kirim Feedback';
+          }
+        });
+      });
+
+      function klikSignup() {
+        window.location.href = "register.html";
+      }
+    </script>
+  </body>
+</html>
