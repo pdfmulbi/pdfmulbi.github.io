@@ -92,7 +92,7 @@ fileInput.addEventListener('change', async function() {
         // max_length: panjang maksimum ringkasan
         // min_length: panjang minimum ringkasan
         const output = await summarizer(text, {
-            max_new_tokens: 200, // Sesuaikan panjang output
+            max_new_tokens: 500, // Sesuaikan panjang output
             min_new_tokens: 50,
         });
 
